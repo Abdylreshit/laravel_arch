@@ -1,0 +1,15 @@
+{
+    "name": "bidus/staff_section",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "cherkezov",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+        "spatie/laravel-permission": "^6.4"
+    }
+}

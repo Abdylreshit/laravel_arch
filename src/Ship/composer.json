@@ -1,0 +1,22 @@
+{
+    "name": "laravel_arch_bidus_company/ship_layer",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "cherkezov",
+            "email": "acerkezov97@gmail.com"
+        }
+    ],
+    "require": {
+        "bensampo/laravel-enum": "*",
+        "lorisleiva/laravel-actions": "^2.8",
+        "spatie/laravel-backup": "^8.6",
+        "spatie/laravel-sluggable": "*",
+        "spatie/laravel-translatable": "*",
+        "staudenmeir/eloquent-has-many-deep": "*",
+        "spatie/laravel-activitylog": "*",
+        "laravel/sanctum": "^3.3"
+    }
+}

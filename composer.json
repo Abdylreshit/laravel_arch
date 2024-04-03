@@ -1,0 +1,101 @@
+{
+    "name": "bidus/laravel_arch_bidus_company",
+    "type": "project",
+    "description": "Application skeleton for the Laravel platform based on the PORTO architecture",
+    "keywords": [
+        "Laravel",
+        "Apiato",
+        "API",
+        "Framework",
+        "API framework",
+        "API Starter",
+        "PHP API Starter",
+        "Laravel API",
+        "PHP",
+        "Porto",
+        "Porto SAP"
+    ],
+    "authors": [
+        {
+            "name": "Taylor Otwell",
+            "email": "taylor@laravel.com"
+        },
+        {
+            "name": "Mahmoud Zalt",
+            "email": "mahmoud@zalt.me",
+            "role": "Author"
+        },
+        {
+            "name": "Mohammad Alavi",
+            "email": "mohammad.alavi1990@gmail.com",
+            "homepage": "https://mohammadalavi.com/",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Cherkezov Abdylreshit",
+            "email": "acerkezov97@gmail.com",
+            "role": "Maintainer"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^10.10",
+        "laravel/horizon": "^5.23",
+        "laravel/sanctum": "^3.3",
+        "laravel/tinker": "^2.8",
+        "wikimedia/composer-merge-plugin": "^2.1"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.0",
+        "laravel/sail": "^1.18",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^10.1",
+        "spatie/laravel-ignition": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Database\\Factories\\": "src/Ship/Data/factories/",
+            "Database\\Seeders\\": "src/Ship/Data/Seeders/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {}
+    },
+    "scripts": {
+    },
+    "extra": {
+        "merge-plugin": {
+            "include": [
+                "src/Ship/composer.json",
+                "src/Containers/*/composer.json",
+                "src/Containers/*/*/composer.json"
+            ],
+            "recurse": true,
+            "replace": false,
+            "merge-dev": true,
+            "merge-extra": false,
+            "merge-extra-deep": false,
+            "merge-scripts": true
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "wikimedia/composer-merge-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
