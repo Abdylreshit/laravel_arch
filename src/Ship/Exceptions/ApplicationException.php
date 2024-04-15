@@ -8,35 +8,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-/**
- * @OA\Schema(
- *      schema="ApplicationException",
- *
- *      @OA\Property(
- *          property="message",
- *          type="string",
- *          description="Error message",
- *      ),
- *      @OA\Property(
- *          property="error",
- *          type="string",
- *          description="ERROR",
- *      ),
- *      @OA\Property(
- *          property="container",
- *          type="string",
- *          description="Container name",
- *      ),
- *      @OA\Property(
- *          property="data",
- *          description="error data messages",
- *          type="array",
- *          collectionFormat="multi",
- *
- *          @OA\Items(type="object"),
- *      )
- *  )
- */
 class ApplicationException extends BaseException
 {
     /**
@@ -79,7 +50,6 @@ class ApplicationException extends BaseException
 
         return new JsonResponse(
             [
-                'success' => false,
                 'error' => $this->error,
                 'message' => $this->message,
                 'container' => $this->container,

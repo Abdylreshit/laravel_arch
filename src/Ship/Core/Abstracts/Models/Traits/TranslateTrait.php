@@ -2,14 +2,30 @@
 
 namespace App\Ship\Core\Abstracts\Models\Traits;
 
+use Illuminate\Support\Str;
 use Spatie\Translatable\HasTranslations;
 
 trait TranslateTrait
 {
     use HasTranslations;
 
-    public function trans(string $fieldName)
+    public function getTrans(string $fieldName, ?string $locale = null)
     {
-        return $this->translate($fieldName, app()->getLocale());
+        $translate = $this->translate($fieldName, $locale ?? app()->getLocale());
+
+        if (Str::length($translate) == 0) {
+            return null;
+        } else {
+            return $translate;
+        }
+    }
+
+    public function scopeWhereLikeLocale($query, $field, $value)
+    {
+        $locales = getBaseLocales();
+
+        foreach ($locales as $locale) {
+            $query->orWhere("$field->$locale", 'like', "%$value%");
+        }
     }
 }

@@ -17,6 +17,7 @@
         "spatie/laravel-translatable": "*",
         "staudenmeir/eloquent-has-many-deep": "*",
         "spatie/laravel-activitylog": "*",
-        "laravel/sanctum": "^3.3"
+        "laravel/sanctum": "^3.3",
+        "spatie/laravel-medialibrary": "^11.4"
     }
 }

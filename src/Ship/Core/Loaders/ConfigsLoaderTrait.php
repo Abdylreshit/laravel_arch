@@ -19,11 +19,11 @@ trait ConfigsLoaderTrait
 
             foreach ($files as $file) {
                 $name = File::name($file);
-                $path = $configFolder . '/' . $name . '.php';
+                $path = $configFolder.'/'.$name.'.php';
 
-//                $config = $this->app->make('config');
-//
-//                $config->set($name, require $path);
+                //                $config = $this->app->make('config');
+                //
+                //                $config->set($name, require $path);
 
                 $this->mergeConfigFrom($path, $name);
             }
@@ -32,15 +32,14 @@ trait ConfigsLoaderTrait
 
     public function loadConfigsFromContainers($containerPath): void
     {
-        $containerConfigsDirectory = $containerPath . '/Configs';
-
+        $containerConfigsDirectory = $containerPath.'/Configs';
 
         if (File::isDirectory($containerConfigsDirectory)) {
             $files = File::files($containerConfigsDirectory);
 
             foreach ($files as $file) {
                 $name = File::name($file);
-                $path = $containerConfigsDirectory . '/' . $name . '.php';
+                $path = $containerConfigsDirectory.'/'.$name.'.php';
 
                 $config = $this->app->make('config');
 

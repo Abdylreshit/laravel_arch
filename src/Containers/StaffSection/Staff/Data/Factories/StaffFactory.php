@@ -18,7 +18,17 @@ class StaffFactory extends ParentFactory
             'email' => $this->faker->email,
             'phone' => $this->faker->phoneNumber,
             'timezone' => $this->faker->timezone,
-            'password' => Hash::make('123123')
+            'password' => '123123',
         ];
+    }
+
+    public function configure()
+    {
+        return $this
+            ->afterCreating(function (Staff $staff) {
+                $staff->update([
+                    'password' => Hash::make('123123')
+                ]);
+            });
     }
 }

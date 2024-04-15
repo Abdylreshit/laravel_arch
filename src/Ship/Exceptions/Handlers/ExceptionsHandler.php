@@ -2,6 +2,7 @@
 
 namespace App\Ship\Exceptions\Handlers;
 
+use App\Containers\StaffSection\Permission\Exceptions\PermissionException;
 use App\Ship\Core\Exceptions\Handlers\ExceptionsHandler as CoreExceptionsHandler;
 use App\Ship\Exceptions\ModelNotFoundException;
 use App\Ship\Exceptions\UnauthenticatedException;
@@ -13,9 +14,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Validation\ValidationException as BaseValidationException;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
-
 
 class ExceptionsHandler extends CoreExceptionsHandler
 {
@@ -48,6 +49,13 @@ class ExceptionsHandler extends CoreExceptionsHandler
     public function render($request, Throwable $e): HttpResponse|JsonResponse|Response|RedirectResponse
     {
         if ($this->shouldReturnJson($request, $e)) {
+
+            if ($e instanceof UnauthorizedException) {
+                $exception = new PermissionException;
+
+                return $exception->render();
+            }
+
             if ($e instanceof BaseModelNotFoundException) {
                 $exception = new ModelNotFoundException;
 

@@ -1,11 +1,18 @@
 <?php
 
-if (!function_exists('currentStaff')) {
-    function currentStaff(): ?\App\Ship\Core\Abstracts\Models\UserModel
+if (! function_exists('currentStaff')) {
+    function currentStaff(): ?\App\Containers\StaffSection\Staff\Models\Staff
     {
         $staff = auth('admin')->user();
 
         return $staff;
     }
 }
+if (! function_exists('currentRider')) {
+    function currentRider(): ?Rider
+    {
+        $rider = auth('rider')->user();
 
+        return $rider;
+    }
+}

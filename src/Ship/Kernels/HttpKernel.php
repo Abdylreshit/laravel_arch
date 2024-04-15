@@ -24,6 +24,7 @@ use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Rakutentech\LaravelRequestDocs\LaravelRequestDocsMiddleware;
 
 class HttpKernel extends LaravelHttpKernel
 {
@@ -42,7 +43,7 @@ class HttpKernel extends LaravelHttpKernel
         ValidatePostSize::class,
         TrimStrings::class,
         ConvertEmptyStringsToNull::class,
-        SetLocale::class
+        SetLocale::class,
     ];
 
     /**
@@ -62,6 +63,7 @@ class HttpKernel extends LaravelHttpKernel
 
         'api' => [
             SubstituteBindings::class,
+            LaravelRequestDocsMiddleware::class,
         ],
     ];
 

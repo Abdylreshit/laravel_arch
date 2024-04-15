@@ -15,7 +15,9 @@ abstract class MiddlewareServiceProvider extends MainServiceProvider
 
     protected array $middlewarePriority = [];
 
-    protected array $routeMiddleware = [];
+    protected array $routeMiddleware = [
+
+    ];
 
     /**
      * Perform post-registration booting of services.

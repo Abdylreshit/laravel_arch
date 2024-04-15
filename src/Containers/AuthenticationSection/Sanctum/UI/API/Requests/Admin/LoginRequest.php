@@ -6,14 +6,11 @@ use App\Ship\Core\Abstracts\Requests\Request;
 
 class LoginRequest extends Request
 {
-    /**
-     * @return array
-     */
     public function rules(): array
     {
         return [
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:3', 'max:20']
+            'password' => ['required', 'min:3', 'max:20'],
         ];
     }
 }

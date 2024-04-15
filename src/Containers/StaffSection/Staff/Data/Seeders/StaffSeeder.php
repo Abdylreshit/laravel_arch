@@ -10,7 +10,7 @@ class StaffSeeder extends ParentSeeder
     public function run(): void
     {
         StaffFactory::new()->createOne([
-            'email' => 'admin@admin.com'
+            'email' => 'admin@admin.com',
         ]);
     }
 }

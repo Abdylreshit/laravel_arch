@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'unauthorized' => 'ru unauthorized',
     'invalid_data' => 'ru invalid_data',

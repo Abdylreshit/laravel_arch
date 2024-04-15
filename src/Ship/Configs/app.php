@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool)env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -163,7 +163,7 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Ship\Core\Providers\PortoServiceProvider::class
+        App\Ship\Core\Providers\PortoServiceProvider::class,
     ])->toArray(),
 
     /*

@@ -1,5 +1,6 @@
 <?php
 
+use App\Containers\StaffSection\Staff\Enums\StateEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable()->unique();
             $table->string('timezone')->default(config('app.timezone'));
+
+            $table->boolean('is_blocked')->default(false);
+            $table->string('state')->default(StateEnum::DO_NOT_DISTURB);
+
             $table->timestamps();
             $table->softDeletes();
         });

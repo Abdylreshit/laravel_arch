@@ -12,16 +12,19 @@ use Throwable;
 class LoginAction extends Action
 {
     /**
-     * @param LoginRequest $request
-     * @return string
      * @throws Throwable
      */
-    public function handle(LoginRequest $request): string
+    public function handle(LoginRequest $request): object
     {
         $staff = app(FindByEmailStaffTask::class)->execute($request->email);
 
-        throw_if(Hash::check($request->password, $staff->password), ModelNotFoundException::class);
+        throw_if(! Hash::check($request->password, $staff->password), ModelNotFoundException::class);
 
-        return $staff->createToken('PAT')->plainTextToken;
+        $token = $staff->createToken('PAT')->plainTextToken;
+
+        return (object) [
+            'access_token' => $token,
+            'staff' => $staff,
+        ];
     }
 }

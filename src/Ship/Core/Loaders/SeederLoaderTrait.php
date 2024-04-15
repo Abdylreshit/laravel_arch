@@ -3,8 +3,10 @@
 namespace App\Ship\Core\Loaders;
 
 use App\Ship\Core\Foundation\Facades\Porto;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 /**
  * This class is different from other loaders as it is not called by AutoLoaderTrait
@@ -31,6 +33,10 @@ trait SeederLoaderTrait
                 $containersDirectories[] = base_path('src/Containers/'.$sectionName.'/'.$containerName.$this->seedersPath);
             }
         }
+
+        $containersDirectories = Arr::sort($containersDirectories, function ($value) {
+            return Str::is('*Managers*', $value);
+        });
 
         $seedersClasses = $this->findSeedersClasses($containersDirectories, $seedersClasses);
         $orderedSeederClasses = $this->sortSeeders($seedersClasses);

@@ -30,13 +30,13 @@ class ShipServiceProvider extends ParentMainServiceProvider
      */
     public function boot(): void
     {
-        DB::listen(function ($sql) {
-            Log::info('start');
-            Log::info($sql->sql);
-            Log::info($sql->bindings);
-            Log::info($sql->time);
-            Log::info('end');
-        });
+        //        DB::listen(function ($sql) {
+        //            Log::info('start');
+        //            Log::info($sql->sql);
+        //            Log::info($sql->bindings);
+        //            Log::info($sql->time);
+        //            Log::info('end');
+        //        });
         parent::boot();
     }
 

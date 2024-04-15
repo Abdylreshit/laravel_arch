@@ -45,6 +45,8 @@
         "laravel/horizon": "^5.23",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "rakutentech/laravel-request-docs": "^2.35",
+        "spatie/laravel-medialibrary": "^11.4",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
     "require-dev": {

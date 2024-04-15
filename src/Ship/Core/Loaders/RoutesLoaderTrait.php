@@ -47,12 +47,12 @@ trait RoutesLoaderTrait
 
     private function getRoutePathsForUI(string $containerPath, string $ui): string
     {
-        return $this->getUIPathForContainer($containerPath, $ui) . DIRECTORY_SEPARATOR . 'Routes';
+        return $this->getUIPathForContainer($containerPath, $ui).DIRECTORY_SEPARATOR.'Routes';
     }
 
     private function getUIPathForContainer(string $containerPath, string $ui): string
     {
-        return $containerPath . DIRECTORY_SEPARATOR . 'UI' . DIRECTORY_SEPARATOR . $ui;
+        return $containerPath.DIRECTORY_SEPARATOR.'UI'.DIRECTORY_SEPARATOR.$ui;
     }
 
     private function loadApiRoute(SplFileInfo $file): void
@@ -63,7 +63,6 @@ trait RoutesLoaderTrait
             require $file->getPathname();
         });
     }
-
 
     public function getRouteGroup(SplFileInfo|string $endpointFileOrPrefixString): array
     {
@@ -91,9 +90,6 @@ trait RoutesLoaderTrait
         return null;
     }
 
-    /**
-     * @return mixed
-     */
     private function getApiUrl(): mixed
     {
         return Config::get('porto.api.url');
@@ -101,7 +97,7 @@ trait RoutesLoaderTrait
 
     private function getApiVersionPrefix(SplFileInfo $file): string
     {
-        return 'api/' . $this->getRouteFileVersionFromFileName($file) . '/';
+        return 'api/'.$this->getRouteFileVersionFromFileName($file).'/';
     }
 
     private function getRouteFileVersionFromFileName(SplFileInfo $file): string|bool
@@ -121,9 +117,9 @@ trait RoutesLoaderTrait
     private function loadWebContainerRoutes($containerPath, $containerName): void
     {
         // build the container web routes path
-        $webRoutesPath = $containerPath . '/UI/ADMIN/Routes';
+        $webRoutesPath = $containerPath.'/UI/ADMIN/Routes';
         // build the namespace from the path
-        $controllerNamespace = $containerPath . '/UI/ADMIN/Controllers';
+        $controllerNamespace = $containerPath.'/UI/ADMIN/Controllers';
 
         if (File::isDirectory($webRoutesPath)) {
             $files = File::allFiles($webRoutesPath);
