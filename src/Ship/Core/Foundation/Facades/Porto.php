@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static array getSectionContainerPaths(string $sectionName)
  * @method static void verifyClassExist(string $className)
  *
- * @see \Ship\Core\Foundation\Porto
+ * @see \App\Ship\Core\Foundation\Porto
  */
 class Porto extends Facade
 {

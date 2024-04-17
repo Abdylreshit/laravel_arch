@@ -14,6 +14,8 @@ trait MigrationsLoaderTrait
 
     private function loadMigrations($directory): void
     {
+        dd($directory);
+
         if (File::isDirectory($directory)) {
             $this->loadMigrationsFrom($directory);
         }
