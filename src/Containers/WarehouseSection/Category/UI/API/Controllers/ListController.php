@@ -13,6 +13,8 @@ final class ListController extends ApiController
     /**
      * @LRDparam search nullable|string
      * @LRDparam sort nullable|string|in:id,name,created_at
+     * @LRDparam limit nullable|integer
+     * @LRDparam page nullable|integer
      */
     public function __invoke(Request $request): JsonResponse
     {

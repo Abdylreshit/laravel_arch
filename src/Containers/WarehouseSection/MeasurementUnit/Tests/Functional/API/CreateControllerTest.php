@@ -7,7 +7,7 @@ use App\Containers\WarehouseSection\MeasurementUnit\Tests\Functional\ApiTestCase
 
 class CreateControllerTest extends ApiTestCase
 {
-    public function testListController()
+    public function testCreateController()
     {
         $data = MeasurementUnit::factory()->makeOne();
 

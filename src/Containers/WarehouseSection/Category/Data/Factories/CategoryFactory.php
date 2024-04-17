@@ -4,6 +4,7 @@ namespace App\Containers\WarehouseSection\Category\Data\Factories;
 
 use App\Containers\WarehouseSection\Category\Models\Category;
 use App\Ship\Core\Abstracts\Factories\Factory as ParentFactory;
+use Illuminate\Support\Str;
 
 class CategoryFactory extends ParentFactory
 {
@@ -23,10 +24,10 @@ class CategoryFactory extends ParentFactory
         ];
     }
 
-    //    public function configure(): static
-    //    {
-    //        return $this->afterMaking(function (MeasurementUnit $measurementUnit) {
-    //            $measurementUnit->code = Str::upper(Str::slug($measurementUnit->symbol));
-    //        });
-    //    }
+        public function configure(): static
+        {
+            return $this->afterMaking(function (Category $category) {
+                $category->slug = Str::slug($category->getTranslation('name', 'en'), '-');
+            });
+        }
 }
