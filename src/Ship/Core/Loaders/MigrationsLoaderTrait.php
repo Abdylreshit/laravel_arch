@@ -9,13 +9,12 @@ trait MigrationsLoaderTrait
     public function loadMigrationsFromContainers($containerPath): void
     {
         $containerMigrationDirectory = $containerPath.'/Data/migrations';
+        dd($containerMigrationDirectory);
         $this->loadMigrations($containerMigrationDirectory);
     }
 
     private function loadMigrations($directory): void
     {
-        dd($directory);
-
         if (File::isDirectory($directory)) {
             $this->loadMigrationsFrom($directory);
         }
