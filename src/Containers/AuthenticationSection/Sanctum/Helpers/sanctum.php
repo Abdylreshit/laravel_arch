@@ -8,6 +8,7 @@ if (! function_exists('currentStaff')) {
         return $staff;
     }
 }
+
 if (! function_exists('currentRider')) {
     function currentRider(): ?Rider
     {

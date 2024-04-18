@@ -2,6 +2,7 @@
 
 namespace App\Containers\AuthenticationSection\Sanctum\UI\API\Controllers\Admin;
 
+use App\Containers\AuthenticationSection\Sanctum\Actions\Admin\LogoutAction;
 use App\Ship\Core\Abstracts\Controllers\ApiController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ final class LogoutController extends ApiController
     {
         $staff = currentStaff();
 
-        $staff->currentAccessToken()->delete();
+        LogoutAction::run($staff);
 
         return $this->accepted('ok');
     }
