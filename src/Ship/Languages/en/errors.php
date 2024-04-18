@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'unauthorized' => 'en unauthorized',
-    'invalid_data' => 'en invalid_data',
-    'not_found' => 'en not_found',
+    'unauthorized' => 'Unauthorized',
+    'invalid_data' => 'Invalid data',
+    'not_found' => 'Not found',
 ];

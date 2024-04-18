@@ -11,7 +11,7 @@ class AttachSuperAdminPermissionsSeeder extends Seeder
     public function run(): void
     {
         $staff = app(FindStaffByEmailTask::class)->execute('admin@admin.com');
-//
+
         app(StaffPermissionManager::class)->syncAllPermissionsToStaff($staff);
     }
 }

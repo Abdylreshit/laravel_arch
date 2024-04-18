@@ -4,11 +4,10 @@ namespace App\Containers\WarehouseSection\MeasurementUnit\Actions;
 
 use App\Containers\WarehouseSection\MeasurementUnit\Models\MeasurementUnit;
 use App\Ship\Core\Abstracts\Actions\Action;
-use Illuminate\Support\Collection;
 
 class ListAction extends Action
 {
-    public function handle($filters): Collection
+    public function handle(array $filters = [])
     {
         return MeasurementUnit::query()
             ->when(array_key_exists('search', $filters), function ($query) use ($filters) {
@@ -24,6 +23,6 @@ class ListAction extends Action
             ->when(! array_key_exists('search', $filters), function ($query) {
                 return $query->orderBy('type');
             })
-            ->get();
+            ->paginate($filters['limit'] ?? 10);
     }
 }

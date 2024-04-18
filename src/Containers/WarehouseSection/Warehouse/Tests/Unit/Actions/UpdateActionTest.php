@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\WarehouseSection\MeasurementUnit\Tests\Unit\Actions;
+namespace App\Containers\WarehouseSection\Warehouse\Tests\Unit\Actions;
 
 use App\Containers\WarehouseSection\MeasurementUnit\Actions\UpdateAction;
 use App\Containers\WarehouseSection\MeasurementUnit\Models\MeasurementUnit;
@@ -9,7 +9,7 @@ use App\Containers\WarehouseSection\MeasurementUnit\UI\API\Requests\UpdateReques
 
 class UpdateActionTest extends UnitTestCase
 {
-    public function testUpdateMeasurementUnitAction()
+    public function testEditByIdMeasurementUnitTask()
     {
         $data = MeasurementUnit::factory()->createOne();
         $editData = MeasurementUnit::factory()->makeOne();

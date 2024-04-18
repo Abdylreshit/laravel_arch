@@ -30,6 +30,7 @@ class PermissionSeeder extends ParentSeeder
         $containers = [
             'MeasurementUnit',
             'Category',
+            'Warehouse',
         ];
 
         $crud = ['create', 'find', 'update', 'delete'];

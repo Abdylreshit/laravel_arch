@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->index();
             $table->string('password');
             $table->string('phone')->nullable()->unique();
             $table->string('timezone')->default(config('app.timezone'));

@@ -2,18 +2,19 @@
 
 namespace App\Containers\WarehouseSection\MeasurementUnit\Tests\Unit\Actions;
 
+use App\Containers\WarehouseSection\MeasurementUnit\Actions\ListAction;
 use App\Containers\WarehouseSection\MeasurementUnit\Models\MeasurementUnit;
-use App\Containers\WarehouseSection\MeasurementUnit\Tasks\FindByIdMeasurementUnitTask;
 use App\Containers\WarehouseSection\MeasurementUnit\Tests\Unit\UnitTestCase;
+use Illuminate\Contracts\Pagination\Paginator;
 
 class ListActionTest extends UnitTestCase
 {
-    public function testFindByIdMeasurementUnit()
+    public function testMeasurementUnitListAction()
     {
-        $data = MeasurementUnit::factory()->createOne();
+        MeasurementUnit::factory()->count(10)->create();
 
-        $measurementUnit = app(FindByIdMeasurementUnitTask::class)->execute($data->id);
+        $measurementUnits = ListAction::run();
 
-        $this->assertTrue($data->id == $measurementUnit->id && $measurementUnit->code == $data->code);
+        $this->assertInstanceOf(Paginator::class, $measurementUnits);
     }
 }

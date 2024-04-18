@@ -7,7 +7,7 @@ use App\Ship\Core\Abstracts\Actions\Action;
 
 class ListAction extends Action
 {
-    public function handle($filters)
+    public function handle(array $filters = [])
     {
         return Warehouse::query()
             ->when(array_key_exists('search', $filters), function($q) use ($filters) {

@@ -40,4 +40,9 @@ class User extends UserModel
     {
         return $this->firstname . ' ' . $this->lastname;
     }
+
+    public function staff()
+    {
+        return $this->hasOne(Staff::class);
+    }
 }
