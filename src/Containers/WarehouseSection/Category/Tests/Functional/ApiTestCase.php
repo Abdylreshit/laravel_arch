@@ -2,9 +2,9 @@
 
 namespace App\Containers\WarehouseSection\Category\Tests\Functional;
 
-use App\Containers\StaffSection\Managers\StaffPermissionManager;
-use App\Containers\StaffSection\Permission\Data\Seeders\PermissionSeeder;
-use App\Containers\StaffSection\Staff\Models\Staff;
+use App\Containers\UserSection\Managers\StaffPermissionManager;
+use App\Containers\UserSection\Permission\Data\Seeders\PermissionSeeder;
+use App\Containers\UserSection\Staff\Models\Staff;
 use App\Ship\Tests\TestCase;
 use Illuminate\Support\Facades\App;
 

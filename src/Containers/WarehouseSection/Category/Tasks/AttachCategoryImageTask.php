@@ -20,7 +20,7 @@ class AttachCategoryImageTask extends Task
                     ->addMediaFromUrl($file)
                     ->toMediaCollection('category_image')
                 ;
-                
+
                 return $category;
             }
 

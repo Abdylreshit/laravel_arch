@@ -2,7 +2,7 @@
 
 namespace App\Ship\Exceptions\Handlers;
 
-use App\Containers\StaffSection\Permission\Exceptions\PermissionException;
+use App\Containers\UserSection\Permission\Exceptions\PermissionException;
 use App\Ship\Core\Exceptions\Handlers\ExceptionsHandler as CoreExceptionsHandler;
 use App\Ship\Exceptions\ModelNotFoundException;
 use App\Ship\Exceptions\UnauthenticatedException;

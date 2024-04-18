@@ -21,7 +21,6 @@ final class LoginController extends ApiController
                 'email' => $result->staff->email,
                 'firstname' => $result->staff->firstname,
                 'lastname' => $result->staff->lastname,
-                'state' => new EnumResource($result->staff->state),
             ],
         ]);
     }

@@ -8,4 +8,4 @@ Route::post('admin/category/list', ListController::class)
         'auth:admin',
         'permission:category-find'
     ])
-    ->name('admin.category.find');
+    ->name('admin.category.list');

@@ -1,7 +1,7 @@
 <?php
 
 if (! function_exists('currentStaff')) {
-    function currentStaff(): ?\App\Containers\StaffSection\Staff\Models\Staff
+    function currentStaff(): ?\App\Containers\UserSection\Staff\Models\Staff
     {
         $staff = auth('admin')->user();
 

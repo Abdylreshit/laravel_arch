@@ -3,19 +3,19 @@
 namespace App\Containers\AuthenticationSection\Sanctum\Tests\Functional\API\Admin;
 
 use App\Containers\AuthenticationSection\Sanctum\Tests\Functional\ApiTestCase;
-use App\Containers\StaffSection\Staff\Models\Staff;
-use App\Containers\StaffSection\Staff\Tasks\CreateStaffTask;
+use App\Containers\UserSection\Staff\Models\Staff;
+use App\Containers\UserSection\Staff\Tasks\CreateStaffTask;
 
 class LoginControllerTest extends ApiTestCase
 {
     public function testStaffLoginControllerValidData()
     {
         $staff = Staff::factory()->makeOne();
-        app(CreateStaffTask::class)->execute($staff->toArray());
+        app(CreateStaffTask::class)->execute($staff->user_id);
 
         $request = $this->postJson('api/v1/admin/login', [
             'email' => $staff->email,
-            'password' => $staff->password,
+            'password' => '123123',
         ]);
 
         $request->assertOk();
@@ -26,11 +26,6 @@ class LoginControllerTest extends ApiTestCase
                 'email',
                 'firstname',
                 'lastname',
-                'state' => [
-                    'key',
-                    'value',
-                    'description',
-                ],
             ],
         ]);
     }
@@ -58,7 +53,7 @@ class LoginControllerTest extends ApiTestCase
 
         $request = $this->postJson('api/v1/admin/login', [
             'email' => $staff->email,
-            'password' => $staff->password,
+            'password' => '123123',
         ]);
 
         $request->assertStatus(404);

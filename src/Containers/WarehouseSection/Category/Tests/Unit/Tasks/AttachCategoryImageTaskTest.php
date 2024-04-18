@@ -15,6 +15,6 @@ class AttachCategoryImageTaskTest extends UnitTestCase
 
         app(AttachCategoryImageTask::class)->execute($category, 'https://fakeimg.pl/250x100/');
 
-        $this->assertTrue($category->getMedia('image')->isNotEmpty());
+        $this->assertTrue($category->media->isNotEmpty());
     }
 }

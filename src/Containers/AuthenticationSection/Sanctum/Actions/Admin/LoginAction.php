@@ -3,7 +3,7 @@
 namespace App\Containers\AuthenticationSection\Sanctum\Actions\Admin;
 
 use App\Containers\AuthenticationSection\Sanctum\UI\API\Requests\Admin\LoginRequest;
-use App\Containers\StaffSection\Staff\Tasks\FindByEmailStaffTask;
+use App\Containers\UserSection\Staff\Tasks\FindStaffByEmailTask;
 use App\Ship\Core\Abstracts\Actions\Action;
 use App\Ship\Exceptions\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
@@ -16,15 +16,16 @@ class LoginAction extends Action
      */
     public function handle(LoginRequest $request): object
     {
-        $staff = app(FindByEmailStaffTask::class)->execute($request->email);
+        $staff = app(FindStaffByEmailTask::class)->execute($request->email);
+        $user = $staff->user;
 
-        throw_if(! Hash::check($request->password, $staff->password), ModelNotFoundException::class);
+        throw_if(! Hash::check($request->password, $user->password), ModelNotFoundException::class);
 
         $token = $staff->createToken('PAT')->plainTextToken;
 
         return (object) [
             'access_token' => $token,
-            'staff' => $staff,
+            'staff' => $user,
         ];
     }
 }

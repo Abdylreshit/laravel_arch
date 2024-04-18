@@ -67,12 +67,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \App\Containers\StaffSection\Staff\Models\Staff::class,
+            'model' => \App\Containers\UserSection\Staff\Models\Staff::class,
         ],
 
         'staff' => [
             'driver' => 'eloquent',
-            'model' => \App\Containers\StaffSection\Staff\Models\Staff::class,
+            'model' => \App\Containers\UserSection\Staff\Models\Staff::class,
         ],
     ],
 

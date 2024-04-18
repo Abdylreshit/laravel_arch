@@ -2,7 +2,7 @@
 
 namespace App\Containers\AuthenticationSection\Sanctum\Tests\Functional;
 
-use App\Containers\StaffSection\Staff\Models\Staff;
+use App\Containers\UserSection\Staff\Models\Staff;
 use App\Ship\Tests\TestCase;
 
 class ApiTestCase extends TestCase
