@@ -21,6 +21,8 @@ class CategoryFactory extends ParentFactory
                 'en' => $this->faker->text,
                 'ru' => $this->faker->text,
             ],
+            'priority' => $this->faker->numberBetween(0, 100),
+            'parent_id' => null,
         ];
     }
 

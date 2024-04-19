@@ -12,7 +12,7 @@ final class LoginController extends ApiController
 {
     public function __invoke(LoginRequest $request): JsonResponse
     {
-        $result = LoginAction::run($request);
+        $result = LoginAction::run($request->toArray());
 
         return $this->successResponse([
             'access_token' => $result->access_token,

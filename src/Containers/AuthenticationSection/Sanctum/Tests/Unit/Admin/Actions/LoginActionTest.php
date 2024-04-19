@@ -14,12 +14,10 @@ class LoginActionTest extends UnitTestCase
     {
         $staff = Staff::factory()->createOne();
 
-        $request = new LoginRequest([
+        $response = LoginAction::run([
             'email' => $staff->email,
             'password' => '123123',
         ]);
-
-        $response = LoginAction::run($request);
 
         $this->assertTrue(PersonalAccessToken::where('tokenable_id', $staff->id)->exists());
         $this->assertTrue($response->staff->email == $staff->email);

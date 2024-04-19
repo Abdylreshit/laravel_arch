@@ -12,7 +12,7 @@ final class CreateController extends ApiController
 {
     public function __invoke(CreateRequest $request): JsonResponse
     {
-        $category = CreateAction::run($request);
+        $category = CreateAction::run($request->toArray());
 
         return $this->successResponse([
             'category' => new MainResource($category),

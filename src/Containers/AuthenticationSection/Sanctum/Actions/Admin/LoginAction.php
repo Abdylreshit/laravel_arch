@@ -14,12 +14,12 @@ class LoginAction extends Action
     /**
      * @throws Throwable
      */
-    public function handle(LoginRequest $request): object
+    public function handle(array $data): object
     {
-        $staff = app(FindStaffByEmailTask::class)->execute($request->email);
+        $staff = app(FindStaffByEmailTask::class)->execute($data['email']);
         $user = $staff->user;
 
-        throw_if(! Hash::check($request->password, $user->password), ModelNotFoundException::class);
+        throw_if(! Hash::check($data['password'], $user->password), ModelNotFoundException::class);
 
         $token = $staff->createToken('PAT')->plainTextToken;
 

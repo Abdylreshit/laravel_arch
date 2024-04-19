@@ -7,7 +7,7 @@ use App\Containers\WarehouseSection\Category\Tests\Functional\ApiTestCase;
 
 class CreateControllerTest extends ApiTestCase
 {
-    public function testListController()
+    public function testCategoryCreateController()
     {
         $data = Category::factory()->makeOne();
 

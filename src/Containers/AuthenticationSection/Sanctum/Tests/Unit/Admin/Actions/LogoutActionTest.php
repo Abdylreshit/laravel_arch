@@ -15,12 +15,10 @@ class LogoutActionTest extends UnitTestCase
     {
         $staff = Staff::factory()->createOne();
 
-        $request = new LoginRequest([
+        LoginAction::run([
             'email' => $staff->email,
             'password' => '123123',
         ]);
-
-        LoginAction::run($request);
 
         LogoutAction::run($staff);
 
