@@ -14,9 +14,7 @@ class UpdateActionTest extends UnitTestCase
         $data = Warehouse::factory()->createOne();
         $editData = Warehouse::factory()->makeOne();
 
-        $request = new UpdateRequest(array_merge($editData->toArray(), ['id' => $data->id]));
-
-        $warehouse = UpdateAction::run($request);
+        $warehouse = UpdateAction::run(array_merge($editData->toArray(), ['id' => $data->id]));
 
         $this->assertTrue($data->id == $warehouse->id);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Containers\WarehouseSection\MeasurementUnit\Tests\Unit;
 
-use App\Ship\Core\Abstracts\Tests\TestCase;
+use App\Ship\Tests\TestCase;
 
 class UnitTestCase extends TestCase
 {

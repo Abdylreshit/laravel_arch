@@ -2,6 +2,7 @@
 
 namespace App\Containers\WarehouseSection\Category\Models;
 
+use App\Containers\WarehouseSection\Category\CustomCollection;
 use App\Containers\WarehouseSection\Category\Data\Factories\CategoryFactory;
 use App\Ship\Core\Abstracts\Models\Model;
 use App\Ship\Core\Abstracts\Models\Traits\SlugTrait;
@@ -43,6 +44,11 @@ class Category extends Model implements HasMedia
     protected static function newFactory(): Factory
     {
         return CategoryFactory::new();
+    }
+
+    public function newCollection(array $models = array()): CustomCollection
+    {
+        return new CustomCollection($models);
     }
 
     public function entries(string $class): MorphToMany

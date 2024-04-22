@@ -8,11 +8,11 @@ use App\Ship\Core\Abstracts\Actions\Action;
 
 class CreateAction extends Action
 {
-    public function handle(CreateRequest $request)
+    public function handle(array $data)
     {
         return app(CreateWarehouseTask::class)->execute([
-            'name' => $request->name,
-            'is_blocked' => $request->is_blocked,
+            'name' => $data['name'],
+            'is_blocked' => $data['is_blocked'],
         ]);
     }
 }

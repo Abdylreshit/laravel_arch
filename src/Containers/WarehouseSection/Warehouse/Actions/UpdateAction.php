@@ -8,17 +8,15 @@ use App\Ship\Core\Abstracts\Actions\Action;
 
 class UpdateAction extends Action
 {
-    public function handle(UpdateRequest $request)
+    public function handle(array $data)
     {
         return app(EditWarehouseByIdTask::class)
             ->execute(
-                $request->id,
-                $request->only(
-                    [
-                        'name',
-                        'is_blocked'
-                    ]
-                )
+                $data['id'],
+                [
+                    'name' => $data['name'],
+                    'is_blocked' => $data['is_blocked']
+                ]
             );
     }
 }

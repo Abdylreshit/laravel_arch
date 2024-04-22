@@ -13,9 +13,7 @@ class CreateActionTest extends UnitTestCase
     {
         $data = Warehouse::factory()->makeOne();
 
-        $request = new CreateRequest($data->toArray());
-
-        $warehouse = CreateAction::run($request);
+        $warehouse = CreateAction::run($data->toArray());
 
         $this->assertTrue($data->name == $warehouse->name);
         $this->assertDatabaseHas(Warehouse::class, ['name' => $data->name]);
