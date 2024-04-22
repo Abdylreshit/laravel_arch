@@ -11,7 +11,7 @@ class MoveAction extends Action
     {
         $category = app(MoveCategoryTask::class)
             ->execute(
-                $data['category_id'],
+                $data['id'],
                 $data
             );
     }
