@@ -11,7 +11,7 @@ class MoveRequest extends Request
         return [
             'id' => ['required', 'integer', 'exists:categories,id'],
             'parent_id' => ['nullable', 'integer', 'exists:categories,id'],
-            'position' => ['required', 'integer']
+            'priority' => ['required', 'integer']
         ];
     }
 }
