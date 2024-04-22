@@ -9,25 +9,23 @@ use App\Ship\Core\Abstracts\Actions\Action;
 
 class UpdateAction extends Action
 {
-    public function handle(UpdateRequest $request)
+    public function handle(array $data)
     {
         $category = app(EditByIdCategoryTask::class)
             ->execute(
-                $request->id,
-                $request->only(
+                $data['id'],
                     [
-                        'name',
-                        'description',
-                        'priority',
-                        'parent_id'
+                        'name' => $data['name'],
+                        'description' => $data['description'],
+                        'priority' => $data['priority'] ?? 0,
+                        'parent_id' => $data['parent_id'] ?? null,
                     ]
-                )
             );
 
-        if ($request->hasFile('image') && config('category.image')) {
-            app(AttachCategoryImageTask::class)
-                ->execute($category, $request->file('image'));
-        }
+//        if ($request->hasFile('image') && config('category.image')) {
+//            app(AttachCategoryImageTask::class)
+//                ->execute($category, $request->file('image'));
+//        }
 
         return $category;
     }
