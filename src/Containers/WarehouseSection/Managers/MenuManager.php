@@ -20,7 +20,7 @@ class MenuManager
 
         $warehouses->load('categories');
 
-        $collect->push([
+        $collect->push(
             [
                 'label'=> 'Склады',
                 'type' => 'tree',
@@ -58,7 +58,7 @@ class MenuManager
                 'type' => 'select',
                 'data' => ['red', 'green'],
             ],
-        ]);
+        );
 
         return $collect;
     }
