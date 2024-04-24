@@ -38,19 +38,7 @@ class MenuManager
                         'children' => $this->getCategories($categories)
                     ];
                 })->toArray()
-            ],
-
-            [
-                'label' => 'Цены',
-                'type' => 'range',
-                'data' => [1, 1000],
-            ],
-
-            [
-                'label' => 'Цвета',
-                'type' => 'select',
-                'data' => ['red', 'green'],
-            ],
+            ]
         );
 
         return $collect;
