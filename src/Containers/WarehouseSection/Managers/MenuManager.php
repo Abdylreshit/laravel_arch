@@ -70,12 +70,18 @@ class MenuManager
             $result = app(FindWarehouseByIdTask::class)->execute($data['id']);
         }
 
+        if ($data['model'] === 'CATEGORY'){
+            $parentType = $result->parent_id ? 'CATEGORY' : 'WAREHOUSE';
+        } else {
+            $parentType = 'REGION';
+        }
+
         return [
             'id' => $result->id,
             'model' => $data['model'],
             'name' => $result->name,
-            'parent_id' => $data['model'] === 'CATEGORY' ? $result->parent_id : null,
-            'parent_type' => $result->parent_id ? 'CATEGORY' : 'WAREHOUSE',
+            'parent_id' => $data['model'] === 'CATEGORY' ? $result->parent_id : 1,
+            'parent_type' => $parentType,
         ];
     }
     public function createTree(array $data): void
