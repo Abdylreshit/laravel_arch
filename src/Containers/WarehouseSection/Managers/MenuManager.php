@@ -8,6 +8,7 @@ use App\Containers\WarehouseSection\Category\Tasks\FindByIdCategoryTask;
 use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Containers\WarehouseSection\Warehouse\Tasks\CreateWarehouseTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\EditWarehouseByIdTask;
+use App\Containers\WarehouseSection\Warehouse\Tasks\FindWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\ListWarehouseTask;
 use Illuminate\Support\Collection;
 
@@ -59,6 +60,24 @@ class MenuManager
         })->toArray();
     }
 
+    public function findMenuItem(array $data)
+    {
+        if ($data['model'] === 'CATEGORY') {
+            $result = app(FindByIdCategoryTask::class)->execute($data['id']);
+        }
+
+        if ($data['model'] === 'WAREHOUSE') {
+            $result = app(FindWarehouseByIdTask::class)->execute($data['id']);
+        }
+
+        return [
+            'id' => $result->id,
+            'model' => $data['model'],
+            'name' => $result->name,
+            'parent_id' => $data['model'] === 'CATEGORY' ? $result->parent_id : null,
+            'parent_type' => $result->parent_id ? 'CATEGORY' : 'WAREHOUSE',
+        ];
+    }
     public function createTree(array $data): void
     {
         if ($data['model'] === 'CATEGORY') {
