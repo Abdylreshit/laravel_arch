@@ -12,8 +12,6 @@ class EditTreeRequest extends Request
             'id' => ['required','integer'],
             'name' => ['required','string'],
             'model' => ['required','string','in:CATEGORY,WAREHOUSE,REGION'],
-            'parent_type' => ['required','string','in:CATEGORY,WAREHOUSE,REGION'],
-            'parent_id' => ['nullable','integer'],
         ];
     }
 }
