@@ -10,10 +10,19 @@ class WarehouseCategorySeeder extends Seeder
 {
     public function run(): void
     {
-        Warehouse::factory()->count(10)->has(
-            Category::factory()
-                ->has(Category::factory()->count(20), 'children')
-                ->count(10), 'categories'
-        )->create();
+        $warehouses = Warehouse::factory()->count(10)->create();
+
+        foreach ($warehouses as $warehouse) {
+            $categories = Category::factory()->count(10)->create();
+
+            $categories->each(function (Category $category) use ($warehouse) {
+                $category->warehouse()->associate($warehouse);
+
+                Category::factory()->count(10)->create([
+                    'parent_id' => $category->id,
+                    'warehouse_id' => $warehouse->id
+                ]);
+            });
+        }
     }
 }
