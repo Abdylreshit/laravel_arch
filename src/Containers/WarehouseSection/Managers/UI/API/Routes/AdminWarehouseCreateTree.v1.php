@@ -7,4 +7,4 @@ Route::post('admin/manager/warehouse/menu/create/tree', CreateTreeController::cl
     ->middleware([
         'auth:admin',
     ])
-    ->name('admin.manager.create.tree');
+    ->name('admin.manager.warehouse.menu.create.tree');
