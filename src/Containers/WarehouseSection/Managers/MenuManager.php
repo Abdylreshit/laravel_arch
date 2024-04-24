@@ -22,39 +22,31 @@ class MenuManager
 
         $collect->push(
             [
-                'label'=> 'Склады',
+                'label' => 'Склады',
                 'type' => 'tree',
-                'data' => [
-                    'id' => 1,
-                    'name' => $regionName,
-                    'model' => "REGION",
-                    'query_param' => 'withRegion',
-                    'parent_type' => null,
-                    'children' => $warehouses->map(function ($warehouse) {
+                'data' => $warehouses->map(function ($warehouse) {
+                    $categories = $warehouse->categories->toTree();
 
-                        $categories = $warehouse->categories->toTree();
-
-                        return [
-                            'id' => $warehouse->id,
-                            'model' => 'WAREHOUSE',
-                            'parent_type' => 'REGION',
-                            'parent_id' => 1,
-                            'name' => $warehouse->name,
-                            'query_param' => 'withWarehouses',
-                            'children' => $this->getCategories($categories)
-                        ];
-                    })->toArray()
-                ]
+                    return [
+                        'id' => $warehouse->id,
+                        'model' => 'WAREHOUSE',
+                        'parent_type' => 'REGION',
+                        'parent_id' => 1,
+                        'name' => $warehouse->name,
+                        'query_param' => 'withWarehouses',
+                        'children' => $this->getCategories($categories)
+                    ];
+                })->toArray()
             ],
 
             [
-                'label'=> 'Цены',
+                'label' => 'Цены',
                 'type' => 'range',
                 'data' => [1, 1000],
             ],
 
             [
-                'label'=> 'Цвета',
+                'label' => 'Цвета',
                 'type' => 'select',
                 'data' => ['red', 'green'],
             ],
@@ -63,7 +55,8 @@ class MenuManager
         return $collect;
     }
 
-    private function getCategories($categories){
+    private function getCategories($categories)
+    {
         return $categories->map(function ($category) {
             return [
                 'id' => $category->id,
