@@ -3,8 +3,11 @@
 namespace App\Containers\WarehouseSection\Managers;
 
 use App\Containers\WarehouseSection\Category\Tasks\CreateCategoryTask;
+use App\Containers\WarehouseSection\Category\Tasks\EditByIdCategoryTask;
+use App\Containers\WarehouseSection\Category\Tasks\FindByIdCategoryTask;
 use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Containers\WarehouseSection\Warehouse\Tasks\CreateWarehouseTask;
+use App\Containers\WarehouseSection\Warehouse\Tasks\EditWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\ListWarehouseTask;
 use Illuminate\Support\Collection;
 
@@ -13,8 +16,6 @@ class MenuManager
     public function getMenu(array $filters = []): Collection
     {
         $collect = collect();
-
-        $regionName = config('settings.REGION_NAME');
 
         $warehouses = app(ListWarehouseTask::class)->execute();
 
@@ -99,6 +100,31 @@ class MenuManager
             app(CreateWarehouseTask::class)->execute([
                 'name' => $data['name']
             ]);
+        }
+    }
+
+    public function editTree(array $data)
+    {
+        if ($data['model'] === 'CATEGORY') {
+            app(EditByIdCategoryTask::class)->execute(
+                $data['id'],
+                [
+                    'name' => [
+                        'en' => $data['name'],
+                        'ru' => $data['name'],
+                    ],
+                    'parent_id' => $data['parent_id'],
+                ]
+            );
+        }
+
+        if ($data['model'] === 'WAREHOUSE') {
+            app(EditWarehouseByIdTask::class)->execute(
+                $data['id'],
+                [
+                    'name' => $data['name'],
+                ]
+            );
         }
     }
 }
