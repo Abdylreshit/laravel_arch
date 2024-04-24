@@ -4,6 +4,7 @@ namespace App\Containers\WarehouseSection\Category\Models;
 
 use App\Containers\WarehouseSection\Category\CustomCollection;
 use App\Containers\WarehouseSection\Category\Data\Factories\CategoryFactory;
+use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Ship\Core\Abstracts\Models\Model;
 use App\Ship\Core\Abstracts\Models\Traits\SlugTrait;
 use App\Ship\Core\Abstracts\Models\Traits\TranslateTrait;
@@ -71,5 +72,10 @@ class Category extends Model implements HasMedia
                 ->height(200)
                 ->format('webp');
         }
+    }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class, 'warehouse_id', 'id');
     }
 }

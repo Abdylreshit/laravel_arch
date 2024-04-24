@@ -22,7 +22,6 @@ class CategoryFactory extends ParentFactory
                 'ru' => $this->faker->text,
             ],
             'priority' => $this->faker->numberBetween(0, 100),
-            'parent_id' => null,
         ];
     }
 

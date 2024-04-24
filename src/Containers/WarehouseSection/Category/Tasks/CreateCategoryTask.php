@@ -17,8 +17,8 @@ class CreateCategoryTask extends Task
                     'ru' => $data['name']['ru'],
                 ],
                 'description' => [
-                    'en' => $data['description']['en'],
-                    'ru' => $data['description']['ru'],
+                    'en' => $data['description']['en'] ?? null,
+                    'ru' => $data['description']['ru'] ?? null,
                 ],
                 'priority' => $data['priority'] ?? 0,
                 'parent_id' => $data['parent_id'] ?? null,

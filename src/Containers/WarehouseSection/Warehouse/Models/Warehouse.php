@@ -2,6 +2,7 @@
 
 namespace App\Containers\WarehouseSection\Warehouse\Models;
 
+use App\Containers\WarehouseSection\Category\Models\Category;
 use App\Containers\WarehouseSection\Warehouse\Data\Factories\WarehouseFactory;
 use App\Ship\Core\Abstracts\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -29,5 +30,10 @@ class Warehouse extends Model
     protected static function newFactory()
     {
         return WarehouseFactory::new();
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'warehouse_id', 'id');
     }
 }
