@@ -13,6 +13,7 @@ use App\Containers\WarehouseSection\Warehouse\Tasks\EditWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\FindWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\ListWarehouseTask;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class MenuManager
 {
@@ -28,6 +29,7 @@ class MenuManager
             [
                 'label' => 'Склады',
                 'type' => 'tree',
+                'key' => Str::upper(Str::random(5)),
                 'data' => $warehouses->map(function ($warehouse) {
                     $categories = $warehouse->categories->toTree();
 
