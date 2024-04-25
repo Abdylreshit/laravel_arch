@@ -25,10 +25,10 @@ class CategoryFactory extends ParentFactory
         ];
     }
 
-        public function configure(): static
-        {
-            return $this->afterMaking(function (Category $category) {
-                $category->slug = Str::slug($category->getTranslation('name', 'en'), '-');
-            });
-        }
+    public function configure(): static
+    {
+        return $this->afterMaking(function (Category $category) {
+            $category->slug = Str::slug($category->getTranslation('name', 'en'), '-');
+        });
+    }
 }
