@@ -170,7 +170,7 @@ class MenuManager
             'name' => $result->name,
             'parent_id' => $data['model'] === 'CATEGORY' ? $result->parent_id : 1,
             'parent_type' => $parentType,
-            'child_type' => $data['model'] === 'CATEGORY' ? 'CATEGORY' : 'WAREHOUSE',
+            'child_type' => $data['model'] === 'WAREHOUSE' ? 'WAREHOUSE' : 'CATEGORY',
         ];
     }
     public function createTree(array $data): void
