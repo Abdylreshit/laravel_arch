@@ -158,7 +158,7 @@ class MenuManager
 
         throw_if(empty($result), ModelNotFoundException::class);
 
-        if ($data['model'] === 'CATEGORY'){
+        if ($data['model'] === 'CATEGORY') {
             $parentType = $result->parent_id ? 'CATEGORY' : 'WAREHOUSE';
         } else {
             $parentType = 'REGION';
@@ -172,26 +172,29 @@ class MenuManager
             'parent_type' => $parentType,
         ];
     }
+
     public function createTree(array $data): void
     {
-        if ($data['parent_type'] === 'CATEGORY') {
-            app(CreateCategoryTask::class)->execute([
-                'name' => [
-                    'en' => $data['name'],
-                    'ru' => $data['name'],
-                ],
-                'parent_id' => $data['parent_id'],
-            ]);
-        }
+        if (array_key_exists('parent_type' ,$data)) {
+            if ($data['parent_type'] === 'CATEGORY') {
+                app(CreateCategoryTask::class)->execute([
+                    'name' => [
+                        'en' => $data['name'],
+                        'ru' => $data['name'],
+                    ],
+                    'parent_id' => $data['parent_id'],
+                ]);
+            }
 
-        if ($data['parent_type'] === 'WAREHOUSE') {
-            $warehouse = Warehouse::find($data['parent_id']);
-            $category = app(CreateCategoryTask::class)->execute([
-                'name' => $data['name'],
-                'parent_id' => null,
-            ]);
+            if ($data['parent_type'] === 'WAREHOUSE') {
+                $warehouse = Warehouse::find($data['parent_id']);
+                $category = app(CreateCategoryTask::class)->execute([
+                    'name' => $data['name'],
+                    'parent_id' => null,
+                ]);
 
-            $category->warehouse()->associate($warehouse);
+                $category->warehouse()->associate($warehouse);
+            }
         }
 
         app(CreateWarehouseTask::class)->execute([
