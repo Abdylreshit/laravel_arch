@@ -12,6 +12,7 @@ use App\Containers\WarehouseSection\Warehouse\Tasks\DeleteWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\EditWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\FindWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\ListWarehouseTask;
+use App\Ship\Exceptions\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -154,6 +155,8 @@ class MenuManager
         if ($data['model'] === 'WAREHOUSE') {
             $result = app(FindWarehouseByIdTask::class)->execute($data['id']);
         }
+
+        throw_if(empty($result), ModelNotFoundException::class);
 
         if ($data['model'] === 'CATEGORY'){
             $parentType = $result->parent_id ? 'CATEGORY' : 'WAREHOUSE';
