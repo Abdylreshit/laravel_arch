@@ -170,39 +170,33 @@ class MenuManager
             'name' => $result->name,
             'parent_id' => $data['model'] === 'CATEGORY' ? $result->parent_id : 1,
             'parent_type' => $parentType,
-            'child_type' => 'CATEGORY',
         ];
     }
     public function createTree(array $data): void
     {
-        if ($data['model'] === 'CATEGORY') {
-
-            if ($data['parent_type'] === 'CATEGORY') {
-                app(CreateCategoryTask::class)->execute([
-                    'name' => [
-                        'en' => $data['name'],
-                        'ru' => $data['name'],
-                    ],
-                    'parent_id' => $data['parent_id'],
-                ]);
-            }
-
-            if ($data['parent_type'] === 'WAREHOUSE') {
-                $warehouse = Warehouse::find($data['parent_id']);
-                $category = app(CreateCategoryTask::class)->execute([
-                    'name' => $data['name'],
-                    'parent_id' => null,
-                ]);
-
-                $category->warehouse()->associate($warehouse);
-            }
-        }
-
-        if ($data['model'] === 'WAREHOUSE') {
-            app(CreateWarehouseTask::class)->execute([
-                'name' => $data['name']
+        if ($data['parent_type'] === 'CATEGORY') {
+            app(CreateCategoryTask::class)->execute([
+                'name' => [
+                    'en' => $data['name'],
+                    'ru' => $data['name'],
+                ],
+                'parent_id' => $data['parent_id'],
             ]);
         }
+
+        if ($data['parent_type'] === 'WAREHOUSE') {
+            $warehouse = Warehouse::find($data['parent_id']);
+            $category = app(CreateCategoryTask::class)->execute([
+                'name' => $data['name'],
+                'parent_id' => null,
+            ]);
+
+            $category->warehouse()->associate($warehouse);
+        }
+
+        app(CreateWarehouseTask::class)->execute([
+            'name' => $data['name']
+        ]);
     }
 
     public function editTree(array $data)
@@ -214,8 +208,7 @@ class MenuManager
                     'name' => [
                         'en' => $data['name'],
                         'ru' => $data['name'],
-                    ],
-                    'parent_id' => $data['parent_id'],
+                    ]
                 ]
             );
         }
