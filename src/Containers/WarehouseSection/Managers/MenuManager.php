@@ -3,10 +3,12 @@
 namespace App\Containers\WarehouseSection\Managers;
 
 use App\Containers\WarehouseSection\Category\Tasks\CreateCategoryTask;
+use App\Containers\WarehouseSection\Category\Tasks\DeleteByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\EditByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\FindByIdCategoryTask;
 use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Containers\WarehouseSection\Warehouse\Tasks\CreateWarehouseTask;
+use App\Containers\WarehouseSection\Warehouse\Tasks\DeleteWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\EditWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\FindWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\ListWarehouseTask;
@@ -138,6 +140,17 @@ class MenuManager
                     'name' => $data['name'],
                 ]
             );
+        }
+    }
+
+    public function deleteTree(array $data)
+    {
+        if ($data['model'] === 'CATEGORY') {
+            app(DeleteByIdCategoryTask::class)->execute($data['id']);
+        }
+
+        if ($data['model'] === 'WAREHOUSE') {
+            app(DeleteWarehouseByIdTask::class)->execute($data['id']);
         }
     }
 }

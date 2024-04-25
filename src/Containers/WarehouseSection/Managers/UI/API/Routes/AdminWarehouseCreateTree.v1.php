@@ -3,7 +3,7 @@
 use App\Containers\WarehouseSection\Managers\UI\API\Controllers\CreateTreeController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('admin/manager/warehouse/menu/create/tree', CreateTreeController::class)
+Route::post('admin/warehouse/filter/tree/create', CreateTreeController::class)
     ->middleware([
         'auth:admin',
     ])

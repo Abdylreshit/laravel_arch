@@ -3,7 +3,7 @@
 use App\Containers\WarehouseSection\Managers\UI\API\Controllers\EditTreeController;
 use Illuminate\Support\Facades\Route;
 
-Route::put('admin/manager/warehouse/menu/edit/tree', EditTreeController::class)
+Route::put('admin/warehouse/filter/tree/update', EditTreeController::class)
     ->middleware([
         'auth:admin',
     ])

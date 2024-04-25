@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\WarehouseSection\Category\Product\Models;
+namespace App\Containers\WarehouseSection\Product\Models;
 
 use App\Containers\WarehouseSection\Category\Managers\Traits\Categorizable;
 use App\Ship\Core\Abstracts\Models\Model;
@@ -16,11 +16,9 @@ class Product extends Model implements HasMedia
     use WithMediaTrait;
     use Categorizable;
 
-
     protected $fillable = [
         'name',
-        'description',
-        'sku'
+        'description'
     ];
 
 //    public function registerMediaConversions(Media $media = null): void
