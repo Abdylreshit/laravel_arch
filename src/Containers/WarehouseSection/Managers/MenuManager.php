@@ -31,6 +31,7 @@ class MenuManager
                 'label' => 'Склады',
                 'type' => 'tree',
                 'key' => Str::upper(Str::random(5)),
+                'query_params' => ['withWarehouses','withCategories'],
                 'data' => $warehouses->map(function ($warehouse) {
                     $categories = $warehouse->categories->toTree();
 
@@ -50,6 +51,7 @@ class MenuManager
                 'label' => 'Тип склада',
                 'type' => 'switch',
                 'key' => Str::upper(Str::random(5)),
+                'query_params' => 'withTypeWarehouse',
                 'data' => [
                     [
                         'label' => 'Склад',
@@ -68,6 +70,7 @@ class MenuManager
                 'label' => 'Улица',
                 'type' => 'select',
                 'key' => Str::upper(Str::random(5)),
+                'query_params' => 'withStreet',
                 'data' => [
                     [
                         'label' => 'Улица 1',
@@ -101,6 +104,7 @@ class MenuManager
                 'label' => 'Дом',
                 'type' => 'input',
                 'key' => Str::upper(Str::random(5)),
+                'query_params' => 'withHouse',
                 'data' => [
                     'placeholder' => 'Введите номер дома',
                     'query_param' => 'withHouse',
@@ -111,6 +115,7 @@ class MenuManager
                 'label' => 'Цена',
                 'type' => 'range',
                 'key' => Str::upper(Str::random(5)),
+                'query_params' => 'withPrice',
                 'data' => [
                     'min' => 0,
                     'max' => 100000,
@@ -122,6 +127,7 @@ class MenuManager
                 'label' => 'Дата создания',
                 'type' => 'date',
                 'key' => Str::upper(Str::random(5)),
+                'query_params' => 'withCreatedAt',
                 'data' => [
                     'query_param' => 'withCreatedAt',
                 ]
@@ -160,15 +166,17 @@ class MenuManager
 
         if ($data['model'] === 'CATEGORY') {
             $parentType = $result->parent_id ? 'CATEGORY' : 'WAREHOUSE';
+            $parentId = $result->parent_id ?? $result->warehouse_id;
         } else {
             $parentType = 'REGION';
+            $parentId = 1;
         }
 
         return [
             'id' => $result->id,
             'model' => $data['model'],
             'name' => $result->name,
-            'parent_id' => $data['model'] === 'CATEGORY' ? $result->parent_id : 1,
+            'parent_id' => $parentId,
             'parent_type' => $parentType,
             'parent_name' => $result->parent_id ? $result->parent->getTrans('name') : $result->warehouse?->name
         ];
