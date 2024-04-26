@@ -198,7 +198,11 @@ class MenuManager
                     'parent_id' => $data['parent_id'],
                 ]);
 
-                $category->warehouse()->associate($parentCategory->warehouse);
+                $category->update([
+                    'warehouse_id' => $parentCategory->warehouse_id
+                ]);
+
+                return;
             }
 
             if ($data['parent_type'] === 'WAREHOUSE') {
@@ -207,11 +211,14 @@ class MenuManager
                     'name' => [
                         'en' => $data['name'],
                         'ru' => $data['name'],
-                    ],
-                    'parent_id' => null,
+                    ]
                 ]);
 
-                $category->warehouse()->associate($warehouse);
+                $category->update([
+                    'warehouse_id' => $warehouse->id
+                ]);
+
+                return;
             }
         }
 
