@@ -9,6 +9,8 @@ class ListWarehouseTask extends Task
 {
     public function execute()
     {
-        return Warehouse::query()->get();
+        return Warehouse::query()
+            ->orderBy('name')
+            ->get();
     }
 }

@@ -33,7 +33,7 @@ class MenuManager
                 'key' => Str::upper(Str::random(5)),
                 'query_params' => ['withWarehouses','withCategories'],
                 'data' => $warehouses->map(function ($warehouse) {
-                    $categories = $warehouse->categories->toTree();
+                    $categories = $warehouse->categories->toTree(false, ['name.ru']);
 
                     return [
                         'id' => $warehouse->id,
@@ -186,12 +186,15 @@ class MenuManager
     {
         if (array_key_exists('parent_type' ,$data)) {
             if ($data['parent_type'] === 'CATEGORY') {
+                $parentCategory = app(FindByIdCategoryTask::class)->execute($data['parent_id']);
+
                 app(CreateCategoryTask::class)->execute([
                     'name' => [
                         'en' => $data['name'],
                         'ru' => $data['name'],
                     ],
                     'parent_id' => $data['parent_id'],
+                    'warehouse_id' => $parentCategory->warehouse_id,
                 ]);
             }
 

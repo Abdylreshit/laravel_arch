@@ -9,7 +9,7 @@ use Kalnoy\Nestedset\NodeTrait;
 
 class CustomCollection extends Collection
 {
-    public function toTree($root = false)
+    public function toTree($root = false, array $sortBy = ['created_at', 'priority'])
     {
         if ($this->isEmpty()) {
             return new static;
@@ -21,13 +21,13 @@ class CustomCollection extends Collection
 
         $root = $this->getRootNodeId($root);
 
-        $this->items = Arr::sort($this->items, function ($node) {
-            return $node->created_at;
-        });
-
-        $this->items = Arr::sort($this->items, function ($node) {
-            return $node->priority;
-        });
+        if (!empty($sortBy)){
+            foreach ($sortBy as $sort) {
+                $this->items = Arr::sort($this->items, function ($node) use ($sort) {
+                    return $node->{$sort};
+                });
+            }
+        }
 
         /** @var Model|NodeTrait $node */
         foreach ($this->items as $node) {
