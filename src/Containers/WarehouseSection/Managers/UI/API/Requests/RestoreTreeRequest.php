@@ -10,7 +10,7 @@ class RestoreTreeRequest extends Request
     {
         return [
             'id' => ['required','integer'],
-            'name' => ['required','string'],
+            'model' => ['required','string','in:CATEGORY,WAREHOUSE,REGION'],
         ];
     }
 }
