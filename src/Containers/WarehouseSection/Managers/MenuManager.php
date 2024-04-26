@@ -34,7 +34,7 @@ class MenuManager
                 'label' => 'Склады',
                 'type' => 'tree',
                 'key' => Str::upper(Str::random(5)),
-                'query_params' => ['withWarehouses','withCategories'],
+                'query_params' => ['WAREHOUSE','CATEGORY'],
                 'data' => $warehouses->map(function ($warehouse) {
                     $categories = $warehouse->categories->toTree(false, ['name.ru']);
 
@@ -44,7 +44,7 @@ class MenuManager
                         'parent_type' => 'REGION',
                         'parent_id' => 1,
                         'name' => $warehouse->name,
-                        'query_param' => 'withWarehouses',
+                        'query_param' => 'WAREHOUSE',
                         'children' => $this->getCategories($categories)
                     ];
                 })->toArray()
@@ -149,7 +149,7 @@ class MenuManager
                 'parent_type' => $category->parent_id ? 'CATEGORY' : 'WAREHOUSE',
                 'parent_id' => $category->parent_id ?? $category->warehouse_id,
                 'name' => $category->name,
-                'query_param' => 'withCategories',
+                'query_param' => 'CATEGORY',
                 'children' => $this->getCategories($category->children)
             ];
         })->toArray();
