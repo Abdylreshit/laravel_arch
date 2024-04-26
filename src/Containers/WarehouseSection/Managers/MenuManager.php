@@ -190,28 +190,28 @@ class MenuManager
             if ($data['parent_type'] === 'CATEGORY') {
                 $parentCategory = app(FindByIdCategoryTask::class)->execute($data['parent_id']);
 
-                app(CreateCategoryTask::class)->execute([
+                $category = app(CreateCategoryTask::class)->execute([
                     'name' => [
                         'en' => $data['name'],
                         'ru' => $data['name'],
                     ],
                     'parent_id' => $data['parent_id'],
-                    'warehouse_id' => $parentCategory->warehouse_id,
                 ]);
-                return;
+
+                $category->warehouse()->associate($parentCategory->warehouse);
             }
 
             if ($data['parent_type'] === 'WAREHOUSE') {
                 $warehouse = app(FindWarehouseByIdTask::class)->execute($data['parent_id']);
-                app(CreateCategoryTask::class)->execute([
+                $category = app(CreateCategoryTask::class)->execute([
                     'name' => [
                         'en' => $data['name'],
                         'ru' => $data['name'],
                     ],
                     'parent_id' => null,
-                    'warehouse_id' => $warehouse->id,
                 ]);
-                return;
+
+                $category->warehouse()->associate($warehouse);
             }
         }
 
