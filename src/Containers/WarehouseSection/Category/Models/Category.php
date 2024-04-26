@@ -33,6 +33,7 @@ class Category extends Model implements HasMedia
         NestedSet::LFT,
         NestedSet::RGT,
         NestedSet::PARENT_ID,
+        'warehouse_id'
     ];
 
     protected array $translatable = [
