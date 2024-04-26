@@ -15,12 +15,12 @@ class EditByIdCategoryTask extends Task
         try {
             $category->update([
                 'name' => [
-                    'en' => $data['name']['en'],
-                    'ru' => $data['name']['ru'],
+                    'en' => $data['name']['en'] ?? $category->translate('name', 'en'),
+                    'ru' => $data['name']['ru'] ?? $category->translate('name', 'ru'),
                 ],
                 'description' => [
-                    'en' => $data['description']['en'],
-                    'ru' => $data['description']['ru'],
+                    'en' => $data['description']['en'] ?? $category->translate('description', 'en'),
+                    'ru' => $data['description']['ru'] ?? $category->translate('description', 'ru'),
                 ],
                 'priority' => $data['priority'] ?? 0,
                 'parent_id' => $data['parent_id'] ?? null,
