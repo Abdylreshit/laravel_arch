@@ -32,8 +32,7 @@ class Category extends Model implements HasMedia
         'priority',
         NestedSet::LFT,
         NestedSet::RGT,
-        NestedSet::PARENT_ID,
-        'warehouse_id'
+        NestedSet::PARENT_ID
     ];
 
     protected array $translatable = [

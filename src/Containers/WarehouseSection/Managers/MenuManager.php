@@ -7,6 +7,7 @@ use App\Containers\WarehouseSection\Category\Tasks\DeleteByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\EditByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\FindByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\RestoreCategoryByIdTask;
+use App\Containers\WarehouseSection\Managers\Tasks\AssociateWarehouseToCategory;
 use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Containers\WarehouseSection\Warehouse\Tasks\CreateWarehouseTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\DeleteWarehouseByIdTask;
@@ -198,9 +199,7 @@ class MenuManager
                     'parent_id' => $data['parent_id'],
                 ]);
 
-                $category->update([
-                    'warehouse_id' => $parentCategory->warehouse_id
-                ]);
+                app(AssociateWarehouseToCategory::class)->execute($parentCategory->warehouse, $category);
 
                 return;
             }
@@ -214,9 +213,7 @@ class MenuManager
                     ]
                 ]);
 
-                $category->update([
-                    'warehouse_id' => $warehouse->id
-                ]);
+                app(AssociateWarehouseToCategory::class)->execute($warehouse, $category);
 
                 return;
             }
