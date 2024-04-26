@@ -6,12 +6,14 @@ use App\Containers\WarehouseSection\Category\Tasks\CreateCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\DeleteByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\EditByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\FindByIdCategoryTask;
+use App\Containers\WarehouseSection\Category\Tasks\RestoreCategoryByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Containers\WarehouseSection\Warehouse\Tasks\CreateWarehouseTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\DeleteWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\EditWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\FindWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\ListWarehouseTask;
+use App\Containers\WarehouseSection\Warehouse\Tasks\RestoreWarehouseByIdTask;
 use App\Ship\Exceptions\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -200,7 +202,7 @@ class MenuManager
             }
 
             if ($data['parent_type'] === 'WAREHOUSE') {
-                $warehouse = Warehouse::find($data['parent_id']);
+                $warehouse = app(FindWarehouseByIdTask::class)->execute($data['parent_id']);
                 app(CreateCategoryTask::class)->execute([
                     'name' => [
                         'en' => $data['name'],
@@ -250,6 +252,17 @@ class MenuManager
 
         if ($data['model'] === 'WAREHOUSE') {
             app(DeleteWarehouseByIdTask::class)->execute($data['id']);
+        }
+    }
+
+    public function restoreTree(array $data): void
+    {
+        if ($data['model'] === 'CATEGORY') {
+            app(RestoreCategoryByIdTask::class)->execute($data['id']);
+        }
+
+        if ($data['model'] === 'WAREHOUSE') {
+            app(RestoreWarehouseByIdTask::class)->execute($data['id']);
         }
     }
 }
