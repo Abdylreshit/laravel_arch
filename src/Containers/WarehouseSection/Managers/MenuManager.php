@@ -198,7 +198,10 @@ class MenuManager
             if ($data['parent_type'] === 'WAREHOUSE') {
                 $warehouse = Warehouse::find($data['parent_id']);
                 app(CreateCategoryTask::class)->execute([
-                    'name' => $data['name'],
+                    'name' => [
+                        'en' => $data['name'],
+                        'ru' => $data['name'],
+                    ],
                     'parent_id' => null,
                     'warehouse_id' => $warehouse->id,
                 ]);
