@@ -196,6 +196,7 @@ class MenuManager
                     'parent_id' => $data['parent_id'],
                     'warehouse_id' => $parentCategory->warehouse_id,
                 ]);
+                return;
             }
 
             if ($data['parent_type'] === 'WAREHOUSE') {
@@ -208,6 +209,7 @@ class MenuManager
                     'parent_id' => null,
                     'warehouse_id' => $warehouse->id,
                 ]);
+                return;
             }
         }
 
