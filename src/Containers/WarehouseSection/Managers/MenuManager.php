@@ -170,6 +170,7 @@ class MenuManager
             'name' => $result->name,
             'parent_id' => $data['model'] === 'CATEGORY' ? $result->parent_id : 1,
             'parent_type' => $parentType,
+            'parent_name' => $result->parent_id ? $result->parent->getTrans('name') : $result->warehouse?->name
         ];
     }
 
@@ -188,12 +189,11 @@ class MenuManager
 
             if ($data['parent_type'] === 'WAREHOUSE') {
                 $warehouse = Warehouse::find($data['parent_id']);
-                $category = app(CreateCategoryTask::class)->execute([
+                app(CreateCategoryTask::class)->execute([
                     'name' => $data['name'],
                     'parent_id' => null,
+                    'warehouse_id' => $warehouse->id,
                 ]);
-
-                $category->warehouse()->associate($warehouse);
             }
         }
 
