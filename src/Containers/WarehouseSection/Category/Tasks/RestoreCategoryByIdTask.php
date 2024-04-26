@@ -10,12 +10,12 @@ class RestoreCategoryByIdTask extends Task
 {
     public function execute($id)
     {
-        $category = Category::query()->findOrFail($id);
+        $category = Category::withTrashed()->findOrFail($id);
 
         if ($category->trashed()) {
             $category->restore();
         } else {
-            throw new ResourceException('Category is not trashed');
+            throw new ResourceException;
         }
     }
 }

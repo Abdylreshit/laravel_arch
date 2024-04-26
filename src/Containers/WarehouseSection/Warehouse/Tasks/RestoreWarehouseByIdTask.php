@@ -10,7 +10,7 @@ class RestoreWarehouseByIdTask extends Task
 {
     public function execute($id)
     {
-        $warehouse = Warehouse::query()->findOrFail($id);
+        $warehouse = Warehouse::withTrashed()->findOrFail($id);
 
         if ($warehouse->trashed()) {
             $warehouse->restore();
