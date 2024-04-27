@@ -33,7 +33,7 @@ class MenuManager
             [
                 'label' => 'Склады',
                 'type' => 'tree',
-                'key' => Str::upper(Str::random(5)),
+                'key' => 'ENNBN',
                 'query_params' => ['WAREHOUSE','CATEGORY'],
                 'data' => $warehouses->map(function ($warehouse) {
                     $categories = $warehouse->categories->toTree(false, ['name.ru']);
@@ -53,7 +53,7 @@ class MenuManager
             [
                 'label' => 'Тип склада',
                 'type' => 'switch',
-                'key' => Str::upper(Str::random(5)),
+                'key' => '3QQWJ',
                 'query_params' => 'withTypeWarehouse',
                 'data' => [
                     [
@@ -72,7 +72,7 @@ class MenuManager
             [
                 'label' => 'Улица',
                 'type' => 'select',
-                'key' => Str::upper(Str::random(5)),
+                'key' => 'H30NP',
                 'query_params' => 'withStreet',
                 'data' => [
                     [
@@ -106,7 +106,7 @@ class MenuManager
             [
                 'label' => 'Дом',
                 'type' => 'input',
-                'key' => Str::upper(Str::random(5)),
+                'key' => 'AB7LM',
                 'query_params' => 'withHouse',
                 'data' => [
                     'placeholder' => 'Введите номер дома',
@@ -117,7 +117,7 @@ class MenuManager
             [
                 'label' => 'Цена',
                 'type' => 'range',
-                'key' => Str::upper(Str::random(5)),
+                'key' => 'SSDM9',
                 'query_params' => 'withPrice',
                 'data' => [
                     'min' => 0,
@@ -129,7 +129,7 @@ class MenuManager
             [
                 'label' => 'Дата создания',
                 'type' => 'date',
-                'key' => Str::upper(Str::random(5)),
+                'key' => 'IWCWR',
                 'query_params' => 'withCreatedAt',
                 'data' => [
                     'query_param' => 'withCreatedAt',
