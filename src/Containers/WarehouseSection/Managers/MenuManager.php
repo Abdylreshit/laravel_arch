@@ -122,7 +122,8 @@ class MenuManager
                 'data' => [
                     'min' => 0,
                     'max' => 100000,
-                    'query_param' => 'withPrice',
+                    'query_param_min' => 'withMinPrice',
+                    'query_param_max' => 'withMaxPrice',
                 ]
             ],
 
