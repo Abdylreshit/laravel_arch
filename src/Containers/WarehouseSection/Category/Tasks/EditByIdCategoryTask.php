@@ -22,8 +22,8 @@ class EditByIdCategoryTask extends Task
                     'en' => $data['description']['en'] ?? $category->translate('description', 'en'),
                     'ru' => $data['description']['ru'] ?? $category->translate('description', 'ru'),
                 ],
-                'priority' => $data['priority'] ? $data['priority'] : $category->priority,
-                'parent_id' => $data['parent_id'] ? $data['parent_id'] : $category->parent_id,
+                'priority' => $data['priority'] ?? $category->priority,
+                'parent_id' => $data['parent_id'] ?? $category->parent_id,
             ]);
         } catch (\Exception) {
             throw new ResourceException;
