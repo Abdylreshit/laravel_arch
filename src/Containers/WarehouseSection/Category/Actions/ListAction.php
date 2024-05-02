@@ -12,14 +12,15 @@ class ListAction extends Action
         return Category::query()
             ->when(array_key_exists('search', $filters), function ($query) use ($filters) {
                 $search = $filters['search'];
+
                 return $query
-                    ->where(fn($q) => $q->whereLikeLocale('name', "%$search%"))
-                    ->orWhere(fn($q) => $q->whereLikeLocale('description', "%$search%"));
+                    ->where(fn ($q) => $q->whereLikeLocale('name', "%$search%"))
+                    ->orWhere(fn ($q) => $q->whereLikeLocale('description', "%$search%"));
             })
             ->when(array_key_exists('sort', $filters), function ($query) use ($filters) {
                 return $query->orderBy($filters['sort']);
             })
-            ->when(!array_key_exists('sort', $filters), function ($query) {
+            ->when(! array_key_exists('sort', $filters), function ($query) {
                 return $query->orderBy('priority');
             })
             ->when(config('category.image'), function ($query) {

@@ -10,7 +10,7 @@ class SetLocale
     {
         $lang = $request->header('Accept-Language');
 
-        if ($lang != null && in_array($lang, ['ru', 'en'])) {
+        if ($lang != null && in_array($lang, getBaseLocales())) {
             app()->setLocale($lang);
 
             return $next($request);

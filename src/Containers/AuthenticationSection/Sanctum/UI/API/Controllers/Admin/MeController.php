@@ -19,7 +19,7 @@ final class MeController extends ApiController
                 'email' => $staff->email,
                 'roles' => $staff->roles->pluck('name'),
                 'permissions' => $staff->permissions->pluck('name'),
-            ]
+            ],
         ]);
     }
 }

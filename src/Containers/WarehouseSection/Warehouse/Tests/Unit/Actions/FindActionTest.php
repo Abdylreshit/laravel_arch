@@ -2,8 +2,8 @@
 
 namespace App\Containers\WarehouseSection\Warehouse\Tests\Unit\Actions;
 
-use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Containers\WarehouseSection\Warehouse\Actions\FindAction;
+use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Containers\WarehouseSection\Warehouse\Tests\Unit\UnitTestCase;
 
 class FindActionTest extends UnitTestCase

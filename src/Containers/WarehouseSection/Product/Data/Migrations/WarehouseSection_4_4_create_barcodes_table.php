@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->string('barcode');
+            $table->boolean('is_custom')->default(false);
             $table->timestamps();
 
             $table->unique(['product_id', 'barcode']);

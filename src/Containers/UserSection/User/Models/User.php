@@ -2,13 +2,12 @@
 
 namespace App\Containers\UserSection\User\Models;
 
+use App\Containers\UserSection\Staff\Models\Staff;
 use App\Containers\UserSection\User\Data\Factories\UserFactory;
 use App\Containers\UserSection\User\Enums\StatusEnum;
 use App\Ship\Core\Abstracts\Models\UserModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Containers\UserSection\Staff\Models\Staff;
 
 class User extends UserModel
 {
@@ -24,7 +23,7 @@ class User extends UserModel
 
         'is_blocked',
         'state',
-        'locale'
+        'locale',
     ];
 
     protected $casts = [
@@ -38,7 +37,7 @@ class User extends UserModel
 
     public function getFullNameAttribute(): string
     {
-        return $this->firstname . ' ' . $this->lastname;
+        return $this->firstname.' '.$this->lastname;
     }
 
     public function staff()

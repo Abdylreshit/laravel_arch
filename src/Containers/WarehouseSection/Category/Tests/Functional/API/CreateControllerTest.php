@@ -18,13 +18,13 @@ class CreateControllerTest extends ApiTestCase
         $request->assertOk();
         $request->assertJsonStructure(
             [
-                "category" => [
-                    "id",
-                    "name",
-                    "description",
-                    "slug",
-                    "parent_id",
-                    "priority",
+                'category' => [
+                    'id',
+                    'name',
+                    'description',
+                    'slug',
+                    'parent_id',
+                    'priority',
                 ],
             ]);
     }

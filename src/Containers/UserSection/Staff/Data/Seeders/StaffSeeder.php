@@ -12,11 +12,10 @@ class StaffSeeder extends ParentSeeder
     {
         StaffFactory::new()->createOne([
             'user_id' => User::factory()->createOne([
-                'email' => 'admin@admin.com'
+                'email' => 'admin@admin.com',
             ])
                 ->id,
         ]);
-
 
     }
 }

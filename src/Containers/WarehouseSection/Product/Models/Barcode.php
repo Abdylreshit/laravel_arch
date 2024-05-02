@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Barcode extends Model
 {
     protected $table = 'product_barcodes';
+
     protected $fillable = [
-        'barcode'
+        'barcode',
+        'is_custom',
     ];
 
     public function product(): BelongsTo

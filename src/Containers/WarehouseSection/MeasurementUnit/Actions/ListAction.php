@@ -12,6 +12,7 @@ class ListAction extends Action
         return MeasurementUnit::query()
             ->when(array_key_exists('search', $filters), function ($query) use ($filters) {
                 $search = $filters['search'];
+
                 return $query
                     ->where('code', 'like', "%$search%")
                     ->orWhere(fn ($q) => $q->whereLikeLocale('name', "%$search%"))

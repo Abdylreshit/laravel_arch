@@ -46,16 +46,15 @@ return [
 
         'media' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
-            'url'    => env('APP_URL').'/media',
+            'root' => public_path('media'),
+            'url' => env('APP_URL').'/media',
         ],
 
         'category_image' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/category_images'),
-            'url' => env('APP_URL').'/storage/category_images',
+            'root' => storage_path('app/public/categories'),
+            'url' => env('ASSET_URL', env('APP_URL')).'/storage/categories',
             'visibility' => 'public',
-            'throw' => false,
         ],
 
         's3' => [

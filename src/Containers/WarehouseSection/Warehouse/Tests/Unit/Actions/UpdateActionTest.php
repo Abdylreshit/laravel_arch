@@ -5,7 +5,6 @@ namespace App\Containers\WarehouseSection\Warehouse\Tests\Unit\Actions;
 use App\Containers\WarehouseSection\Warehouse\Actions\UpdateAction;
 use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Containers\WarehouseSection\Warehouse\Tests\Unit\UnitTestCase;
-use App\Containers\WarehouseSection\Warehouse\UI\API\Requests\UpdateRequest;
 
 class UpdateActionTest extends UnitTestCase
 {

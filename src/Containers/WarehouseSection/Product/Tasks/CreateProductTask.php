@@ -18,9 +18,9 @@ class CreateProductTask extends Task
                         'ru' => $data['name']['ru'],
                     ],
                     'description' => [
-                        'en' => $data['description']['en'],
-                        'ru' => $data['description']['ru'],
-                    ]
+                        'en' => $data['description']['en'] ?? null,
+                        'ru' => $data['description']['ru'] ?? null,
+                    ],
                 ]);
         } catch (\Exception $e) {
             throw new ResourceException;

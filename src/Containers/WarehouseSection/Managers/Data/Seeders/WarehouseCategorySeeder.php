@@ -20,7 +20,7 @@ class WarehouseCategorySeeder extends Seeder
             $categories->each(function (Category $category) use ($warehouse) {
                 Category::factory()->count(10)->create([
                     'parent_id' => $category->id,
-                    'warehouse_id' => $warehouse->id
+                    'warehouse_id' => $warehouse->id,
                 ]);
             });
         }

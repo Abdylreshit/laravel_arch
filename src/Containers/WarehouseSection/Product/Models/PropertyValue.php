@@ -5,10 +5,10 @@ namespace App\Containers\WarehouseSection\Product\Models;
 use App\Containers\WarehouseSection\Product\Data\Factories\PropertyValueFactory;
 use App\Ship\Core\Abstracts\Models\Model;
 use App\Ship\Core\Abstracts\Models\Traits\TranslateTrait;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PropertyValue extends Model
 {
@@ -18,11 +18,11 @@ class PropertyValue extends Model
     protected $table = 'property_values';
 
     protected $fillable = [
-        'value'
+        'value',
     ];
 
     protected array $translatable = [
-        'value'
+        'value',
     ];
 
     protected static function newFactory(): Factory

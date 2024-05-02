@@ -12,7 +12,7 @@ class MainResource extends Resource
             'id' => $this->id,
             'code' => $this->code,
             'name' => $this->name,
-            'is_blocked' => $this->is_blocked
+            'is_blocked' => $this->is_blocked,
         ];
     }
 }

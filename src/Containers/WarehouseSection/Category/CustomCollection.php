@@ -17,11 +17,11 @@ class CustomCollection extends Collection
 
         $this->linkNodes();
 
-        $items = [ ];
+        $items = [];
 
         $root = $this->getRootNodeId($root);
 
-        if (!empty($sortBy)){
+        if (! empty($sortBy)) {
             foreach ($sortBy as $sort) {
                 $this->items = Arr::sort($this->items, function ($node) use ($sort) {
                     return $node->{$sort};

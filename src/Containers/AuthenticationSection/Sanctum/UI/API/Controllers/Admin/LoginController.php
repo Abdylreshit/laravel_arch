@@ -5,7 +5,6 @@ namespace App\Containers\AuthenticationSection\Sanctum\UI\API\Controllers\Admin;
 use App\Containers\AuthenticationSection\Sanctum\Actions\Admin\LoginAction;
 use App\Containers\AuthenticationSection\Sanctum\UI\API\Requests\Admin\LoginRequest;
 use App\Ship\Core\Abstracts\Controllers\ApiController;
-use App\Ship\Core\Resources\EnumResource;
 use Illuminate\Http\JsonResponse;
 
 final class LoginController extends ApiController

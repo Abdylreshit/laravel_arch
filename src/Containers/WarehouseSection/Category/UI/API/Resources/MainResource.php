@@ -24,7 +24,7 @@ class MainResource extends Resource
                 'priority' => $this->priority,
                 'images' => $this
                     ->getMedia('images')
-                    ?->map(fn($image) => $image->getFullUrl())
+                    ?->map(fn ($image) => $image->getFullUrl()),
             ];
         } else {
             return [

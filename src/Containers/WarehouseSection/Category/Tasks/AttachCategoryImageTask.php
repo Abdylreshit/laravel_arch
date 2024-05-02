@@ -15,17 +15,17 @@ class AttachCategoryImageTask extends Task
 
             if (Str::isUrl($file)) {
                 $category
-                    ->clearMediaCollection('category_image')
+                    ->clearMediaCollection()
                     ->addMediaFromUrl($file)
-                    ->toMediaCollection('category_image');
+                    ->toMediaCollection('default', 'category_image');
 
                 return $category;
             }
 
             $category
-                ->clearMediaCollection('category_image')
+                ->clearMediaCollection()
                 ->addMedia($file)
-                ->toMediaCollection('category_image');
+                ->toMediaCollection('default', 'category_image');
 
             return $category;
         } catch (\Exception $e) {

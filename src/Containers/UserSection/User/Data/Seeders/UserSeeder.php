@@ -2,7 +2,6 @@
 
 namespace App\Containers\UserSection\User\Data\Seeders;
 
-use App\Containers\UserSection\User\Data\Factories\UserFactory;
 use App\Ship\Core\Abstracts\Seeders\Seeder as ParentSeeder;
 
 class UserSeeder extends ParentSeeder

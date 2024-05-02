@@ -3,7 +3,6 @@
 namespace App\Containers\WarehouseSection\Warehouse\Actions;
 
 use App\Containers\WarehouseSection\Warehouse\Tasks\CreateWarehouseTask;
-use App\Containers\WarehouseSection\Warehouse\UI\API\Requests\CreateRequest;
 use App\Ship\Core\Abstracts\Actions\Action;
 
 class CreateAction extends Action

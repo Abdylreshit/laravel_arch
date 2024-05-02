@@ -4,7 +4,6 @@ namespace App\Containers\WarehouseSection\Product\Data\Factories;
 
 use App\Containers\WarehouseSection\Product\Models\Product;
 use App\Ship\Core\Abstracts\Factories\Factory as ParentFactory;
-use Illuminate\Support\Str;
 
 class ProductFactory extends ParentFactory
 {
@@ -27,9 +26,9 @@ class ProductFactory extends ParentFactory
     public function configure(): static
     {
         return $this->afterCreating(function (Product $product) {
-//            $product->addMedia(storage_path('app/public/products'))
-//                ->preservingOriginal()
-//                ->toMediaCollection('images');
+            //            $product->addMedia(storage_path('app/public/products'))
+            //                ->preservingOriginal()
+            //                ->toMediaCollection('images');
         });
     }
 }

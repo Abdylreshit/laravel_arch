@@ -11,7 +11,7 @@ class FindAction extends Action
     {
         $category = app(FindByIdCategoryTask::class)->execute($id);
 
-        if (config('category.image')){
+        if (config('category.image')) {
             $category->load('image');
         }
 

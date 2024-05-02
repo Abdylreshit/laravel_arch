@@ -25,7 +25,7 @@ final class ListController extends ApiController
             'page' => 'nullable|integer',
         ]);
 
-        $warehouses = ListAction::run($request->only(['search', 'sort', 'limit','page']));
+        $warehouses = ListAction::run($request->only(['search', 'sort', 'limit', 'page']));
 
         return $this->successResponse([
             'warehouses' => new ListResource($warehouses),

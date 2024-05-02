@@ -16,10 +16,10 @@ class CreateAction extends Action
             'parent_id' => $data['parent_id'] ?? null,
         ]);
 
-//        if ($data['has']('image') && config('category.image')) {
-//            app(AttachCategoryImageTask::class)
-//                ->execute($category, $data['file']('image'));
-//        }
+        //        if ($data['has']('image') && config('category.image')) {
+        //            app(AttachCategoryImageTask::class)
+        //                ->execute($category, $data['file']('image'));
+        //        }
 
         return $category;
     }

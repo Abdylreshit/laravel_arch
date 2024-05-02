@@ -9,9 +9,9 @@ class CreateTreeRequest extends Request
     public function rules(): array
     {
         return [
-            'name' => ['required','string'],
-            'parent_type' => ['nullable','string','in:CATEGORY,WAREHOUSE,REGION'],
-            'parent_id' => ['nullable','integer'],
+            'name' => ['required', 'string'],
+            'parent_type' => ['nullable', 'string', 'in:CATEGORY,WAREHOUSE,REGION'],
+            'parent_id' => ['nullable', 'integer'],
         ];
     }
 }

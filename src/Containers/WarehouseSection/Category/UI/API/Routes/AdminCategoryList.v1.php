@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/category/list', ListController::class)
     ->middleware([
         'auth:admin',
-        'permission:category-find'
+        'permission:category-find',
     ])
     ->name('admin.category.list');

@@ -24,7 +24,7 @@ class TreeResource extends Resource
                 'priority' => $this->priority,
                 'images' => $this
                     ->getMedia('images')
-                    ?->map(fn($image) => $image->getFullUrl()),
+                    ?->map(fn ($image) => $image->getFullUrl()),
                 'children_count' => $this->children_count,
                 'children' => TreeResource::collection($this->children),
 
@@ -44,7 +44,7 @@ class TreeResource extends Resource
                 'parent_id' => $this->parent_id,
                 'priority' => $this->priority,
                 'children_count' => $this->children_count,
-                'children' => TreeResource::collection($this->children)
+                'children' => TreeResource::collection($this->children),
             ];
         }
     }

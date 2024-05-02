@@ -8,7 +8,6 @@ use App\Containers\WarehouseSection\Category\Tasks\EditByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\FindByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\RestoreCategoryByIdTask;
 use App\Containers\WarehouseSection\Managers\Tasks\AssociateWarehouseToCategory;
-use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Containers\WarehouseSection\Warehouse\Tasks\CreateWarehouseTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\DeleteWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\EditWarehouseByIdTask;
@@ -17,7 +16,6 @@ use App\Containers\WarehouseSection\Warehouse\Tasks\ListWarehouseTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\RestoreWarehouseByIdTask;
 use App\Ship\Exceptions\ModelNotFoundException;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
 class MenuManager
 {
@@ -34,7 +32,7 @@ class MenuManager
                 'label' => 'Склады',
                 'type' => 'tree',
                 'key' => 'ENNBN',
-                'query_params' => ['WAREHOUSE','CATEGORY'],
+                'query_params' => ['WAREHOUSE', 'CATEGORY'],
                 'data' => $warehouses->map(function ($warehouse) {
                     $categories = $warehouse->categories->toTree(false, ['name.ru']);
 
@@ -45,9 +43,9 @@ class MenuManager
                         'parent_id' => 1,
                         'name' => $warehouse->name,
                         'query_param' => 'WAREHOUSE',
-                        'children' => $this->getCategories($categories)
+                        'children' => $this->getCategories($categories),
                     ];
-                })->toArray()
+                })->toArray(),
             ],
 
             [
@@ -66,7 +64,7 @@ class MenuManager
                         'value' => 'SHOWCASE',
                         'query_param' => 'withTypeWarehouse',
                     ],
-                ]
+                ],
             ],
 
             [
@@ -99,8 +97,8 @@ class MenuManager
                         'label' => 'Улица 5',
                         'value' => 'STREET5',
                         'query_param' => 'withStreet',
-                    ]
-                ]
+                    ],
+                ],
             ],
 
             [
@@ -111,7 +109,7 @@ class MenuManager
                 'data' => [
                     'placeholder' => 'Введите номер дома',
                     'query_param' => 'withHouse',
-                ]
+                ],
             ],
 
             [
@@ -124,7 +122,7 @@ class MenuManager
                     'max' => 100000,
                     'query_param_min' => 'withMinPrice',
                     'query_param_max' => 'withMaxPrice',
-                ]
+                ],
             ],
 
             [
@@ -134,7 +132,7 @@ class MenuManager
                 'query_params' => 'withCreatedAt',
                 'data' => [
                     'query_param' => 'withCreatedAt',
-                ]
+                ],
             ]
         );
 
@@ -151,7 +149,7 @@ class MenuManager
                 'parent_id' => $category->parent_id ?? $category->warehouse_id,
                 'name' => $category->name,
                 'query_param' => 'CATEGORY',
-                'children' => $this->getCategories($category->children)
+                'children' => $this->getCategories($category->children),
             ];
         })->toArray();
     }
@@ -182,13 +180,13 @@ class MenuManager
             'name' => $result->name,
             'parent_id' => $parentId,
             'parent_type' => $parentType,
-            'parent_name' => $result->parent_id ? $result->parent->getTrans('name') : $result->warehouse?->name
+            'parent_name' => $result->parent_id ? $result->parent->getTrans('name') : $result->warehouse?->name,
         ];
     }
 
     public function createTree(array $data): void
     {
-        if (array_key_exists('parent_type' ,$data)) {
+        if (array_key_exists('parent_type', $data)) {
             if ($data['parent_type'] === 'CATEGORY') {
                 $parentCategory = app(FindByIdCategoryTask::class)->execute($data['parent_id']);
 
@@ -211,7 +209,7 @@ class MenuManager
                     'name' => [
                         'en' => $data['name'],
                         'ru' => $data['name'],
-                    ]
+                    ],
                 ]);
 
                 app(AssociateWarehouseToCategory::class)->execute($warehouse, $category);
@@ -221,7 +219,7 @@ class MenuManager
         }
 
         app(CreateWarehouseTask::class)->execute([
-            'name' => $data['name']
+            'name' => $data['name'],
         ]);
     }
 
@@ -234,7 +232,7 @@ class MenuManager
                     'name' => [
                         'en' => $data['name'],
                         'ru' => $data['name'],
-                    ]
+                    ],
                 ]
             );
         }

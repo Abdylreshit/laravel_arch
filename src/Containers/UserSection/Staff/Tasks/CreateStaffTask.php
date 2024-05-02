@@ -8,7 +8,7 @@ use App\Ship\Exceptions\ResourceException;
 
 class CreateStaffTask extends Task
 {
-    public function execute($user_id, array|null $data = null)
+    public function execute($user_id, ?array $data = null)
     {
         try {
             $staff = Staff::create([

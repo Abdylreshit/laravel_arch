@@ -4,7 +4,6 @@ namespace App\Containers\WarehouseSection\Product\Data\Factories;
 
 use App\Containers\WarehouseSection\Product\Models\PropertyValue;
 use App\Ship\Core\Abstracts\Factories\Factory as ParentFactory;
-use Illuminate\Support\Str;
 
 class PropertyValueFactory extends ParentFactory
 {

@@ -27,7 +27,7 @@ class UserFactory extends ParentFactory
         return $this
             ->afterCreating(function (User $user) {
                 $user->update([
-                    'password' => Hash::make('123123')
+                    'password' => Hash::make('123123'),
                 ]);
             });
     }

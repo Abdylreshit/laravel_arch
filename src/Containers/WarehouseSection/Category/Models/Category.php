@@ -32,7 +32,7 @@ class Category extends Model implements HasMedia
         'priority',
         NestedSet::LFT,
         NestedSet::RGT,
-        NestedSet::PARENT_ID
+        NestedSet::PARENT_ID,
     ];
 
     protected array $translatable = [
@@ -47,7 +47,7 @@ class Category extends Model implements HasMedia
         return CategoryFactory::new();
     }
 
-    public function newCollection(array $models = array()): CustomCollection
+    public function newCollection(array $models = []): CustomCollection
     {
         return new CustomCollection($models);
     }
@@ -64,7 +64,7 @@ class Category extends Model implements HasMedia
         );
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         if (config('category.image')) {
             $this->addMediaConversion('thumb')

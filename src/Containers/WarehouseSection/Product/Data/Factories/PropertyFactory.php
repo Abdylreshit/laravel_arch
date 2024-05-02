@@ -22,8 +22,8 @@ class PropertyFactory extends ParentFactory
 
     public function configure(): static
     {
-        return $this->afterMaking(function (Property $category) {
-            $category->code = Str::upper(Str::random(5));
+        return $this->afterMaking(function (Property $property) {
+            $property->code = Str::upper(Str::random(5));
         });
     }
 }

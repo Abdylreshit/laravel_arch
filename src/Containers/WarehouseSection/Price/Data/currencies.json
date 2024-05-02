@@ -1,0 +1,26 @@
+[
+    {
+        "code": "AED",
+        "name": {
+            "en": "United Arab Emirates Dirham",
+            "ru": "Дирхам ОАЭ"
+        },
+        "symbol": "د.إ"
+    },
+    {
+        "code": "RUB",
+        "name": {
+            "en": "Russian Ruble",
+            "ru": "Российский рубль"
+        },
+        "symbol": "₽"
+    },
+    {
+        "code": "USD",
+        "name": {
+            "en": "United States Dollar",
+            "ru": "Доллар США"
+        },
+        "symbol": "$"
+    }
+]

@@ -2,7 +2,6 @@
 
 namespace App\Containers\AuthenticationSection\Sanctum\Actions\Admin;
 
-use App\Containers\AuthenticationSection\Sanctum\UI\API\Requests\Admin\LoginRequest;
 use App\Containers\UserSection\Staff\Tasks\FindStaffByEmailTask;
 use App\Ship\Core\Abstracts\Actions\Action;
 use App\Ship\Exceptions\ModelNotFoundException;

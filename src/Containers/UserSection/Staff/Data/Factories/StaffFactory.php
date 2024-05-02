@@ -13,7 +13,7 @@ class StaffFactory extends ParentFactory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory()->createOne()->id
+            'user_id' => User::factory()->createOne()->id,
         ];
     }
 }

@@ -14,12 +14,12 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Staff extends UserModel implements HasMedia
 {
-    use SoftDeletes;
     use HasApiTokens;
     use HasPermissions;
     use HasRoles;
-    use WithMediaTrait;
+    use SoftDeletes;
     use UserTrait;
+    use WithMediaTrait;
 
     protected $fillable = [
         'user_id',

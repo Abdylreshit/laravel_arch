@@ -3,7 +3,6 @@
 namespace App\Containers\WarehouseSection\Warehouse\Actions;
 
 use App\Containers\WarehouseSection\Warehouse\Tasks\EditWarehouseByIdTask;
-use App\Containers\WarehouseSection\Warehouse\UI\API\Requests\UpdateRequest;
 use App\Ship\Core\Abstracts\Actions\Action;
 
 class UpdateAction extends Action
@@ -15,7 +14,7 @@ class UpdateAction extends Action
                 $data['id'],
                 [
                     'name' => $data['name'],
-                    'is_blocked' => $data['is_blocked']
+                    'is_blocked' => $data['is_blocked'],
                 ]
             );
     }

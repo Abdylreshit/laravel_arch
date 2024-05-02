@@ -13,8 +13,7 @@ class DeleteControllerTest extends ApiTestCase
 
         $request = $this
             ->withToken($this->getStaffToken())
-            ->deleteJson('api/v1/admin/category/' . $data->id.'/delete');
-
+            ->deleteJson('api/v1/admin/category/'.$data->id.'/delete');
 
         $request->assertNoContent();
         $this->assertSoftDeleted(Category::class, ['id' => $data->id]);

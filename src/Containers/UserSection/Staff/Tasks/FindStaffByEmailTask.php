@@ -10,7 +10,7 @@ class FindStaffByEmailTask extends Task
     public function execute($email)
     {
         return Staff::query()
-            ->whereHas('user', fn($query) => $query->where('email', $email))
+            ->whereHas('user', fn ($query) => $query->where('email', $email))
             ->firstOrFail();
     }
 }

@@ -9,8 +9,8 @@ class DeleteTreeRequest extends Request
     public function rules(): array
     {
         return [
-            'id' => ['required','integer'],
-            'model' => ['required','string','in:CATEGORY,WAREHOUSE,REGION'],
+            'id' => ['required', 'integer'],
+            'model' => ['required', 'string', 'in:CATEGORY,WAREHOUSE,REGION'],
         ];
     }
 }

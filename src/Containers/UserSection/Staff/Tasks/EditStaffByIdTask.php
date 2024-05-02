@@ -8,7 +8,7 @@ use App\Ship\Exceptions\ResourceException;
 
 class EditStaffByIdTask extends Task
 {
-    public function execute($id, array|null $data = null)
+    public function execute($id, ?array $data = null)
     {
         $staff = Staff::query()->findOrFail($id);
 

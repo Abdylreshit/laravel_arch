@@ -5,9 +5,9 @@ namespace App\Containers\WarehouseSection\Product\Models;
 use App\Containers\WarehouseSection\Product\Data\Factories\PropertyFactory;
 use App\Ship\Core\Abstracts\Models\Model;
 use App\Ship\Core\Abstracts\Models\Traits\TranslateTrait;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 class Property extends Model
@@ -19,11 +19,11 @@ class Property extends Model
 
     protected $fillable = [
         'name',
-        'code'
+        'code',
     ];
 
     protected array $translatable = [
-        'name'
+        'name',
     ];
 
     protected static function boot()

@@ -13,23 +13,28 @@ use Spatie\MediaLibrary\HasMedia;
 
 class Product extends Model implements HasMedia
 {
+    use Categorizable;
     use SoftDeletes;
     use TranslateTrait;
     use WithMediaTrait;
-    use Categorizable;
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
 
-//    public function registerMediaConversions(Media $media = null): void
-//    {
-//        $this->addMediaConversion('thumb')
-//            ->width(800)
-//            ->height(200)
-//            ->format('webp');
-//    }
+    protected $translatable = [
+        'name',
+        'description',
+    ];
+
+    //    public function registerMediaConversions(Media $media = null): void
+    //    {
+    //        $this->addMediaConversion('thumb')
+    //            ->width(800)
+    //            ->height(200)
+    //            ->format('webp');
+    //    }
 
     public function propertyValues(): BelongsToMany
     {

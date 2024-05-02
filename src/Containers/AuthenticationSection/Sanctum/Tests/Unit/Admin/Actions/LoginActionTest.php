@@ -4,7 +4,6 @@ namespace App\Containers\AuthenticationSection\Sanctum\Tests\Unit\Admin\Actions;
 
 use App\Containers\AuthenticationSection\Sanctum\Actions\Admin\LoginAction;
 use App\Containers\AuthenticationSection\Sanctum\Tests\Unit\UnitTestCase;
-use App\Containers\AuthenticationSection\Sanctum\UI\API\Requests\Admin\LoginRequest;
 use App\Containers\UserSection\Staff\Models\Staff;
 use Laravel\Sanctum\PersonalAccessToken;
 

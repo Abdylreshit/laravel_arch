@@ -25,7 +25,7 @@ final class ListController extends ApiController
             'page' => 'nullable|integer',
         ]);
 
-        $categories = ListAction::run($request->only(['search', 'sort', 'limit','page']));
+        $categories = ListAction::run($request->only(['search', 'sort', 'limit', 'page']));
 
         return $this->successResponse([
             'categories' => new ListResource($categories),

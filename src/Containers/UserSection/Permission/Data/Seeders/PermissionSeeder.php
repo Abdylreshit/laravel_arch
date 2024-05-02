@@ -31,16 +31,17 @@ class PermissionSeeder extends ParentSeeder
             'MeasurementUnit',
             'Category',
             'Warehouse',
+            'Supplier',
         ];
 
         $crud = ['create', 'find', 'update', 'delete'];
 
-        foreach($crud as $action) {
+        foreach ($crud as $action) {
             foreach ($containers as $container) {
                 app(PermissionUpdateOrCreateTask::class)
                     ->execute(
                         [
-                            'name' => Str::slug($container,'-') . '-' . $action,
+                            'name' => Str::slug($container, '-').'-'.$action,
                             'guard_name' => 'admin',
                         ]);
             }
