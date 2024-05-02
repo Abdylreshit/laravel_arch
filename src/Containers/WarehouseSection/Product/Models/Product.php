@@ -21,12 +21,23 @@ class Product extends Model implements HasMedia
     protected $fillable = [
         'name',
         'description',
+        'sku',
     ];
 
     protected $translatable = [
         'name',
         'description',
     ];
+
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        static::created(function (Product $product) {
+//            $product->sku = $product->id;
+//            $product->save();
+//        });
+//    }
 
     //    public function registerMediaConversions(Media $media = null): void
     //    {

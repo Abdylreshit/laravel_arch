@@ -3,7 +3,7 @@
 use App\Containers\WarehouseSection\Product\UI\API\Controllers\UpdatePropertyValueController;
 use Illuminate\Support\Facades\Route;
 
-Route::put('admin/property/{id}/value/update', UpdatePropertyValueController::class)
+Route::put('admin/property/value/{id}/update', UpdatePropertyValueController::class)
     ->middleware([
         'auth:admin',
     ])

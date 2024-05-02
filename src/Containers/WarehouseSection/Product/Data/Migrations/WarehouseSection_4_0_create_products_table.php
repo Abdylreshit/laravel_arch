@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->json('name');
             $table->json('description')->nullable();
+            $table->string('sku')->unique();
             $table->timestamps();
             $table->softDeletes();
         });
