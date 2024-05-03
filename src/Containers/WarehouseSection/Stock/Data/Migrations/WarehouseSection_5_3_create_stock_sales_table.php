@@ -25,12 +25,11 @@ return new class extends Migration
             buildPriceColumn($table, 'unit_price');
             buildPriceColumn($table, 'total_price');
             buildDiscountColumns($table);
-            buildPriceColumn($table, 'delivery_fee');
             buildPriceColumn($table, 'grand_total');
 
             $table->nullableMorphs('receiver');
 
-            $table->string('state');
+            $table->string('state')->nullable();
             $table->timestamp('completed_at')->nullable();
             $table->timestamp('canceled_at')->nullable();
             $table->text('note')->nullable();

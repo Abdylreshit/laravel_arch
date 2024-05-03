@@ -13,7 +13,7 @@ final class CreatePropertyValueController extends ApiController
     public function __invoke(CreatePropertyValueRequest $request): JsonResponse
     {
         $propertyValue = CreatePropertyValueAction::run([
-            'property_id' => $request->property_id,
+            'property_id' => $request->propertyId,
             'value' => [
                 'ru' => $request->value['ru'],
                 'en' => $request->value['en'],

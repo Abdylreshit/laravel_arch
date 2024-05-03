@@ -1,10 +1,11 @@
 <?php
 
+use App\Containers\WarehouseSection\Price\Enums\DiscountType;
 use App\Containers\WarehouseSection\Price\Tasks\FindCurrencyByCodeTask;
 use Illuminate\Database\Schema\Blueprint;
 
 if (! function_exists('buildPriceColumn')) {
-    function buildPriceColumn(Blueprint $table, $column = 'price')
+    function buildPriceColumn(Blueprint $table, $column = 'price'): void
     {
         $table->double($column, '15', '2')->default(0);
 
@@ -18,10 +19,18 @@ if (! function_exists('buildPriceColumn')) {
 }
 
 if (! function_exists('buildDiscountColumns')) {
-    function buildDiscountColumns(Blueprint $table)
+    function buildDiscountColumns(Blueprint $table): void
     {
         $table->double('discount', '15', '2')->default(0);
-        $table->double('discount_percentage', '15', '2')->default(0);
+        $table->string('discount_type')->default(DiscountType::PERCENTAGE);
+        $table->foreignId('discount_currency_id')
+            ->nullable()
+            ->constrained('currencies')
+            ->nullOnDelete();
+        $table->foreignId('discount_currency_conversion_id')
+            ->nullable()
+            ->constrained('currency_conversations')
+            ->nullOnDelete();
     }
 }
 

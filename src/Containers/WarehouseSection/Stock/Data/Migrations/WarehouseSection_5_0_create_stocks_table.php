@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('inventory_id')
                 ->constrained('products')
                 ->cascadeOnDelete();
+
             $table->foreignId('warehouse_id')
                 ->constrained('warehouses')
                 ->cascadeOnDelete();
