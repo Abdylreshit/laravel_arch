@@ -12,9 +12,8 @@ class CreatePropertyValueTask extends Task
     public function execute(Property $property, array $data)
     {
         try {
-            $propertyValue = PropertyValue::query()
+            $propertyValue = $property->values()
                 ->create([
-                    'property_id' => $property->id,
                     'value' => [
                         'en' => $data['value']['en'],
                         'ru' => $data['value']['ru'],
