@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->morphs('priceable');
+            $table->nullableMorphs('priceable');
             buildPriceColumn($table, 'price');
             $table->timestamp('valid_from')->nullable();
             $table->timestamp('valid_to')->nullable();

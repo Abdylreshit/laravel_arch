@@ -1,6 +1,7 @@
 <?php
 
 use App\Containers\WarehouseSection\Price\Enums\DiscountType;
+use App\Containers\WarehouseSection\Price\Models\Currency;
 use App\Containers\WarehouseSection\Price\Tasks\FindCurrencyByCodeTask;
 use Illuminate\Database\Schema\Blueprint;
 

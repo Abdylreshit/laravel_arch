@@ -3,43 +3,34 @@
 namespace App\Containers\WarehouseSection\Price\Models\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Database\Eloquent\Model;
 
 class PriceCast implements CastsAttributes
 {
-    /**
-     * Преобразует значение атрибута из базы данных.
-     *
-     * @param  mixed  $value
-     * @return array|null
-     */
-    public function get($model, $key, $value, $attributes)
+    public function set($model, $key, $value, $attributes)
     {
-        if (empty($value)) {
+        if (
+            empty($value) ||
+            empty($value['amount']) ||
+            empty($value['currency_id']) ||
+            empty($value['currency_conversion_id'])
+        ) {
             return null;
         }
 
-        $data = json_decode($value, true);
         return [
-            'price' => $data['price'] ?? null,
-            'currency' => $data['currency'] ?? null,
+            $key => $value['amount'],
+            $key . '_currency_id' => $value['currency_id'],
+            $key . '_currency_conversion_id' => $value['currency_conversion_id']
         ];
     }
 
-    /**
-     * Преобразует значение атрибута в базу данных.
-     *
-     * @param  mixed  $value
-     * @return string|null
-     */
-    public function set($model, $key, $value, $attributes)
+    public function get($model, string $key, mixed $value, array $attributes)
     {
-        if (empty($value['price']) || empty($value['currency'])) {
-            return null;
-        }
-
-        return json_encode([
-            'price' => $value['price'],
-            'currency' => $value['currency'],
-        ]);
+        return [
+            'amount' => $attributes[$key],
+            'currency_id' => $attributes[$key . '_currency_id'],
+            'currency_conversion_id' => $attributes[$key . '_currency_conversion_id']
+        ];
     }
 }

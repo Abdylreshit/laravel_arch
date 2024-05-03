@@ -15,6 +15,7 @@ class ListPropertyValueAttachedProductResource extends Resource
                 'en' => $this->translate('name', 'en'),
                 'ru' => $this->translate('name', 'ru'),
             ],
+            'type' => $this->code == "COLOR" ? 'COLOR' : null,
             'values' => MainPropertyValueResource::collection($this->values)
         ];
     }

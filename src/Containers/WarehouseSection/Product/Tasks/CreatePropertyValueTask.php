@@ -3,7 +3,6 @@
 namespace App\Containers\WarehouseSection\Product\Tasks;
 
 use App\Containers\WarehouseSection\Product\Models\Property;
-use App\Containers\WarehouseSection\Product\Models\PropertyValue;
 use App\Ship\Core\Abstracts\Tasks\Task;
 use App\Ship\Exceptions\ResourceException;
 

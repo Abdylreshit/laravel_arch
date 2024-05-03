@@ -12,5 +12,10 @@ class PropertySeeder extends Seeder
         Property::factory()
             ->count(10)
             ->create();
+
+        $property = Property::query()->inRandomOrder()->first();
+
+        $property->code = 'COLOR';
+        $property->save();
     }
 }
