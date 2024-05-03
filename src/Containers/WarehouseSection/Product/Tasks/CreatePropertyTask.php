@@ -10,6 +10,7 @@ class CreatePropertyTask extends Task
 {
     public function execute(array $data)
     {
+
         try {
             $property = Property::query()
                 ->create([
@@ -19,6 +20,7 @@ class CreatePropertyTask extends Task
                     ],
                 ]);
         } catch (\Exception $e) {
+            dd($e->getMessage());
             throw new ResourceException;
         }
 

@@ -13,17 +13,22 @@ return new class extends Migration
     {
         Schema::create('stock_write_offs', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('stock_id')
                 ->constrained()
                 ->cascadeOnDelete();
+
             $table->foreignId('movement_id')
                 ->constrained('stock_movements')
                 ->cascadeOnDelete();
+
             $table->integer('quantity')->default(0);
             $table->text('note')->nullable();
+
             $table->foreignId('staff_id')
                 ->constrained()
                 ->cascadeOnDelete();
+
             $table->timestamps();
             $table->softDeletes();
         });

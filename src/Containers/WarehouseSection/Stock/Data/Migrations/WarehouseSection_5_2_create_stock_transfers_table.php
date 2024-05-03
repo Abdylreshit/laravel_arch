@@ -19,9 +19,7 @@ return new class extends Migration
             $table->foreignId('to_warehouse_id')
                 ->constrained('warehouses')
                 ->cascadeOnDelete();
-            $table->foreignId('stock_id')
-                ->constrained()
-                ->cascadeOnDelete();
+
             $table->foreignId('movement_id')
                 ->constrained('stock_movements')
                 ->cascadeOnDelete();
