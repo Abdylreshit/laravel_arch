@@ -14,8 +14,8 @@ final class CreatePropertyController extends ApiController
     {
         $property = CreatePropertyAction::run([
             'name' => [
-                'ru' => $request->name['ru'],
-                'en' => $request->name['en'],
+                'ru' => $request->input('name.ru'),
+                'en' => $request->input('name.en'),
             ],
         ]);
 

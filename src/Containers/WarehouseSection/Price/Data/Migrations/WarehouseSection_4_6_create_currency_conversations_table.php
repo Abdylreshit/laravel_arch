@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('currency_conversations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('from_currency_id')
+            $table->foreignId('base_currency_id')
                 ->constrained('currencies')
                 ->cascadeOnDelete();
             $table->foreignId('to_currency_id')

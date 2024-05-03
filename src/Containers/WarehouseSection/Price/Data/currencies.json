@@ -5,7 +5,8 @@
             "en": "United Arab Emirates Dirham",
             "ru": "Дирхам ОАЭ"
         },
-        "symbol": "د.إ"
+        "symbol": "د.إ",
+        "conversion": 3.67
     },
     {
         "code": "RUB",
@@ -13,7 +14,8 @@
             "en": "Russian Ruble",
             "ru": "Российский рубль"
         },
-        "symbol": "₽"
+        "symbol": "₽",
+        "conversion": 93.51
     },
     {
         "code": "USD",
@@ -21,6 +23,7 @@
             "en": "United States Dollar",
             "ru": "Доллар США"
         },
-        "symbol": "$"
+        "symbol": "$",
+        "conversion": 1.00
     }
 ]

@@ -16,8 +16,6 @@ return new class extends Migration
             $table->json('name');
             $table->string('code', 5)->unique();
             $table->string('symbol', 5)->nullable();
-
-
             $table->timestamps();
             $table->softDeletes();
         });

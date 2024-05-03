@@ -2,6 +2,8 @@
 
 namespace App\Containers\WarehouseSection\Product\Actions;
 
+use App\Containers\WarehouseSection\Product\Models\PropertyValue;
+use App\Containers\WarehouseSection\Product\Tasks\AttachPropertyValueToProductTask;
 use App\Containers\WarehouseSection\Product\Tasks\CreateProductTask;
 use App\Ship\Core\Abstracts\Actions\Action;
 use App\Ship\Exceptions\ResourceException;
@@ -23,7 +25,12 @@ class CreateProductAction extends Action
             ]);
 
             if (array_key_exists('property_values', $data)) {
-                $product->propertyValues()->attach($data['property_values']);
+                PropertyValue::query()
+                    ->whereIn('id', $data['property_values'])
+                    ->get()
+                    ->each(function ($propertyValue) use ($product) {
+                        app(AttachPropertyValueToProductTask::class)->execute($product, $propertyValue);
+                    });
             }
 
             if (array_key_exists('images', $data)) {

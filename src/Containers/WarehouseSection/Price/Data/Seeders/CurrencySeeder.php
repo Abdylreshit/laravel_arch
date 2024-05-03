@@ -2,6 +2,8 @@
 
 namespace App\Containers\WarehouseSection\Price\Data\Seeders;
 
+use App\Containers\WarehouseSection\Price\Models\Currency;
+use App\Containers\WarehouseSection\Price\Tasks\FindCurrencyByCodeTask;
 use App\Containers\WarehouseSection\Price\Tasks\UpdateOrCreateCurrencyTask;
 use App\Ship\Core\Abstracts\Seeders\Seeder;
 
@@ -9,16 +11,37 @@ class CurrencySeeder extends Seeder
 {
     public function run(): void
     {
-        $currencies = file_get_contents(base_path('src/Containers/WarehouseSection/Price/Data/currencies.json'));
+        $data = file_get_contents(base_path('src/Containers/WarehouseSection/Price/Data/currencies.json'));
 
-        foreach (json_decode($currencies, true) as $currency) {
+        $data = json_decode($data, true);
+
+        foreach ($data as $currency) {
             app(UpdateOrCreateCurrencyTask::class)
                 ->execute(
                     [
                         'code' => $currency['code'],
                     ],
-                    $currency
+                    [
+                        'name' => $currency['name'],
+                        'symbol' => $currency['symbol']
+                    ]
                 );
+        }
+
+        $currencies = Currency::all();
+
+        foreach ($data as $currency) {
+            $c = app(FindCurrencyByCodeTask::class)->execute($currency['code']);
+
+            $c->conversations()->create([
+                'base_currency_id' => getBaseCurrency()->id,
+                'to_currency_id' => $c->id,
+                'rate' => $currency['conversion'],
+                'valid_from' => now(),
+                'valid_to' => now()->addYear(),
+                'is_active' => true,
+                'note' => 'Default rate',
+            ]);
         }
     }
 }

@@ -12,8 +12,6 @@ class SetCurrency extends Middleware
 
         app('currency')->setCurrency($currency);
 
-        info('Currency set to: '.app('currency')->getCurrency());
-
         return $next($request);
     }
 }
