@@ -54,31 +54,31 @@ class Property extends Model
 
     public function isText(): bool
     {
-        return $this->type === PropertyType::TEXT;
+        return $this->type == PropertyType::TEXT;
     }
 
     public function isDecimal(): bool
     {
-        return $this->type === PropertyType::DECIMAL;
+        return $this->type == PropertyType::DECIMAL;
     }
 
     public function isInteger(): bool
     {
-        return $this->type === PropertyType::INTEGER;
+        return $this->type == PropertyType::INTEGER;
     }
 
     public function isBoolean(): bool
     {
-        return $this->type === PropertyType::BOOLEAN;
+        return $this->type == PropertyType::BOOLEAN;
     }
 
     public function isColor(): bool
     {
-        return $this->type === PropertyType::COLOR;
+        return $this->type == PropertyType::COLOR;
     }
 
     public function isType(string $type): bool
     {
-        return $this->type === $type;
+        return $this->type == $type;
     }
 }

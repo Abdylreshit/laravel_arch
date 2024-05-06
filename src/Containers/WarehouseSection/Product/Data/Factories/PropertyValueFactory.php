@@ -21,10 +21,10 @@ class PropertyValueFactory extends ParentFactory
                 'ru' => $this->faker->name,
             ],
             'property_id' => $property->id,
-            'text' => $property->type === PropertyType::TEXT ? $this->faker->text : null,
-            'decimal' => $property->type === PropertyType::DECIMAL ? $this->faker->randomFloat(2, 0, 1000) : null,
-            'integer' => $property->type === PropertyType::INTEGER ? $this->faker->randomNumber(2) : null,
-            'color' => $property->type === PropertyType::COLOR ? $this->faker->hexColor : null,
+            'text' => $property->isText() ? $this->faker->text : null,
+            'decimal' => $property->isDecimal() ? $this->faker->randomFloat(2, 0, 1000) : null,
+            'integer' => $property->isInteger() ? $this->faker->randomNumber(2) : null,
+            'color' => $property->isColor() ? $this->faker->hexColor : null,
         ];
     }
 }
