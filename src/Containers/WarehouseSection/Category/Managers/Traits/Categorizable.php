@@ -30,29 +30,6 @@ trait Categorizable
     abstract public static function deleted($callback);
 
     /**
-     * Define a polymorphic many-to-many relationship.
-     *
-     * @param  string  $related
-     * @param  string  $name
-     * @param  string  $table
-     * @param  string  $foreignPivotKey
-     * @param  string  $relatedPivotKey
-     * @param  string  $parentKey
-     * @param  string  $relatedKey
-     * @param  bool  $inverse
-     */
-    abstract public function morphToMany(
-        $related,
-        $name,
-        $table = null,
-        $foreignPivotKey = null,
-        $relatedPivotKey = null,
-        $parentKey = null,
-        $relatedKey = null,
-        $inverse = false
-    ): MorphToMany;
-
-    /**
      * Get all attached categories to the model.
      */
     public function categories(): MorphToMany

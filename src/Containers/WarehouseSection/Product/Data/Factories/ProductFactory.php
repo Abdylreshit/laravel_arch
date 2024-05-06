@@ -26,9 +26,10 @@ class ProductFactory extends ParentFactory
     public function configure(): static
     {
         return $this->afterCreating(function (Product $product) {
-            //            $product->addMedia(storage_path('app/public/products'))
-            //                ->preservingOriginal()
-            //                ->toMediaCollection('images');
+            $product->sku = now()->format('Ymd'). '-' . $product->id;
+            $product->save();
+        })->afterMaking(function (Product $product) {
+            $product->sku = now()->format('Ymd'). '-' . $product->id;
         });
     }
 }

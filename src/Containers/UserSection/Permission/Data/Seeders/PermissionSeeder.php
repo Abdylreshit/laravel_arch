@@ -32,6 +32,7 @@ class PermissionSeeder extends ParentSeeder
             'Category',
             'Warehouse',
             'Supplier',
+            'EAV',
         ];
 
         $crud = ['create', 'find', 'update', 'delete'];
