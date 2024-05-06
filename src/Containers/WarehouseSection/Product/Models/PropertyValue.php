@@ -58,13 +58,19 @@ class PropertyValue extends Model
 
     public function getValueAttribute()
     {
-        return $this->text ?? $this->decimal ?? $this->integer ?? $this->boolean ?? $this->color;
+        return match ($this->property->type) {
+            PropertyType::TEXT => null,
+            PropertyType::DECIMAL => $this->decimal,
+            PropertyType::INTEGER => $this->integer,
+            PropertyType::BOOLEAN => $this->boolean,
+            PropertyType::COLOR => $this->color,
+        };
     }
 
     public function scopeWhereValue($query, $value)
     {
         return match ($this->property->type) {
-            PropertyType::TEXT => $query->where('text', $value),
+            PropertyType::TEXT => $query->whereLocale('name', $value),
             PropertyType::DECIMAL => $query->where('decimal', $value),
             PropertyType::INTEGER => $query->where('integer', $value),
             PropertyType::BOOLEAN => $query->where('boolean', $value),

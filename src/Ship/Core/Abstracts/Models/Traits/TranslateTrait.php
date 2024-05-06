@@ -2,6 +2,7 @@
 
 namespace App\Ship\Core\Abstracts\Models\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Spatie\Translatable\HasTranslations;
 
@@ -27,5 +28,12 @@ trait TranslateTrait
         foreach ($locales as $locale) {
             $query->orWhere("$field->$locale", 'like', "%$value%");
         }
+    }
+
+    public function scopeWhereLocale($query, string $column, $locale)
+    {
+        $locale = $locale ?? app()->getLocale();
+
+        return $query->whereNotNull("{$column}->{$locale}");
     }
 }
