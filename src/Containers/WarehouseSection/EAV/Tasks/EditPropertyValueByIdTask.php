@@ -19,11 +19,11 @@ class EditPropertyValueByIdTask extends Task
                     'en' => $data['name']['en'] ?? $propertyValue->getTrans('name', 'en'),
                     'ru' => $data['name']['ru'] ?? $propertyValue->getTrans('name', 'ru'),
                 ],
-                'text' => $data['value'] ? (string)$data['value'] : $propertyValue->text,
-                'integer' => $data['value'] ? (integer)$data['value'] : $propertyValue->integer,
-                'decimal' => $data['value'] ? (float)$data['value'] : $propertyValue->decimal,
-                'boolean' => $data['value'] ? (boolean)$data['value'] : $propertyValue->boolean,
-                'color' => $data['value'] ? (string)$data['value'] : $propertyValue->color
+                'text' => $propertyValue->property->isText() && $data['value'] != null ? (string)$data['value'] : $propertyValue->text,
+                'integer' => $propertyValue->property->isInteger() && $data['value'] != null ? (integer)$data['value'] : $propertyValue->integer,
+                'decimal' => $propertyValue->property->isDecimal() && $data['value'] != null ? (float)$data['value'] : $propertyValue->decimal,
+                'boolean' => $propertyValue->property->isBoolean() ? (boolean)$data['value'] : $propertyValue->boolean,
+                'color' => $propertyValue->property->isColor() && $data['value'] != null ? (string)$data['value'] : $propertyValue->color,
             ]);
         } catch (\Exception) {
             throw new ResourceException;

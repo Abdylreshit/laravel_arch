@@ -13,10 +13,10 @@ class UpdatePropertyValueAction extends Action
             $data['id'],
             [
                 'name' => [
-                    'ru' => $data['name']['ru'],
-                    'en' => $data['name']['en'],
+                    'ru' => $data['name']['ru'] ?? null,
+                    'en' => $data['name']['en'] ?? null,
                 ],
-                'value' => $data['value'],
+                'value' => $data['value'] ?? null,
             ]
         );
 

@@ -9,10 +9,10 @@ class UpdatePropertyValueRequest extends Request
     public function rules(): array
     {
         return [
-            'name' => ['required', 'array'],
-            'name.ru' => ['required', 'string', 'max:255'],
-            'name.en' => ['required', 'string', 'max:255'],
-            'value' => ['required', 'string', 'max:255'],
+            'name' => ['nullable', 'array'],
+            'name.ru' => ['nullable', 'string'],
+            'name.en' => ['nullable', 'string'],
+            'value' => ['nullable'],
         ];
     }
 }

@@ -15,10 +15,10 @@ final class UpdatePropertyValueController extends ApiController
         $propertyValue = UpdatePropertyValueAction::run([
             'id' => $request->id,
             'name' => [
-                'ru' => $request->input('name.ru'),
-                'en' => $request->input('name.en'),
+                'ru' => $request->input('name.ru') ?? null,
+                'en' => $request->input('name.en') ?? null,
             ],
-            'value' => $request->input('value'),
+            'value' => $request->input('value') ?? null,
         ]);
 
         return $this->successResponse([
