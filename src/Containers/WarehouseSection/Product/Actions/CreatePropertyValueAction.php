@@ -2,7 +2,6 @@
 
 namespace App\Containers\WarehouseSection\Product\Actions;
 
-use App\Containers\WarehouseSection\Product\Tasks\CreatePropertyTask;
 use App\Containers\WarehouseSection\Product\Tasks\CreatePropertyValueTask;
 use App\Containers\WarehouseSection\Product\Tasks\FindPropertyByIdTask;
 use App\Ship\Core\Abstracts\Actions\Action;
@@ -20,7 +19,7 @@ class CreatePropertyValueAction extends Action
                     'ru' => $data['name']['ru'],
                     'en' => $data['name']['en'],
                 ],
-                'value' => $data['value']
+                'value' => $data['value'] ?? null,
             ]);
 
         return $propertyValue;

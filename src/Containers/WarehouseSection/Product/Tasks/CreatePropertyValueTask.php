@@ -14,14 +14,14 @@ class CreatePropertyValueTask extends Task
             $propertyValue = $property->values()
                 ->create([
                     'name' => [
-                        'en' => $data['value']['en'],
-                        'ru' => $data['value']['ru'],
+                        'en' => $data['name']['en'],
+                        'ru' => $data['name']['ru'],
                     ],
-                    'text' => $property->isText() ? (string)$data['value'] : null,
-                    'integer' => $property->isInteger() ? (integer)$data['value'] : null,
-                    'decimal' => $property->isDecimal() ? (float)$data['value'] : null,
-                    'boolean' => $property->isBoolean() ? (boolean)$data['value'] : null,
-                    'color' => $property->isColor() ? (string)$data['value'] : null,
+                    'text' => $property->isText() && $data['value'] != null ? (string)$data['value'] : null,
+                    'integer' => $property->isInteger() && $data['value'] != null ? (integer)$data['value'] : null,
+                    'decimal' => $property->isDecimal() && $data['value'] != null ? (float)$data['value'] : null,
+                    'boolean' => $property->isBoolean() && $data['value'] != null ? (boolean)$data['value'] : null,
+                    'color' => $property->isColor() && $data['value'] != null ? (string)$data['value'] : null,
                 ]);
         } catch (\Exception $e) {
             throw new ResourceException;

@@ -8,6 +8,8 @@ use App\Containers\WarehouseSection\Category\Tasks\EditByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\FindByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\RestoreCategoryByIdTask;
 use App\Containers\WarehouseSection\Managers\Tasks\AssociateWarehouseToCategory;
+use App\Containers\WarehouseSection\Product\Enums\PropertyType;
+use App\Containers\WarehouseSection\Product\Models\Property;
 use App\Containers\WarehouseSection\Warehouse\Tasks\CreateWarehouseTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\DeleteWarehouseByIdTask;
 use App\Containers\WarehouseSection\Warehouse\Tasks\EditWarehouseByIdTask;
@@ -133,10 +135,36 @@ class MenuManager
                 'data' => [
                     'query_param' => 'withCreatedAt',
                 ],
+            ],
+
+            [
+                'label' => 'Цвет',
+                'type' => 'color',
+                'key' => '4ATVI',
+                'query_params' => 'withColor',
+                'data' => $this->getColors()
             ]
         );
 
         return $collect;
+    }
+
+    private function getColors()
+    {
+        return Property::query()
+            ->with('values')
+            ->where('type', PropertyType::COLOR)
+            ->orderBy('id')
+            ->first()
+            ->values
+            ->map(function ($property) {
+                return [
+                    'label' => $property->getTrans('name'),
+                    'value' => $property->id,
+                    'query_param' => 'withColor',
+                ];
+        })
+            ->toArray();
     }
 
     private function getCategories($categories)
