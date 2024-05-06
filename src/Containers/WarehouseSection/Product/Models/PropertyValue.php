@@ -58,23 +58,51 @@ class PropertyValue extends Model
 
     public function getValueAttribute()
     {
-        return match ($this->property->type) {
-            PropertyType::TEXT => null,
-            PropertyType::DECIMAL => $this->decimal,
-            PropertyType::INTEGER => $this->integer,
-            PropertyType::BOOLEAN => $this->boolean,
-            PropertyType::COLOR => $this->color,
-        };
+        if ($this->property->isText()) {
+            return null;
+        }
+
+        if ($this->property->isDecimal()) {
+            return $this->decimal;
+        }
+
+        if ($this->property->isInteger()) {
+            return $this->integer;
+        }
+
+        if ($this->property->isBoolean()) {
+            return $this->boolean;
+        }
+
+        if ($this->property->isColor()) {
+            return $this->color;
+        }
+
+        return null;
     }
 
-    public function scopeWhereValue($query, $value)
+    public function scopeWhereValue($query, $value, string $operator = '=')
     {
-        return match ($this->property->type) {
-            PropertyType::TEXT => $query->whereLocale('name', $value),
-            PropertyType::DECIMAL => $query->where('decimal', $value),
-            PropertyType::INTEGER => $query->where('integer', $value),
-            PropertyType::BOOLEAN => $query->where('boolean', $value),
-            PropertyType::COLOR => $query->where('color', $value),
-        };
+        if ($this->property->isText()) {
+            return $query->whereLocale('name', "%$value%");
+        }
+
+        if ($this->property->isDecimal()) {
+            return $query->where('decimal', $operator,$value);
+        }
+
+        if ($this->property->isInteger()) {
+            return $query->where('integer',$operator, $value);
+        }
+
+        if ($this->property->isBoolean()) {
+            return $query->where('boolean',$operator, $value);
+        }
+
+        if ($this->property->isColor()) {
+            return $query->where('color', $operator, $value);
+        }
+
+        return $query;
     }
 }
