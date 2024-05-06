@@ -18,11 +18,11 @@ return new class extends Migration
             $table->json('name')
                 ->nullable();
 
-            $table->text('text');
-            $table->decimal('decimal', 10, 2);
-            $table->integer('integer');
-            $table->boolean('boolean');
-            $table->string('color');
+            $table->text('text')->nullable();
+            $table->decimal('decimal', 10, 2)->nullable();
+            $table->integer('integer')->nullable();
+            $table->boolean('boolean')->nullable();
+            $table->string('color')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
