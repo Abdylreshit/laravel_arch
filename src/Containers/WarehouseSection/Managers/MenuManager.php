@@ -159,8 +159,9 @@ class MenuManager
             ->values
             ->map(function ($property) {
                 return [
+                    'id' => $property->id,
                     'label' => $property->getTrans('name'),
-                    'value' => $property->id,
+                    'value' => $property->value,
                     'query_param' => 'withColor',
                 ];
         })
