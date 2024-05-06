@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/property/list', ListPropertyController::class)
     ->middleware([
         'auth:admin',
-        'permission:eav-find',
+//        'permission:eav-find',
     ])
     ->name('admin.product.property.list');

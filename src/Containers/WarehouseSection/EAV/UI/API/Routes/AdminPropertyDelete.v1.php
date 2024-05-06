@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::delete('admin/property/{id}/delete', DeletePropertyController::class)
     ->middleware([
         'auth:admin',
-        'permission:eav-delete'
+//        'permission:eav-delete'
     ])
     ->name('admin.product.property.delete');

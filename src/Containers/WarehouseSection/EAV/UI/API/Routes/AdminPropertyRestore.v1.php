@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/property/{id}/restore', RestorePropertyController::class)
     ->middleware([
         'auth:admin',
-        'permission:eav-delete'
+//        'permission:eav-delete'
     ])
     ->name('admin.product.property.restore');

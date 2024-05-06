@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::put('admin/property/{id}/update', UpdatePropertyController::class)
     ->middleware([
         'auth:admin',
-        'permission:eav-update'
+//        'permission:eav-update'
     ])
     ->name('admin.product.property.update');
