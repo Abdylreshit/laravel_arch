@@ -18,9 +18,9 @@ class CreatePropertyTask extends Task
                         'en' => $data['name']['en'],
                         'ru' => $data['name']['ru'],
                     ],
+                    'type' => $data['type'],
                 ]);
         } catch (\Exception $e) {
-            dd($e->getMessage());
             throw new ResourceException;
         }
 

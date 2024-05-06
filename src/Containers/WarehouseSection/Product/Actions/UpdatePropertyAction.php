@@ -15,7 +15,8 @@ class UpdatePropertyAction extends Action
                 'name' => [
                     'ru' => $data['name']['ru'],
                     'en' => $data['name']['en'],
-                ]
+                ],
+                'type' => $data['type']
             ]
         );
 

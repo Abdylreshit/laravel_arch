@@ -17,7 +17,8 @@ final class UpdatePropertyController extends ApiController
             'name' => [
                 'ru' => $request->input('name.ru'),
                 'en' => $request->input('name.en'),
-            ]
+            ],
+            'type' => $request->input('type'),
         ]);
 
         return $this->successResponse([

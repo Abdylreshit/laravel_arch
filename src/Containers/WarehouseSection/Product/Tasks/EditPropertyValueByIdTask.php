@@ -15,10 +15,15 @@ class EditPropertyValueByIdTask extends Task
 
         try {
             $propertyValue->update([
-                'value' => [
-                    'en' => $data['value']['en'] ?? $propertyValue->getTrans('value', 'en'),
-                    'ru' => $data['value']['ru'] ?? $propertyValue->getTrans('value', 'ru'),
+                'name' => [
+                    'en' => $data['name']['en'] ?? $propertyValue->getTrans('name', 'en'),
+                    'ru' => $data['name']['ru'] ?? $propertyValue->getTrans('name', 'ru'),
                 ],
+                'text' => $data['value'] ? (string)$data['value'] : $propertyValue->text,
+                'integer' => $data['value'] ? (integer)$data['value'] : $propertyValue->integer,
+                'decimal' => $data['value'] ? (float)$data['value'] : $propertyValue->decimal,
+                'boolean' => $data['value'] ? (boolean)$data['value'] : $propertyValue->boolean,
+                'color' => $data['value'] ? (string)$data['value'] : $propertyValue->color
             ]);
         } catch (\Exception) {
             throw new ResourceException;

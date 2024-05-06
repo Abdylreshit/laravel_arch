@@ -14,10 +14,11 @@ final class CreatePropertyValueController extends ApiController
     {
         $propertyValue = CreatePropertyValueAction::run([
             'property_id' => $request->propertyId,
-            'value' => [
-                'ru' => $request->value['ru'],
-                'en' => $request->value['en'],
+            'name' => [
+                'ru' => $request->input('name.ru'),
+                'en' => $request->input('name.en'),
             ],
+            'value' => $request->input('value'),
         ]);
 
         return $this->successResponse([

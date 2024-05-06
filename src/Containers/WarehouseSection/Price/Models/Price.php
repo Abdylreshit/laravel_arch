@@ -28,13 +28,8 @@ class Price extends Model
         return PriceFactory::new();
     }
 
-//    public function currencyConversation()
-//    {
-//        return $this->belongsTo(CurrencyConversion::class, 'price_currency_conversion_id');
-//    }
-//
 //    public function getPriceConvertedAttribute()
 //    {
-//        return $this->price * $this->priceCurrencyConversion->rate;
+//        $convertedRate = $this->price->convertTo('USD');
 //    }
 }

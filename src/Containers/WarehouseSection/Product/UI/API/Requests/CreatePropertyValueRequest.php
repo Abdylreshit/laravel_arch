@@ -9,9 +9,10 @@ class CreatePropertyValueRequest extends Request
     public function rules(): array
     {
         return [
-            'value' => ['required', 'array'],
-            'value.ru' => ['required', 'string', 'max:255'],
-            'value.en' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'array'],
+            'name.ru' => ['required', 'string', 'max:255'],
+            'name.en' => ['required', 'string', 'max:255'],
+            'value' => ['required', 'string', 'max:255'],
         ];
     }
 }

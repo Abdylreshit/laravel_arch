@@ -10,10 +10,11 @@ class MainPropertyValueResource extends Resource
     {
         return [
             'id' => $this->id,
-            'value' => [
-                'ru' => $this->translate('value', 'ru'),
-                'en' => $this->translate('value', 'en'),
+            'name' => [
+                'ru' => $this->translate('name', 'ru'),
+                'en' => $this->translate('name', 'en'),
             ],
+            'value' => $this->value,
         ];
     }
 }

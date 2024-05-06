@@ -15,7 +15,7 @@ class MainPropertyResource extends Resource
                 'en' => $this->translate('name', 'en'),
             ],
             'code' => $this->code,
-            'type' => $this->code == "COLOR" ? 'COLOR' : null,
+            'type' => $this->type,
         ];
     }
 }

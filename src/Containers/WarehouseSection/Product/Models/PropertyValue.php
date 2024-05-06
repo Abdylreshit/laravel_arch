@@ -3,6 +3,7 @@
 namespace App\Containers\WarehouseSection\Product\Models;
 
 use App\Containers\WarehouseSection\Product\Data\Factories\PropertyValueFactory;
+use App\Containers\WarehouseSection\Product\Enums\PropertyType;
 use App\Ship\Core\Abstracts\Models\Model;
 use App\Ship\Core\Abstracts\Models\Traits\TranslateTrait;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -18,11 +19,18 @@ class PropertyValue extends Model
     protected $table = 'property_values';
 
     protected $fillable = [
-        'value',
+        'name',
+
+        'property_id',
+        'text',
+        'decimal',
+        'integer',
+        'boolean',
+        'color',
     ];
 
     protected array $translatable = [
-        'value',
+        'name',
     ];
 
     protected static function newFactory(): Factory
@@ -46,5 +54,21 @@ class PropertyValue extends Model
             'id'
         )
             ->withPivot('value');
+    }
+
+    public function getValueAttribute()
+    {
+        return $this->text ?? $this->decimal ?? $this->integer ?? $this->boolean ?? $this->color;
+    }
+
+    public function scopeWhereValue($query, $value)
+    {
+        return match ($this->property->type) {
+            PropertyType::TEXT => $query->where('text', $value),
+            PropertyType::DECIMAL => $query->where('decimal', $value),
+            PropertyType::INTEGER => $query->where('integer', $value),
+            PropertyType::BOOLEAN => $query->where('boolean', $value),
+            PropertyType::COLOR => $query->where('color', $value),
+        };
     }
 }

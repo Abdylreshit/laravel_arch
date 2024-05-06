@@ -14,6 +14,7 @@ class CreatePropertyAction extends Action
                 'ru' => $data['name']['ru'],
                 'en' => $data['name']['en'],
             ],
+            'type' => $data['type'],
         ]);
 
         return $property;

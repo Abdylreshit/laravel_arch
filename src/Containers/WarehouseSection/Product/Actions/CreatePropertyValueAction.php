@@ -16,10 +16,11 @@ class CreatePropertyValueAction extends Action
         $propertyValue = app(CreatePropertyValueTask::class)->execute(
             $property,
             [
-                'value' => [
-                    'ru' => $data['value']['ru'],
-                    'en' => $data['value']['en'],
-                ]
+                'name' => [
+                    'ru' => $data['name']['ru'],
+                    'en' => $data['name']['en'],
+                ],
+                'value' => $data['value']
             ]);
 
         return $propertyValue;

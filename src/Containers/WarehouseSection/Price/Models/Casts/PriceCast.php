@@ -2,35 +2,53 @@
 
 namespace App\Containers\WarehouseSection\Price\Models\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-use Illuminate\Database\Eloquent\Model;
+use App\Containers\WarehouseSection\Price\Models\Currency;
 
-class PriceCast implements CastsAttributes
+class PriceCast
 {
-    public function set($model, $key, $value, $attributes)
+    protected $amount;
+    protected $currency;
+    protected $conversionCurrency;
+
+    public function __construct($amount, Currency $conversionCurrency)
     {
-        if (
-            empty($value) ||
-            empty($value['amount']) ||
-            empty($value['currency_id']) ||
-            empty($value['currency_conversion_id'])
-        ) {
+        $this->amount = $amount;
+        $this->currency = getBaseCurrency();
+        $this->conversionCurrency = $conversionCurrency;
+    }
+
+    public function convertTo($targetCurrency)
+    {
+        $conversionRate = $this->getConversionRate($targetCurrency);
+
+        if ($conversionRate === null) {
             return null;
         }
 
-        return [
-            $key => $value['amount'],
-            $key . '_currency_id' => $value['currency_id'],
-            $key . '_currency_conversion_id' => $value['currency_conversion_id']
-        ];
+        return $this->amount * $conversionRate;
     }
 
-    public function get($model, string $key, mixed $value, array $attributes)
+    protected function getConversionRate($targetCurrency)
     {
-        return [
-            'amount' => $attributes[$key],
-            'currency_id' => $attributes[$key . '_currency_id'],
-            'currency_conversion_id' => $attributes[$key . '_currency_conversion_id']
-        ];
+        $conversionRate = $this->currency->conversionRates()
+            ->where('target_currency_id', $targetCurrency)
+            ->first();
+
+        if ($conversionRate === null) {
+            return null;
+        }
+
+        return $conversionRate->rate;
+    }
+
+    public function __get($property)
+    {
+        if ($property === 'amount') {
+            return $this->amount;
+        } elseif ($property === 'currency') {
+            return $this->currency;
+        }
+
+        return null;
     }
 }

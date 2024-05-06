@@ -12,10 +12,11 @@ class UpdatePropertyValueAction extends Action
         $propertyValue = app(EditPropertyValueByIdTask::class)->execute(
             $data['id'],
             [
-                'value' => [
-                    'ru' => $data['value']['ru'],
-                    'en' => $data['value']['en'],
-                ]
+                'name' => [
+                    'ru' => $data['name']['ru'],
+                    'en' => $data['name']['en'],
+                ],
+                'value' => $data['value'],
             ]
         );
 

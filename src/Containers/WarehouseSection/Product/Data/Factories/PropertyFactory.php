@@ -2,6 +2,7 @@
 
 namespace App\Containers\WarehouseSection\Product\Data\Factories;
 
+use App\Containers\WarehouseSection\Product\Enums\PropertyType;
 use App\Containers\WarehouseSection\Product\Models\Property;
 use App\Ship\Core\Abstracts\Factories\Factory as ParentFactory;
 use Illuminate\Support\Str;
@@ -17,6 +18,7 @@ class PropertyFactory extends ParentFactory
                 'en' => $this->faker->name,
                 'ru' => $this->faker->name,
             ],
+            'type' => PropertyType::getRandomValue(),
         ];
     }
 

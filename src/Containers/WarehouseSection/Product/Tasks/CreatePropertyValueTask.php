@@ -13,10 +13,15 @@ class CreatePropertyValueTask extends Task
         try {
             $propertyValue = $property->values()
                 ->create([
-                    'value' => [
+                    'name' => [
                         'en' => $data['value']['en'],
                         'ru' => $data['value']['ru'],
                     ],
+                    'text' => $property->isText() ? (string)$data['value'] : null,
+                    'integer' => $property->isInteger() ? (integer)$data['value'] : null,
+                    'decimal' => $property->isDecimal() ? (float)$data['value'] : null,
+                    'boolean' => $property->isBoolean() ? (boolean)$data['value'] : null,
+                    'color' => $property->isColor() ? (string)$data['value'] : null,
                 ]);
         } catch (\Exception $e) {
             throw new ResourceException;

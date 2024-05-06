@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 
 final class CreatePropertyController extends ApiController
 {
+
     public function __invoke(CreatePropertyRequest $request): JsonResponse
     {
         $property = CreatePropertyAction::run([
@@ -17,6 +18,7 @@ final class CreatePropertyController extends ApiController
                 'ru' => $request->input('name.ru'),
                 'en' => $request->input('name.en'),
             ],
+            'type' => $request->input('type'),
         ]);
 
         return $this->successResponse([

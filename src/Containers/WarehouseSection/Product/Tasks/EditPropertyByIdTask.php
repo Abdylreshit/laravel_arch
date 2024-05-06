@@ -19,6 +19,7 @@ class EditPropertyByIdTask extends Task
                     'en' => $data['name']['en'] ?? $property->getTrans('name', 'en'),
                     'ru' => $data['name']['ru'] ?? $property->getTrans('name', 'ru'),
                 ],
+                'type' => $data['type'] ?? $property->type,
             ]);
         } catch (\Exception) {
             throw new ResourceException;

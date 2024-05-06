@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->json('name');
             $table->string('code')->nullable()->unique();
+            // type = TEXT, INTEGER, BOOLEAN, COLOR, DECIMAL
+            $table->string('type')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
