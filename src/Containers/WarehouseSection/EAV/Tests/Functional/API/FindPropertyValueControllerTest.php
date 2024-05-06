@@ -23,7 +23,7 @@ class FindPropertyValueControllerTest extends ApiTestCase
                 'property_value' => [
                     'id',
                     'name',
-                    'value'
+                    'value',
                 ],
             ]);
     }

@@ -19,7 +19,7 @@ class CreatePropertyAction extends Action
         ]);
 
         if ($property->isBoolean()){
-            app(CreatePropertyValueTask::class)->execute([
+            app(CreatePropertyValueTask::class)->execute(
                 $property,
                 [
                     'name' => [
@@ -28,8 +28,8 @@ class CreatePropertyAction extends Action
                     ],
                     'value' => 1,
                 ]
-            ]);
-            app(CreatePropertyValueTask::class)->execute([
+            );
+            app(CreatePropertyValueTask::class)->execute(
                 $property,
                 [
                     'name' => [
@@ -38,7 +38,7 @@ class CreatePropertyAction extends Action
                     ],
                     'value' => 0,
                 ]
-            ]);
+            );
         }
 
         return $property;
