@@ -20,7 +20,7 @@ class CreatePropertyValueTask extends Task
                     'text' => $property->isText() && $data['value'] != null ? (string)$data['value'] : null,
                     'integer' => $property->isInteger() && $data['value'] != null ? (integer)$data['value'] : null,
                     'decimal' => $property->isDecimal() && $data['value'] != null ? (float)$data['value'] : null,
-                    'boolean' => $property->isBoolean() && $data['value'] != null ? (boolean)$data['value'] : null,
+                    'boolean' => $property->isBoolean() ? (boolean)$data['value'] : null,
                     'color' => $property->isColor() && $data['value'] != null ? (string)$data['value'] : null,
                 ]);
         } catch (\Exception $e) {
