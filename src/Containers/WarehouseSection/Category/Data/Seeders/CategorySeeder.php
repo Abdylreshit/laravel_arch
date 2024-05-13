@@ -9,7 +9,14 @@ class CategorySeeder extends Seeder
 {
     public function run()
     {
-        Category::factory()->count(10)->create();
-        Category::factory()->count(50)->create();
+        $categories = Category::factory()->count(10)->create();
+
+        $categories->each(function (Category $category) {
+            Category::factory()->count(10)->create([
+                'parent_id' => $category->id,
+            ]);
+        });
+
+//        Category::factory()->count(50)->create();
     }
 }

@@ -12,17 +12,17 @@ class WarehouseCategorySeeder extends Seeder
     {
         $warehouses = Warehouse::factory()->count(10)->create();
 
-        foreach ($warehouses as $warehouse) {
-            $categories = Category::factory()->count(10)->create([
-                'warehouse_id' => $warehouse->id,
-            ]);
-
-            $categories->each(function (Category $category) use ($warehouse) {
-                Category::factory()->count(10)->create([
-                    'parent_id' => $category->id,
-                    'warehouse_id' => $warehouse->id,
-                ]);
-            });
-        }
+//        foreach ($warehouses as $warehouse) {
+//            $categories = Category::factory()->count(10)->create([
+//                'warehouse_id' => $warehouse->id,
+//            ]);
+//
+//            $categories->each(function (Category $category) use ($warehouse) {
+//                Category::factory()->count(10)->create([
+//                    'parent_id' => $category->id,
+//                    'warehouse_id' => $warehouse->id,
+//                ]);
+//            });
+//        }
     }
 }
