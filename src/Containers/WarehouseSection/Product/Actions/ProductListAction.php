@@ -21,7 +21,7 @@ class ProductListAction extends Action
                 return $query->orderBy($filters['sort']);
             })
             ->when(! array_key_exists('sort', $filters), function ($query) {
-                return $query->orderBy('priority');
+                return $query->orderBy('id');
             })
             ->with([
                 'media',
