@@ -2,10 +2,10 @@
 
 namespace App\Containers\WarehouseSection\Product\UI\API\Resources;
 
-use App\Ship\Core\Abstracts\Resources\Resource;
+use App\Ship\Core\Abstracts\Resources\ResourceCollection;
 use App\Ship\Core\Resources\EnumResource;
 
-class ListProductResource extends Resource
+class ListProductResource extends ResourceCollection
 {
     public function toArray($request)
     {
