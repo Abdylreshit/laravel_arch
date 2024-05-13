@@ -25,9 +25,9 @@ class ListProductResource extends ResourceCollection
                     'images' => $product
                         ->getMedia()
                         ?->map(fn($image) => $image->getFullUrl()),
-                    'stock_quantity' => $product->stocks_sum_quantity,
-                    'stock_on_hand' => $product->stocks_sum_on_hand,
-                    'stock_on_reserve' => $product->stocks_sum_on_reserve,
+                    'stock_quantity' => $product->stocks_sum_quantity ?? 0,
+                    'stock_on_hand' => $product->stocks_sum_on_hand ?? 0,
+                    'stock_on_reserve' => $product->stocks_sum_on_reserve ?? 0,
                 ];
             }),
             'pagination' => $this->paginationResource(),
