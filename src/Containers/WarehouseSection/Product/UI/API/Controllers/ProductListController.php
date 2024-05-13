@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Containers\WarehouseSection\Category\UI\API\Controllers;
+namespace App\Containers\WarehouseSection\Product\UI\API\Controllers;
 
-use App\Containers\WarehouseSection\Category\Actions\ListAction;
-use App\Containers\WarehouseSection\Category\UI\API\Resources\ListResource;
+use App\Containers\WarehouseSection\Product\Actions\ProductListAction;
+use App\Containers\WarehouseSection\Product\UI\API\Resources\ListProductResource;
 use App\Ship\Core\Abstracts\Controllers\ApiController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-final class ListController extends ApiController
+final class ProductListController extends ApiController
 {
     /**
      * @LRDparam search nullable|string
-     * @LRDparam sort nullable|string|in:id,name,created_at
+     * @LRDparam sort nullable|string|in:id,created_at
      * @LRDparam limit nullable|integer
      * @LRDparam page nullable|integer
      */
@@ -20,15 +20,15 @@ final class ListController extends ApiController
     {
         $request->validate([
             'search' => 'nullable|string',
-            'sort' => 'nullable|string|in:id,name,created_at',
+            'sort' => 'nullable|string|in:id,created_at',
             'limit' => 'nullable|integer',
             'page' => 'nullable|integer',
         ]);
 
-        $categories = ListAction::run($request->only(['search', 'sort', 'limit', 'page', 'WAREHOUSE', 'CATEGORY']));
+        $products = ProductListAction::run($request->only(['search', 'sort', 'limit', 'page']));
 
         return $this->successResponse([
-            'categories' => new ListResource($categories),
+            'products' => new ListProductResource($products),
         ]);
     }
 }

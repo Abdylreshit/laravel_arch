@@ -6,6 +6,7 @@ use App\Containers\WarehouseSection\Category\Managers\Traits\Categorizable;
 use App\Containers\WarehouseSection\EAV\Managers\Traits\Propertiable;
 use App\Containers\WarehouseSection\Product\Data\Factories\ProductFactory;
 use App\Containers\WarehouseSection\Product\Enums\ProductType;
+use App\Containers\WarehouseSection\Stock\Models\Stock;
 use App\Ship\Core\Abstracts\Models\Model;
 use App\Ship\Core\Abstracts\Models\Traits\TranslateTrait;
 use App\Ship\Core\Abstracts\Models\Traits\WithMediaTrait;
@@ -46,6 +47,11 @@ class Product extends Model implements HasMedia
     public function barcodes(): HasMany
     {
         return $this->hasMany(Barcode::class);
+    }
+
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'inventory_id', 'id');
     }
 
     public function bundle()
