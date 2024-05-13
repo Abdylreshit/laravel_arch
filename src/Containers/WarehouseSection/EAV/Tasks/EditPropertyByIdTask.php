@@ -22,7 +22,7 @@ class EditPropertyByIdTask extends Task
                 'type' => $data['type'] ?? $property->type,
             ]);
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $property;

@@ -20,12 +20,11 @@ class CreateMeasurementUnitTask extends Task
                     'en' => $data['description']['en'],
                     'ru' => $data['description']['ru'],
                 ],
-                'type' => $data['type'],
                 'symbol' => $data['symbol'],
-                'conversion_factor_to_base_unit' => $data['conversion_factor_to_base_unit'],
+                'measurement_id' => $data['measurement_id']
             ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $measurementUnit;

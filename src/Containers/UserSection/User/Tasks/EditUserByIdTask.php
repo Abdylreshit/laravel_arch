@@ -18,7 +18,7 @@ class EditUserByIdTask extends Task
         try {
             $user->update($data);
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $user;

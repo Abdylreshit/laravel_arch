@@ -6,6 +6,5 @@ use Illuminate\Support\Facades\Route;
 Route::delete('admin/measurement_unit/{id}/delete', DeleteController::class)
     ->middleware([
         'auth:admin',
-        'permission:measurementunit-delete',
     ])
     ->name('admin.measurement_unit.delete');

@@ -17,7 +17,7 @@ class PermissionCreateTask extends Task
         try {
             $permission = Permission::query()->create($data);
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $permission;

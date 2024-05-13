@@ -20,7 +20,7 @@ class CreateCurrencyTask extends Task
                 'symbol' => $data['symbol']
             ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $currency;

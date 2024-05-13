@@ -3,6 +3,7 @@
 namespace App\Containers\WarehouseSection\Product\UI\API\Resources;
 
 use App\Ship\Core\Abstracts\Resources\Resource;
+use App\Ship\Core\Resources\EnumResource;
 
 class MainProductResource extends Resource
 {
@@ -18,6 +19,7 @@ class MainProductResource extends Resource
                 'ru' => $this->translate('description', 'ru'),
                 'en' => $this->translate('description', 'en'),
             ],
+            'type' => new EnumResource($this->type),
             'images' => $this
                 ->getMedia()
                 ?->map(fn($image) => $image->getFullUrl()),

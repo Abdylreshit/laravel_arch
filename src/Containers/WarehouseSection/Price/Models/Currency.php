@@ -30,18 +30,22 @@ class Currency extends Model
         return CurrencyFactory::new();
     }
 
-    public function conversations()
+    public function conversions()
     {
-        return $this->hasMany(CurrencyConversation::class, 'to_currency_id');
+        return $this->hasMany(CurrencyConversion::class, 'to_currency_id');
     }
 
-    public function actualConversation()
+    public function actualConversion($validFrom = null, $validTo = null)
     {
-        return $this->hasOne(CurrencyConversation::class, 'to_currency_id')
+        $validFrom = $validFrom ?? now();
+        $validTo = $validTo ?? now();
+
+        return $this
+            ->conversions()
+            ->where('valid_from', '<=', $validFrom)
+            ->where('valid_to', '>=', $validTo)
             ->where('is_active', true)
-            ->where('valid_from', '<=', now())
-            ->where('valid_to', '>=', now())
             ->latest()
-            ;
+            ->firstOrFail();
     }
 }

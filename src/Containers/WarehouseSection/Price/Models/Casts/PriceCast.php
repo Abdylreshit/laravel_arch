@@ -2,53 +2,25 @@
 
 namespace App\Containers\WarehouseSection\Price\Models\Casts;
 
-use App\Containers\WarehouseSection\Price\Models\Currency;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
-class PriceCast
+class PriceCast implements CastsAttributes
 {
-    protected $amount;
-    protected $currency;
-    protected $conversionCurrency;
+    public function __construct(
+        protected string|null $currencyMethodName = null,
+    ) {}
 
-    public function __construct($amount, Currency $conversionCurrency)
+    public function get($model, string $key, $value, array $attributes)
     {
-        $this->amount = $amount;
-        $this->currency = getBaseCurrency();
-        $this->conversionCurrency = $conversionCurrency;
+        $currency = $model->{$this->currencyMethodName};
+
+        return new PriceType($value, $currency);
     }
 
-    public function convertTo($targetCurrency)
+    public function set($model, string $key, $value, array $attributes)
     {
-        $conversionRate = $this->getConversionRate($targetCurrency);
-
-        if ($conversionRate === null) {
-            return null;
-        }
-
-        return $this->amount * $conversionRate;
-    }
-
-    protected function getConversionRate($targetCurrency)
-    {
-        $conversionRate = $this->currency->conversionRates()
-            ->where('target_currency_id', $targetCurrency)
-            ->first();
-
-        if ($conversionRate === null) {
-            return null;
-        }
-
-        return $conversionRate->rate;
-    }
-
-    public function __get($property)
-    {
-        if ($property === 'amount') {
-            return $this->amount;
-        } elseif ($property === 'currency') {
-            return $this->currency;
-        }
-
-        return null;
+        return [
+            $key => $value
+        ];
     }
 }

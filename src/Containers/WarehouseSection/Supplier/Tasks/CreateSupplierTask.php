@@ -19,7 +19,7 @@ class CreateSupplierTask extends Task
                     'note' => $data['note'] ?? null,
                 ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $supplier;

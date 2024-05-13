@@ -24,7 +24,7 @@ class CreateCategoryTask extends Task
                 'parent_id' => $data['parent_id'] ?? null,
             ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $category;

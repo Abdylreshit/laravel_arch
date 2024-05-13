@@ -2,6 +2,7 @@
 
 namespace App\Containers\WarehouseSection\Product\Data\Factories;
 
+use App\Containers\WarehouseSection\Product\Enums\ProductType;
 use App\Containers\WarehouseSection\Product\Models\Product;
 use App\Ship\Core\Abstracts\Factories\Factory as ParentFactory;
 
@@ -20,16 +21,20 @@ class ProductFactory extends ParentFactory
                 'en' => $this->faker->text,
                 'ru' => $this->faker->text,
             ],
+            'sku' => $this->faker->unique()->randomNumber(8),
+            'type' => ProductType::getRandomValue(),
         ];
     }
 
     public function configure(): static
     {
         return $this->afterCreating(function (Product $product) {
-            $product->sku = now()->format('Ymd'). '-' . $product->id;
-            $product->save();
+            if ($product->type->is(ProductType::BUNDLE)) {
+                $product->bundleItems()->attach(
+                    Product::factory()->count(3)->create(['type' => ProductType::SIMPLE])
+                );
+            }
         })->afterMaking(function (Product $product) {
-            $product->sku = now()->format('Ymd'). '-' . $product->id;
         });
     }
 }

@@ -40,7 +40,7 @@ class CreateProductAction extends Action
                     });
             }
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $product;

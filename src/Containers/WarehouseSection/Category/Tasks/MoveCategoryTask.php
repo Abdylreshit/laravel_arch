@@ -18,7 +18,7 @@ class MoveCategoryTask extends Task
                 'priority' => $data['priority'] ?? $category->priority,
             ]);
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $category;

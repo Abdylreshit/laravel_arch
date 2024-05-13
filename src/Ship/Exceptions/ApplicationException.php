@@ -43,7 +43,7 @@ class ApplicationException extends BaseException
             foreach ($this->data as $key => $error) {
                 $data->push([
                     'key' => $key,
-                    'message' => Arr::first($error),
+                    'message' => is_array($error) ? Arr::first($error) : $error,
                 ]);
             }
         }

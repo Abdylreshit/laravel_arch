@@ -21,7 +21,7 @@ class CreatePropertyTask extends Task
                     'type' => $data['type'],
                 ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $property;

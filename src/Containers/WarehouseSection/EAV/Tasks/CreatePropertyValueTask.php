@@ -24,7 +24,7 @@ class CreatePropertyValueTask extends Task
                     'color' => $property->isColor() && $data['value'] != null ? (string)$data['value'] : null,
                 ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $propertyValue;

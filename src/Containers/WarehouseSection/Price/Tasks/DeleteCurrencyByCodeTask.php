@@ -8,7 +8,7 @@ use App\Ship\Exceptions\ResourceException;
 
 class DeleteCurrencyByCodeTask extends Task
 {
-    public function execute($code, array $data)
+    public function execute($code)
     {
         $currency = Currency::query()
             ->where('code', $code)

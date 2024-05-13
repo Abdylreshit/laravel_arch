@@ -26,7 +26,7 @@ class EditByIdCategoryTask extends Task
                 'parent_id' => $data['parent_id'] ?? $category->parent_id,
             ]);
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $category;

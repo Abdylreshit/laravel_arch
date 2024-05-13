@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('before')->default(0);
             $table->integer('after')->default(0);
 
-            $table->string('type');
+            $table->morphs('movable');
 
             $table->timestamps();
             $table->softDeletes();

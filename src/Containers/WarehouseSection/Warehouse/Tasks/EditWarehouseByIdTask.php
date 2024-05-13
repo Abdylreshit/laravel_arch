@@ -18,7 +18,7 @@ class EditWarehouseByIdTask extends Task
                 'is_blocked' => $data['is_blocked'] ?? false,
             ]);
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $warehouse;

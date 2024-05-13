@@ -33,7 +33,7 @@ class CurrencySeeder extends Seeder
         foreach ($data as $currency) {
             $c = app(FindCurrencyByCodeTask::class)->execute($currency['code']);
 
-            $c->conversations()->create([
+            $c->conversions()->create([
                 'base_currency_id' => getBaseCurrency()->id,
                 'to_currency_id' => $c->id,
                 'rate' => $currency['conversion'],

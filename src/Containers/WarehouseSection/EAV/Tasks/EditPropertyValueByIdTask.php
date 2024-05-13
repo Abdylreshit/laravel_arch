@@ -26,7 +26,7 @@ class EditPropertyValueByIdTask extends Task
                 'color' => $propertyValue->property->isColor() && $data['value'] != null ? (string)$data['value'] : $propertyValue->color,
             ]);
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $propertyValue;

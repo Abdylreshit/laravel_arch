@@ -14,13 +14,14 @@ class Price extends Model
 
     protected $fillable = [
         'price',
+        'price_currency_id',
         'is_active',
         'valid_from',
         'valid_to',
     ];
 
     protected $casts = [
-        'price' => PriceCast::class
+        'price' => PriceCast::class.':currency',
     ];
 
     protected static function newFactory(): Factory|PriceFactory
@@ -28,8 +29,13 @@ class Price extends Model
         return PriceFactory::new();
     }
 
-//    public function getPriceConvertedAttribute()
-//    {
-//        $convertedRate = $this->price->convertTo('USD');
-//    }
+    public function pricable()
+    {
+        return $this->morphTo();
+    }
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class, 'price_currency_id');
+    }
 }

@@ -6,6 +6,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/measurement_unit/list', ListController::class)
     ->middleware([
         'auth:admin',
-        'permission:measurementunit-find',
     ])
     ->name('admin.measurement_unit.list');

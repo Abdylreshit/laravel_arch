@@ -16,7 +16,7 @@ class CreateWarehouseTask extends Task
                 'is_blocked' => $data['is_blocked'] ?? false,
             ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $warehouse;

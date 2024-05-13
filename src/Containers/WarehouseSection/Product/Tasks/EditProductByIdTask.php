@@ -25,7 +25,7 @@ class EditProductByIdTask extends Task
                 ],
             ]);
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $product;

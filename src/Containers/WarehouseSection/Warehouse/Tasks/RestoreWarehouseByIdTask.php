@@ -15,7 +15,7 @@ class RestoreWarehouseByIdTask extends Task
         if ($warehouse->trashed()) {
             $warehouse->restore();
         } else {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
     }
 }

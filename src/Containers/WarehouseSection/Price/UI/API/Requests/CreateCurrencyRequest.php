@@ -12,8 +12,8 @@ class CreateCurrencyRequest extends Request
             'name' => ['required', 'array'],
             'name.ru' => ['required', 'string', 'max:255'],
             'name.en' => ['required', 'string', 'max:255'],
-            'code' => ['required', 'string', 'max:3'],
-            'symbol' => ['required', 'string', 'max:3'],
+            'code' => ['required', 'string', 'max:5'],
+            'symbol' => ['required', 'string', 'max:5'],
         ];
     }
 }

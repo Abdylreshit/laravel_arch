@@ -14,6 +14,8 @@ class CreateMeasurementUnitTaskTest extends UnitTestCase
 
         $measurementUnit = app(CreateMeasurementUnitTask::class)->execute($data->toArray());
 
+        dd($measurementUnit);
+
         $this->assertTrue($data->code == $measurementUnit->code);
         $this->assertDatabaseHas(MeasurementUnit::class, ['code' => $measurementUnit->code]);
     }

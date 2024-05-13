@@ -6,7 +6,7 @@
             "ru": "Дирхам ОАЭ"
         },
         "symbol": "د.إ",
-        "conversion": 3.67
+        "conversion": 3.6725
     },
     {
         "code": "RUB",
@@ -15,7 +15,7 @@
             "ru": "Российский рубль"
         },
         "symbol": "₽",
-        "conversion": 93.51
+        "conversion": 91.29
     },
     {
         "code": "USD",

@@ -22,7 +22,7 @@ class CreateUserTask extends Task
                 'password' => Hash::make($data['password']),
             ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $user;

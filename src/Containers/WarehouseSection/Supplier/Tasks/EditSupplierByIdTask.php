@@ -21,7 +21,7 @@ class EditSupplierByIdTask extends Task
                 'note' => $data['note'] ?? $supplier->note,
             ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $supplier;

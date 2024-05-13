@@ -2,11 +2,12 @@
 
 namespace App\Containers\WarehouseSection\Price\UI\API\Controllers;
 
+use App\Containers\WarehouseSection\Price\Actions\CreateCurrencyAction;
 use App\Containers\WarehouseSection\Price\UI\API\Requests\CreateCurrencyRequest;
 use App\Containers\WarehouseSection\Price\UI\API\Resources\MainCurrencyResource;
 use App\Ship\Core\Abstracts\Controllers\ApiController;
 
-class CreateCurrencyController extends ApiController
+final class CreateCurrencyController extends ApiController
 {
     public function __invoke(CreateCurrencyRequest $request)
     {

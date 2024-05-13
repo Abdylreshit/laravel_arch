@@ -2,6 +2,7 @@
 
 namespace App\Containers\WarehouseSection\Managers;
 
+use App\Containers\WarehouseSection\Category\Models\Category;
 use App\Containers\WarehouseSection\Category\Tasks\CreateCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\DeleteByIdCategoryTask;
 use App\Containers\WarehouseSection\Category\Tasks\EditByIdCategoryTask;
@@ -29,15 +30,23 @@ class MenuManager
 
         $warehouses->load('categories');
 
+        $categories = Category::query()->get()->toTree(false, ['name.ru']);
+
         $collect->push(
+            [
+                'label' => 'Категории',
+                'type' => 'tree',
+                'key' => 'ENNBN',
+                'query_params' => ['CATEGORY'],
+                'data' => $this->getCategories($categories),
+            ],
+
             [
                 'label' => 'Склады',
                 'type' => 'tree',
-                'key' => 'ENNBN',
-                'query_params' => ['WAREHOUSE', 'CATEGORY'],
+                'key' => 'ENNBW',
+                'query_params' => ['WAREHOUSE'],
                 'data' => $warehouses->map(function ($warehouse) {
-                    $categories = $warehouse->categories->toTree(false, ['name.ru']);
-
                     return [
                         'id' => $warehouse->id,
                         'model' => 'WAREHOUSE',
@@ -45,7 +54,7 @@ class MenuManager
                         'parent_id' => 1,
                         'name' => $warehouse->name,
                         'query_param' => 'WAREHOUSE',
-                        'children' => $this->getCategories($categories),
+                        'children' => [],
                     ];
                 })->toArray(),
             ],

@@ -27,7 +27,7 @@ class EditByIdMeasurementUnitTask extends Task
                 'conversion_factor_to_base_unit' => $data['conversion_factor_to_base_unit'] ?? $measurementUnit->conversion_factor_to_base_unit,
             ]);
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $measurementUnit;

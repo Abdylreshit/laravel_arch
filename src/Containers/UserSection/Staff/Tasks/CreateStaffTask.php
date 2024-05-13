@@ -15,7 +15,7 @@ class CreateStaffTask extends Task
                 'user_id' => $user_id,
             ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $staff;

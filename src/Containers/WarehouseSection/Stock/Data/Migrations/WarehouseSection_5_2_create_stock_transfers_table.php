@@ -19,27 +19,7 @@ return new class extends Migration
             $table->foreignId('to_warehouse_id')
                 ->constrained('warehouses')
                 ->cascadeOnDelete();
-            $table->foreignId('stock_id')
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->foreignId('movement_id')
-                ->constrained('stock_movements')
-                ->cascadeOnDelete();
-
-            $table->integer('quantity')->default(0);
-
-            // type => in, out
-            $table->string('type');
-
-            // state => pending, accepted, rejected, canceled
             $table->string('state');
-
-            buildPriceColumn($table, 'delivery_fee');
-
-            $table->timestamp('accepted_at')->nullable();
-            $table->timestamp('completed_at')->nullable();
-            $table->timestamp('canceled_at')->nullable();
-            $table->text('note')->nullable();
 
             $table->foreignId('sender_id')
                 ->constrained('staff')
@@ -48,7 +28,6 @@ return new class extends Migration
                 ->constrained('staff')
                 ->cascadeOnDelete();
 
-            $table->timestamps();
             $table->softDeletes();
         });
     }

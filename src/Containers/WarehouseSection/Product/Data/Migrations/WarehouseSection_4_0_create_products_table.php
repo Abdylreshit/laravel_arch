@@ -1,5 +1,6 @@
 <?php
 
+use App\Containers\WarehouseSection\Product\Enums\ProductType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,11 @@ return new class extends Migration
             $table->id();
             $table->json('name');
             $table->json('description')->nullable();
-            $table->string('sku')->nullable()->unique();
+            $table->string('sku')->unique();
+
+            // types = configurable, simple, bundle, virtual
+            $table->string('type')->default(ProductType::SIMPLE);
+
             $table->timestamps();
             $table->softDeletes();
         });

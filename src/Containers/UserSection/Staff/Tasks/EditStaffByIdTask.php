@@ -15,7 +15,7 @@ class EditStaffByIdTask extends Task
         try {
             $staff->refresh();
         } catch (\Exception) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $staff;

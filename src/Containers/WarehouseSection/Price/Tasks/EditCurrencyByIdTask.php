@@ -22,7 +22,7 @@ class EditCurrencyByIdTask extends Task
                 'symbol' => $data['symbol'] ?? $currency->symbol
             ]);
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
 
         return $currency;

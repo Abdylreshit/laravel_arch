@@ -29,7 +29,7 @@ class AttachCategoryImageTask extends Task
 
             return $category;
         } catch (\Exception $e) {
-            throw new ResourceException;
+            throw new ResourceException(['message' => $e->getMessage()]);
         }
     }
 }
