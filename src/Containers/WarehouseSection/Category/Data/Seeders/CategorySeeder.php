@@ -17,6 +17,5 @@ class CategorySeeder extends Seeder
             ]);
         });
 
-//        Category::factory()->count(50)->create();
     }
 }
