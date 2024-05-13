@@ -2,7 +2,7 @@
 
 namespace App\Containers\WarehouseSection\Product\Actions;
 
-use App\Containers\WarehouseSection\Product\Models\PropertyValue;
+use App\Containers\WarehouseSection\EAV\Models\PropertyValue;
 use App\Containers\WarehouseSection\Product\Tasks\AttachPropertyValueToProductTask;
 use App\Containers\WarehouseSection\Product\Tasks\CreateProductTask;
 use App\Ship\Core\Abstracts\Actions\Action;

@@ -22,6 +22,9 @@ class CreateProductRequest extends Request
 
             'type' => ['required', new EnumValue(ProductType::class)],
 
+            'items' => ['required_if:type,' . ProductType::BUNDLE, 'array'],
+            'items.*.product_id' => ['required', 'integer', 'exists:products,id'],
+
             'property_values' => ['nullable', 'array'],
             'property_values.*' => ['nullable', 'integer', 'exists:property_values,id'],
         ];
