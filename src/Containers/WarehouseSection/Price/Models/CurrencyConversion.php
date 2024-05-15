@@ -22,9 +22,19 @@ class CurrencyConversion extends Model
         'note',
     ];
 
+    protected $with = [
+        'baseCurrency',
+        'toCurrency',
+    ];
+
     protected static function newFactory()
     {
         return CurrencyConversionFactory::new();
+    }
+
+    public function baseCurrency()
+    {
+        return $this->belongsTo(Currency::class, 'base_currency_id');
     }
 
     public function toCurrency()

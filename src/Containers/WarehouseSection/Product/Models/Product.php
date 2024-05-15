@@ -4,6 +4,7 @@ namespace App\Containers\WarehouseSection\Product\Models;
 
 use App\Containers\WarehouseSection\Category\Managers\Traits\Categorizable;
 use App\Containers\WarehouseSection\EAV\Managers\Traits\Propertiable;
+use App\Containers\WarehouseSection\Managers\Models\Traits\Pricable;
 use App\Containers\WarehouseSection\Product\Data\Factories\ProductFactory;
 use App\Containers\WarehouseSection\Product\Enums\ProductType;
 use App\Containers\WarehouseSection\Stock\Models\Stock;
@@ -22,6 +23,7 @@ class Product extends Model implements HasMedia
     use WithMediaTrait;
     use Categorizable;
     use Propertiable;
+    use Pricable;
 
     protected $fillable = [
         'name',

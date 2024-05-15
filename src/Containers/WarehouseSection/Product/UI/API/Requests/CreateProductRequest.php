@@ -27,6 +27,9 @@ class CreateProductRequest extends Request
 
             'property_values' => ['nullable', 'array'],
             'property_values.*' => ['nullable', 'integer', 'exists:property_values,id'],
+
+            'categories' => ['nullable', 'array'],
+            'categories.*' => ['nullable', 'integer', 'exists:categories,id'],
         ];
     }
 }

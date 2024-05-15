@@ -10,11 +10,13 @@ class MainCurrencyConversionResource extends Resource
     {
         return [
             'id' => $this->id,
+            'base_currency' => new MainCurrencyResource($this->baseCurrency),
+            'to_currency' => new MainCurrencyResource($this->toCurrency),
             'rate' => $this->rate,
-            'valid_from' => $this->rate,
-            'valid_to' => $this->valid_from,
-            'note' => $this->valid_to,
-            'is_active' => $this->note,
+            'valid_from' => $this->valid_from,
+            'valid_to' => $this->valid_to,
+            'note' => $this->note,
+            'is_active' => $this->is_active,
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Containers\WarehouseSection\Price\UI\API\Controllers;
 
-use App\Containers\WarehouseSection\Price\Actions\CreateCurrencyAction;
+use App\Containers\WarehouseSection\Price\Actions\CreateCurrencyConversionAction;
 use App\Containers\WarehouseSection\Price\UI\API\Requests\CreateCurrencyConversionRequest;
 use App\Containers\WarehouseSection\Price\UI\API\Resources\MainCurrencyConversionResource;
 use App\Ship\Core\Abstracts\Controllers\ApiController;
@@ -11,7 +11,7 @@ final class CreateCurrencyConversionController extends ApiController
 {
     public function __invoke(CreateCurrencyConversionRequest $request)
     {
-        $currency = CreateCurrencyAction::run(
+        $currency = CreateCurrencyConversionAction::run(
             $request->currencyId,
             [
                 'rate' => $request->input('rate'),

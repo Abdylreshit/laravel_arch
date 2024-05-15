@@ -39,6 +39,10 @@ class CreateProductAction extends Action
                         $fileAdder->toMediaCollection('images');
                     });
             }
+
+            if (array_key_exists('categories', $data)) {
+                $product->categories()->sync($data['categories']);
+            }
         } catch (\Exception $e) {
             throw new ResourceException(['message' => $e->getMessage()]);
         }

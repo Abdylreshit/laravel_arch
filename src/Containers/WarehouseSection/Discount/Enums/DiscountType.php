@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\WarehouseSection\Price\Enums;
+namespace App\Containers\WarehouseSection\Discount\Enums;
 
 use App\Ship\Core\Abstracts\Enums\Enum;
 

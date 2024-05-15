@@ -20,8 +20,11 @@ class UpdateProductRequest extends Request
             'images' => ['nullable', 'array'],
             'images.*' => ['nullable', 'image', 'max:4096'],
 
-            'property_values' => ['required', 'array'],
-            'property_values.*' => ['required', 'integer', 'exists:property_values,id'],
+            'property_values' => ['nullable', 'array'],
+            'property_values.*' => ['nullable', 'integer', 'exists:property_values,id'],
+
+            'categories' => ['nullable', 'array'],
+            'categories.*' => ['nullable', 'integer', 'exists:categories,id'],
         ];
     }
 }
