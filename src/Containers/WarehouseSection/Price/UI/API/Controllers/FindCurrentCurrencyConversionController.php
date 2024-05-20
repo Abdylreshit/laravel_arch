@@ -11,7 +11,7 @@ final class FindCurrentCurrencyConversionController extends ApiController
 {
     public function __invoke(Request $request)
     {
-        $currency = FindCurrentCurrencyConversionAction::run($request->currenyId);
+        $currency = FindCurrentCurrencyConversionAction::run($request->currencyId);
 
         return $this->successResponse([
             'currency_conversion' => new MainCurrencyConversionResource($currency),
