@@ -38,14 +38,16 @@ class Currency extends Model
     public function actualConversion($validFrom = null, $validTo = null)
     {
         $validFrom = $validFrom ?? now();
-        $validTo = $validTo ?? now();
 
         return $this
             ->conversions()
             ->where('valid_from', '<=', $validFrom)
-            ->where(function ($query) use ($validTo) {
-                $query->where('valid_to', '>=', $validTo)
-                    ->orWhereNull('valid_to');
+            ->where(function ($q) use ($validTo){
+                if ($validTo != null) {
+                    return $q->where('valid_to', '>=', $validTo);
+                } else {
+                    return $q->whereNull('valid_to');
+                }
             })
             ->where('is_active', true)
             ->latest()
