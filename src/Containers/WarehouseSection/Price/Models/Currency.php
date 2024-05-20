@@ -43,7 +43,10 @@ class Currency extends Model
         return $this
             ->conversions()
             ->where('valid_from', '<=', $validFrom)
-            ->where('valid_to', '>=', $validTo)
+            ->where(function ($query) use ($validTo) {
+                $query->where('valid_to', '>=', $validTo)
+                    ->orWhereNull('valid_to');
+            })
             ->where('is_active', true)
             ->latest()
             ->firstOrFail();

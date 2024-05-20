@@ -14,10 +14,10 @@ class CreateCurrencyConversionAction extends Action
 
         $conversion = app(CreateCurrencyConversionTask::class)->execute($currency, [
             'rate' => $data['rate'],
-            'valid_from' => $data['valid_from'],
-            'valid_to' => $data['valid_to'],
-            'note' => $data['note'],
-            'is_active' => $data['is_active'],
+            'valid_from' => $data['valid_from'] ?? now(),
+            'valid_to' => $data['valid_to'] ?? null,
+            'note' => $data['note'] ?? null,
+            'is_active' => $data['is_active'] ?? true,
         ]);
 
         return $conversion;

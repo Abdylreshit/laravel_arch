@@ -10,9 +10,9 @@ class CreateCurrencyConversionRequest extends Request
     {
         return [
             'rate' => ['required', 'numeric'],
-            'valid_from' => ['required', 'date'],
-            'valid_to' => ['required', 'date'],
-            'is_active' => ['required', 'boolean'],
+            'valid_from' => ['nullable', 'date'],
+            'valid_to' => ['nullable', 'date'],
+            'is_active' => ['nullable', 'boolean'],
             'note' => ['nullable', 'string'],
         ];
     }

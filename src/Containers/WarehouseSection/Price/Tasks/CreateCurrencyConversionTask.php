@@ -15,9 +15,9 @@ class CreateCurrencyConversionTask extends Task
                 'base_currency_id' => getBaseCurrency()->id,
                 'rate' => $data['rate'],
                 'valid_from' => $data['valid_from'] ?? now(),
-                'valid_to' => $data['valid_to'] ?? now()->addYear(),
+                'valid_to' => $data['valid_to'] ?? null,
                 'note' => $data['note'] ?? null,
-                'is_active' => $data['is_active'],
+                'is_active' => $data['is_active'] ?? true,
             ]);
         } catch (\Exception $e) {
             throw new ResourceException(['message' => $e->getMessage()]);
