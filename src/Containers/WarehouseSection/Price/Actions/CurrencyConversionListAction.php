@@ -24,7 +24,7 @@ class CurrencyConversionListAction extends Action
                 return $query->orderBy($filters['sort']);
             })
             ->when(! array_key_exists('sort', $filters) || Str::length($filters['sort']) == 0 || $filters['sort'] == null, function ($query) {
-                return $query->orderBy('id');
+                return $query->orderByDesc('id');
             })
             ->paginate($filters['limit'] ?? 10);
     }
