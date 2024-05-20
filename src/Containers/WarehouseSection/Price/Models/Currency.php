@@ -51,6 +51,6 @@ class Currency extends Model
             })
             ->where('is_active', true)
             ->latest()
-            ->first();
+            ->firstOrFail();
     }
 }

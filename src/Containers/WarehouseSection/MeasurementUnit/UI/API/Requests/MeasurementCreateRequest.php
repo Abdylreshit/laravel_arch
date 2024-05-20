@@ -15,7 +15,6 @@ class MeasurementCreateRequest extends Request
             'description' => ['nullable', 'array'],
             'description.ru' => ['nullable', 'string'],
             'description.en' => ['nullable', 'string'],
-            'symbol' => ['required', 'string']
         ];
     }
 }

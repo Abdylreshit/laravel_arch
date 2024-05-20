@@ -9,7 +9,7 @@ class UpdateCurrencyAction extends Action
 {
     public function handle($id, array $data)
     {
-        $currency = app(EditCurrencyByIdTask::class)->run($id, [
+        $currency = app(EditCurrencyByIdTask::class)->execute($id, [
             'name' => [
                 'ru' => $data['name']['ru'],
                 'en' => $data['name']['en'],
