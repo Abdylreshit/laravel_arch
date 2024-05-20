@@ -16,11 +16,7 @@ class MeasurementSeeder extends Seeder
                 'name' => [
                     'en' => $measurement['name']['en'],
                     'ru' => $measurement['name']['ru'],
-                ],
-                'description' => [
-                    'en' => $measurement['description']['en'] ?? null,
-                    'ru' => $measurement['description']['ru'] ?? null,
-                ],
+                ]
             ]);
 
 

@@ -2,7 +2,6 @@
 
 namespace App\Ship\Core\Abstracts\Models\Traits;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Spatie\Translatable\HasTranslations;
 

@@ -11,8 +11,8 @@ class MainPropertyResource extends Resource
         return [
             'id' => $this->id,
             'name' => [
-                'ru' => $this->translate('name', 'ru'),
-                'en' => $this->translate('name', 'en'),
+                'ru' => $this->getTrans('name', 'ru'),
+                'en' => $this->getTrans('name', 'en'),
             ],
             'code' => $this->code,
             'type' => $this->type,

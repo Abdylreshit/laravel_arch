@@ -14,12 +14,12 @@ class ListProductResource extends ResourceCollection
                 return [
                     'id' => $product->id,
                     'name' => [
-                        'ru' => $product->translate('name', 'ru'),
-                        'en' => $product->translate('name', 'en'),
+                        'ru' => $product->getTrans('name', 'ru'),
+                        'en' => $product->getTrans('name', 'en'),
                     ],
                     'description' => [
-                        'ru' => $product->translate('description', 'ru'),
-                        'en' => $product->translate('description', 'en'),
+                        'ru' => $product->getTrans('description', 'ru'),
+                        'en' => $product->getTrans('description', 'en'),
                     ],
                     'type' => new EnumResource($product->type),
                     'images' => $product

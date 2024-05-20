@@ -15,12 +15,12 @@ class EditByIdMeasurementUnitTask extends Task
         try {
             $measurementUnit->update([
                 'name' => [
-                    'en' => $data['name']['en'] ?? $measurementUnit->translate('name', 'en'),
-                    'ru' => $data['name']['ru'] ?? $measurementUnit->translate('name', 'ru'),
+                    'en' => $data['name']['en'] ?? $measurementUnit->getTrans('name', 'en'),
+                    'ru' => $data['name']['ru'] ?? $measurementUnit->getTrans('name', 'ru'),
                 ],
                 'description' => [
-                    'en' => $data['description']['en'] ?? $measurementUnit->translate('description', 'en'),
-                    'ru' => $data['description']['ru'] ?? $measurementUnit->translate('description', 'ru'),
+                    'en' => $data['description']['en'] ?? $measurementUnit->getTrans('description', 'en'),
+                    'ru' => $data['description']['ru'] ?? $measurementUnit->getTrans('description', 'ru'),
                 ],
                 'type' => $data['type'] ?? $measurementUnit->type,
                 'symbol' => $data['symbol'] ?? $measurementUnit->symbol,

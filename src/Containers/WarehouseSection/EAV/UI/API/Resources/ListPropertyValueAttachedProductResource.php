@@ -12,8 +12,8 @@ class ListPropertyValueAttachedProductResource extends Resource
         return [
             'id' => $this->id,
             'name' => [
-                'en' => $this->translate('name', 'en'),
-                'ru' => $this->translate('name', 'ru'),
+                'en' => $this->getTrans('name', 'en'),
+                'ru' => $this->getTrans('name', 'ru'),
             ],
             'type' => $this->type,
             'values' => MainPropertyValueResource::collection($this->values)

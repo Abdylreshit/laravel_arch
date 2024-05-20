@@ -12,12 +12,12 @@ class TreeResource extends Resource
             return [
                 'id' => $this->id,
                 'name' => [
-                    'en' => $this->translate('name', 'en'),
-                    'ru' => $this->translate('name', 'ru'),
+                    'en' => $this->getTrans('name', 'en'),
+                    'ru' => $this->getTrans('name', 'ru'),
                 ],
                 'description' => [
-                    'en' => $this->translate('description', 'en'),
-                    'ru' => $this->translate('description', 'ru'),
+                    'en' => $this->getTrans('description', 'en'),
+                    'ru' => $this->getTrans('description', 'ru'),
                 ],
                 'slug' => $this->slug,
                 'parent_id' => $this->parent_id,
@@ -33,12 +33,12 @@ class TreeResource extends Resource
             return [
                 'id' => $this->id,
                 'name' => [
-                    'en' => $this->translate('name', 'en'),
-                    'ru' => $this->translate('name', 'ru'),
+                    'en' => $this->getTrans('name', 'en'),
+                    'ru' => $this->getTrans('name', 'ru'),
                 ],
                 'description' => [
-                    'en' => $this->translate('description', 'en'),
-                    'ru' => $this->translate('description', 'ru'),
+                    'en' => $this->getTrans('description', 'en'),
+                    'ru' => $this->getTrans('description', 'ru'),
                 ],
                 'slug' => $this->slug,
                 'parent_id' => $this->parent_id,

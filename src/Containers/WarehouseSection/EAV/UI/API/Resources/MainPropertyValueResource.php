@@ -11,8 +11,8 @@ class MainPropertyValueResource extends Resource
         return [
             'id' => $this->id,
             'name' => [
-                'ru' => $this->translate('name', 'ru'),
-                'en' => $this->translate('name', 'en'),
+                'ru' => $this->getTrans('name', 'ru'),
+                'en' => $this->getTrans('name', 'en'),
             ],
             'value' => $this->value,
         ];

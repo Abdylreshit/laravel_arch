@@ -12,12 +12,12 @@ class MainProductResource extends Resource
         return [
             'id' => $this->id,
             'name' => [
-                'ru' => $this->translate('name', 'ru'),
-                'en' => $this->translate('name', 'en'),
+                'ru' => $this->getTrans('name', 'ru'),
+                'en' => $this->getTrans('name', 'en'),
             ],
             'description' => [
-                'ru' => $this->translate('description', 'ru'),
-                'en' => $this->translate('description', 'en'),
+                'ru' => $this->getTrans('description', 'ru'),
+                'en' => $this->getTrans('description', 'en'),
             ],
             'type' => new EnumResource($this->type),
             'images' => $this

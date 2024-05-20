@@ -15,8 +15,8 @@ class EditCurrencyByIdTask extends Task
         try {
             $currency->update([
                 'name' => [
-                    'en' => $data['name']['en'] ?? $currency->translate('name', 'en'),
-                    'ru' => $data['name']['ru'] ?? $currency->translate('name', 'ru')
+                    'en' => $data['name']['en'] ?? $currency->getTrans('name', 'en'),
+                    'ru' => $data['name']['ru'] ?? $currency->getTrans('name', 'ru')
                 ],
                 'code' => $data['code'] ?? $currency->code,
                 'symbol' => $data['symbol'] ?? $currency->symbol
