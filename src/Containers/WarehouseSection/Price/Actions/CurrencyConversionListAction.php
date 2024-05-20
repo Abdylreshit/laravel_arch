@@ -4,6 +4,7 @@ namespace App\Containers\WarehouseSection\Price\Actions;
 
 use App\Containers\WarehouseSection\Price\Models\CurrencyConversion;
 use App\Ship\Core\Abstracts\Actions\Action;
+use Illuminate\Support\Str;
 
 class CurrencyConversionListAction extends Action
 {
@@ -19,10 +20,10 @@ class CurrencyConversionListAction extends Action
                 return $query
                     ->where('valid_to', '>=', $filters['valid_to']);
             })
-            ->when(array_key_exists('sort', $filters) && $filters['sort'] != null, function ($query) use ($filters) {
+            ->when(array_key_exists('sort', $filters) && $filters['sort'] != null && Str::length($filters['sort']) != 0, function ($query) use ($filters) {
                 return $query->orderBy($filters['sort']);
             })
-            ->when(! array_key_exists('sort', $filters), function ($query) {
+            ->when(! array_key_exists('sort', $filters) || Str::length($filters['sort']) == 0 || $filters['sort'] == null, function ($query) {
                 return $query->orderBy('id');
             })
             ->paginate($filters['limit'] ?? 10);
