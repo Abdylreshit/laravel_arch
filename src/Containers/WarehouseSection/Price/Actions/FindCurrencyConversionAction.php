@@ -9,7 +9,7 @@ class FindCurrencyConversionAction extends Action
 {
     public function handle($id)
     {
-        $currencyConversion = app(FindCurrencyConversionByIdTask::class)->run($id);
+        $currencyConversion = app(FindCurrencyConversionByIdTask::class)->execute($id);
 
         return $currencyConversion;
     }

@@ -9,6 +9,6 @@ class DeleteCurrencyConversionAction extends Action
 {
     public function handle($id)
     {
-        app(DeleteCurrencyConversionByIdTask::class)->run($id);
+        app(DeleteCurrencyConversionByIdTask::class)->execute($id);
     }
 }
