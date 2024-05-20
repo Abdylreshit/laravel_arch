@@ -2,14 +2,14 @@
 
 namespace App\Containers\WarehouseSection\Price\Actions;
 
-use App\Containers\WarehouseSection\Price\Tasks\RestoreCurrencyByIdTask;
+use App\Containers\WarehouseSection\Price\Tasks\RestoreCurrencyConversionByIdTask;
 use App\Ship\Core\Abstracts\Actions\Action;
 
 class RestoreCurrencyConversionAction extends Action
 {
     public function handle($id)
     {
-        $currencyConversion = app(RestoreCurrencyByIdTask::class)->execute($id);
+        $currencyConversion = app(RestoreCurrencyConversionByIdTask::class)->execute($id);
 
         return $currencyConversion;
     }

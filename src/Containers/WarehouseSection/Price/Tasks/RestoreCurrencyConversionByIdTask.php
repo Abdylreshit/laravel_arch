@@ -2,14 +2,14 @@
 
 namespace App\Containers\WarehouseSection\Price\Tasks;
 
-use App\Containers\WarehouseSection\Price\Models\Currency;
+use App\Containers\WarehouseSection\Price\Models\CurrencyConversion;
 use App\Ship\Core\Abstracts\Tasks\Task;
 
-class RestoreCurrencyByIdTask extends Task
+class RestoreCurrencyConversionByIdTask extends Task
 {
     public function execute($id)
     {
-        $currencyConversion = Currency::withTrashed()
+        $currencyConversion = CurrencyConversion::withTrashed()
             ->findOrFail($id);
 
         if ($currencyConversion->trashed()) {
