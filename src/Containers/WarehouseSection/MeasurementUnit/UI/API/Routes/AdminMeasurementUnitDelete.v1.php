@@ -1,9 +1,9 @@
 <?php
 
-use App\Containers\WarehouseSection\MeasurementUnit\UI\API\Controllers\DeleteController;
+use App\Containers\WarehouseSection\MeasurementUnit\UI\API\Controllers\MeasurementUnitDeleteController;
 use Illuminate\Support\Facades\Route;
 
-Route::delete('admin/measurement_unit/{id}/delete', DeleteController::class)
+Route::delete('admin/measurement_unit/{id}/delete', MeasurementUnitDeleteController::class)
     ->middleware([
         'auth:admin',
     ])

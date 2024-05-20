@@ -1,9 +1,9 @@
 <?php
 
-use App\Containers\WarehouseSection\MeasurementUnit\UI\API\Controllers\UpdateController;
+use App\Containers\WarehouseSection\MeasurementUnit\UI\API\Controllers\MeasurementUnitUpdateController;
 use Illuminate\Support\Facades\Route;
 
-Route::put('admin/measurement_unit/{id}/update', UpdateController::class)
+Route::put('admin/measurement_unit/{id}/update', MeasurementUnitUpdateController::class)
     ->middleware([
         'auth:admin',
     ])

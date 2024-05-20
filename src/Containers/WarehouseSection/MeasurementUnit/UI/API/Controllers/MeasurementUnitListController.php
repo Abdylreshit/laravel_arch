@@ -8,7 +8,7 @@ use App\Ship\Core\Abstracts\Controllers\ApiController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-final class ListController extends ApiController
+final class MeasurementUnitListController extends ApiController
 {
     /**
      * @LRDparam search nullable|string
