@@ -2,7 +2,6 @@
 
 namespace App\Containers\WarehouseSection\Stock\Models;
 
-use App\Containers\WarehouseSection\Stock\Enums\MovementTypeEnum;
 use App\Ship\Core\Abstracts\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,11 +13,8 @@ class StockMovement extends Model
         'stock_id',
         'before',
         'after',
-        'type',
-    ];
-
-    protected $casts = [
-        'type' => MovementTypeEnum::class,
+        'movable_id',
+        'movable_type',
     ];
 
     public function stock()
@@ -30,12 +26,8 @@ class StockMovement extends Model
         );
     }
 
-    public function stockTransfer()
+    public function movable()
     {
-        return $this->hasOne(
-            StockTransfer::class,
-            'movement_id',
-            'id'
-        );
+        return $this->morphTo();
     }
 }
