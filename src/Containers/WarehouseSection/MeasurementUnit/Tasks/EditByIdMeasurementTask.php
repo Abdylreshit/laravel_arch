@@ -23,7 +23,7 @@ class EditByIdMeasurementTask extends Task
                     'ru' => $data['description']['ru'] ?? $measurement->getTrans('description', 'ru'),
                 ],
             ]);
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             throw new ResourceException(['message' => $e->getMessage()]);
         }
 
