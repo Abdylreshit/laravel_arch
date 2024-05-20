@@ -38,7 +38,7 @@ class CurrencySeeder extends Seeder
                 'to_currency_id' => $c->id,
                 'rate' => $currency['conversion'],
                 'valid_from' => now(),
-                'valid_to' => now()->addYear(),
+                'valid_to' => null,
                 'is_active' => true,
                 'note' => 'Default rate',
             ]);
