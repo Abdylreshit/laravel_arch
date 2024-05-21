@@ -10,12 +10,13 @@ class MainServiceProvider extends ParentMainServiceProvider
         MiddlewareServiceProvider::class,
     ];
 
-    public array $aliases = [
-        // 'Foo' => Bar::class,
-    ];
-
     public function register(): void
     {
         parent::register();
+    }
+
+    public function boot(): void
+    {
+        parent::boot();
     }
 }
