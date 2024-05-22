@@ -18,7 +18,7 @@ class StaffUpdateAction extends Action
                 'lastname' => $data['lastname'] ?? null,
                 'email' => $data['email'],
                 'phone' => $data['phone'] ?? null,
-                'password' => $data['password'],
+                'password' => $data['password'] ?? null,
                 'is_blocked' => $data['is_blocked'],
             ]);
 

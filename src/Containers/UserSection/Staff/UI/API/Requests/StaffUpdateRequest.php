@@ -13,7 +13,7 @@ class StaffUpdateRequest extends Request
             'lastname' => ['nullable', 'string'],
             'email' => ['required', 'email'],
             'phone' => ['nullable', 'string'],
-            'password' => ['required', 'string'],
+            'password' => ['nullable', 'string'],
             'avatar' => ['nullable', 'string'],
             'is_blocked' => ['nullable', 'boolean'],
             'roles' => ['required', 'array'],
