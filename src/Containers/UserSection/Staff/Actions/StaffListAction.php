@@ -14,9 +14,9 @@ class StaffListAction extends Action
                 $search = $filters['search'];
 
                 return $query
-                    ->where(fn($q) => $q->whereEmail($search))
-                    ->orWhere(fn($q) => $q->whereFirstName($search))
-                    ->orWhere(fn($q) => $q->whereLastName($search));
+                    ->where(fn($q) => $q->whereLikeEmail($search))
+                    ->orWhere(fn($q) => $q->whereLikeFirstName($search))
+                    ->orWhere(fn($q) => $q->whereLikeLastName($search));
             })
             ->when(array_key_exists('sort', $filters), function ($query) use ($filters){
                 return $query

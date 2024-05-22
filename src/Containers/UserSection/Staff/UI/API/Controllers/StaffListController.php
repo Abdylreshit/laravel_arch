@@ -11,13 +11,15 @@ final class StaffListController extends ApiController
 {
     /**
      * @LRDparam search nullable|string
-     * @LRDparam sort nullable|string|in:id,name
+     * @LRDparam sort nullable|string|in:id,firstname,lastname,email,phone,created_at
+     * @LRDparam limit nullable|integer
+     * @LRDparam page nullable|integer
      */
     public function __invoke(Request $request)
     {
         $request->validate([
             'search' => 'nullable|string',
-            'sort' => 'nullable|string|in:id,first_name,last_name,email,phone_number,created_at',
+            'sort' => 'nullable|string|in:id,firstname,lastname,email,phone,created_at',
             'limit' => 'nullable|integer',
             'page' => 'nullable|integer',
         ]);

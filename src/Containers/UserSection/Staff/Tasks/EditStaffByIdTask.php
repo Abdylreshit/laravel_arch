@@ -17,8 +17,8 @@ class EditStaffByIdTask extends Task
             $user = $staff->user;
 
             $user->update([
-                'first_name' => $data['firstname'] ?? $user->firstname,
-                'last_name' => $data['lastname'] ?? $user->lastname,
+                'firstname' => $data['firstname'] ?? $user->firstname,
+                'lastname' => $data['lastname'] ?? $user->lastname,
                 'email' => $data['email'] ?? $user->email,
                 'phone' => $data['phone'] ?? $user->phone,
                 'password' => $data['password'] ? Hash::make($data['password']) : $user->password,

@@ -17,9 +17,9 @@ final class StaffFindController extends ApiController
             'staff' => [
                 'id' => $staff->id,
                 'user_id' => $staff->user_id,
-                'first_name' => $staff->firstName,
-                'last_name' => $staff->lastName,
-                'full_name' => $staff->fullName,
+                'firstname' => $staff->firstName,
+                'lastname' => $staff->lastName,
+                'fullname' => $staff->fullName,
                 'email' => $staff->email,
                 'phone' => $staff->phone,
                 'is_blocked' => $staff->isBlocked,

@@ -11,9 +11,9 @@ class MainStaffResource extends Resource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'full_name' => $this->fullName,
+            'firstname' => $this->firstName,
+            'lastname' => $this->lastName,
+            'fullname' => $this->fullName,
             'email' => $this->email,
             'phone' => $this->phone,
             'is_blocked' => $this->isBlocked,
