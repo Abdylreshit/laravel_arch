@@ -7,4 +7,4 @@ Route::post('admin/role/create', RoleCreateController::class)
     ->middleware([
         'auth:admin',
     ])
-    ->name('admin.role.list');
+    ->name('admin.role.create');
