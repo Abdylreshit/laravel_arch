@@ -27,7 +27,7 @@ class StaffListAction extends Action
             ->when(!array_key_exists('sort', $filters), function ($query) {
                 return $query->orderBy('user_id');
             })
-            ->with(['media', 'user'])
+            ->with(['media', 'user', 'roles', 'permissions'])
             ->paginate($filters['limit'] ?? 10);
     }
 }
