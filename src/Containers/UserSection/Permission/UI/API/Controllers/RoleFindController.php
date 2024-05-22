@@ -3,6 +3,7 @@
 namespace App\Containers\UserSection\Permission\UI\API\Controllers;
 
 use App\Containers\UserSection\Permission\Actions\RoleFindAction;
+use App\Containers\UserSection\Permission\UI\API\Resources\MainPermissionResource;
 use App\Ship\Core\Abstracts\Controllers\ApiController;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ final class RoleFindController extends ApiController
                     'ru' => $role->getTrans('trans_names', 'ru'),
                 ],
                 'value' => $role->name,
-                'permissions' => $role->permissions->pluck('name')->toArray(),
+                'permissions' => MainPermissionResource::collection($role->permissions),
             ],
         ]);
     }
