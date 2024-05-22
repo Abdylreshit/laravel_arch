@@ -11,11 +11,11 @@ final class StaffUpdateController extends ApiController
 {
     public function __invoke(StaffUpdateRequest $request)
     {
-        $staff = StaffUpdateAction::run([
+        $staff = StaffUpdateAction::run(
             $request->id,
             $request->only('firstname', 'lastname', 'email', 'phone', 'password', 'avatar', 'is_blocked'),
             $request->roles ?? [],
-        ]);
+        );
 
         return $this->successResponse([
             'staff' => new MainStaffResource($staff),
