@@ -7,6 +7,7 @@ use App\Containers\UserSection\Staff\Data\Factories\StaffFactory;
 use App\Ship\Core\Abstracts\Models\Traits\WithMediaTrait;
 use App\Ship\Core\Abstracts\Models\UserModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasPermissions;
@@ -28,5 +29,10 @@ class Staff extends UserModel implements HasMedia
     protected static function newFactory()
     {
         return StaffFactory::new();
+    }
+
+    public function getAvatarAttribute()
+    {
+        return Str::length($this->getFirstMediaUrl()) == 0 ? url('avatar-placeholder.jpeg') : $this->getFirstMediaUrl();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Containers\UserSection\Managers;
 
 use App\Containers\UserSection\Permission\Models\Permission;
+use App\Containers\UserSection\Permission\Models\Role;
 use App\Containers\UserSection\Staff\Models\Staff;
 use Illuminate\Support\Str;
 
@@ -37,6 +38,19 @@ class StaffPermissionManager
         $permissions = Permission::query()
             ->where('name', 'like', "$containerName%")
             ->get();
+
+        $staff->permissions()->sync($permissions);
+    }
+
+    public function syncRolesToStaff(Staff $staff, array $roles): void
+    {
+        $staff->roles()->sync($roles);
+
+        $rls = Role::query()->whereIn('id', $roles)->get();
+
+        $permissions = $rls->map(function ($role) {
+            return $role->permissions;
+        })->collapse()->pluck('id')->unique();
 
         $staff->permissions()->sync($permissions);
     }

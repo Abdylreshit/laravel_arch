@@ -32,6 +32,16 @@ trait UserTrait
         return $this->user->full_name;
     }
 
+    public function getPhoneAttribute(): ?string
+    {
+        return $this->user->phone ?? null;
+    }
+
+    public function getIsBlockedAttribute(): bool
+    {
+        return $this->user->is_blocked;
+    }
+
     public function scopeWhereEmail($query, $email)
     {
         return $query->whereHas('user', function ($query) use ($email) {

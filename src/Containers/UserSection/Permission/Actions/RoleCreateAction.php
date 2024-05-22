@@ -12,7 +12,7 @@ class RoleCreateAction extends Action
     public function handle(array $data, array $permissions = [])
     {
         $role = app(RoleCreateTask::class)->execute([
-            'name' => Str::upper(Str::slug($data['name']['en'])),
+            'name' => Str::upper(Str::slug($data['name']['en']) . '-' . Str::random(4)),
             'trans_names' => [
                 'en' => $data['name']['en'],
                 'ru' => $data['name']['ru']

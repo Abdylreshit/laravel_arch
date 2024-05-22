@@ -12,7 +12,7 @@ class RoleRestoreByIdTask extends Task
     {
         $role = Role::withTrashed()->findOrFail($roleId);
 
-        if (!$role->trashed()) {
+        if ($role->trashed()) {
             $role->restore();
         }
 
