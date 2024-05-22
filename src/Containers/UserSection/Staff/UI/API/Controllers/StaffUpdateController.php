@@ -14,7 +14,7 @@ final class StaffUpdateController extends ApiController
         $staff = StaffUpdateAction::run([
             $request->id,
             $request->only('firstname', 'lastname', 'email', 'phone', 'password', 'avatar', 'is_blocked'),
-            $request->roles,
+            $request->roles ?? [],
         ]);
 
         return $this->successResponse([
