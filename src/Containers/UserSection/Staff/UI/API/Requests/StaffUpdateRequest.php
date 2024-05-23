@@ -14,7 +14,7 @@ class StaffUpdateRequest extends Request
             'email' => ['required', 'email'],
             'phone' => ['nullable', 'string'],
             'password' => ['nullable', 'string'],
-            'avatar' => ['nullable', 'string'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:2048'],
             'is_blocked' => ['nullable', 'boolean'],
             'roles' => ['nullable', 'array'],
             'roles.*' => ['nullable', 'integer', 'exists:roles,id'],
