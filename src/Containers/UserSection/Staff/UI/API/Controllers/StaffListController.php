@@ -24,7 +24,7 @@ final class StaffListController extends ApiController
             'page' => 'nullable|integer',
         ]);
 
-        $staff = StaffListAction::run($request->only('search', 'sort'));
+        $staff = StaffListAction::run($request->only('search', 'sort', 'limit', 'page'));
 
         return $this->successResponse([
             'staff' => new ListStaffResource($staff),

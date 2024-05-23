@@ -62,25 +62,4 @@ trait UserTrait
             $query->where('lastname', $lastName);
         });
     }
-
-    public function scopeWhereLikeEmail($query, $email)
-    {
-        return $query->whereHas('user', function ($query) use ($email) {
-            $query->where('email','LIKE', "%$email%");
-        });
-    }
-
-    public function scopeWhereLikeFirstName($query, $firstName)
-    {
-        return $query->whereHas('user', function ($query) use ($firstName) {
-            $query->where('firstname', "%$firstName%");
-        });
-    }
-
-    public function scopeWhereLikeLastName($query, $lastName)
-    {
-        return $query->whereHas('user', function ($query) use ($lastName) {
-            $query->where('lastname', "%$lastName%");
-        });
-    }
 }
