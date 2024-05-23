@@ -16,8 +16,8 @@ class StaffUpdateRequest extends Request
             'password' => ['nullable', 'string'],
             'avatar' => ['nullable', 'string'],
             'is_blocked' => ['nullable', 'boolean'],
-            'roles' => ['required', 'array'],
-            'roles.*' => ['required', 'integer', 'exists:roles,id'],
+            'roles' => ['nullable', 'array'],
+            'roles.*' => ['nullable', 'integer', 'exists:roles,id'],
         ];
     }
 }

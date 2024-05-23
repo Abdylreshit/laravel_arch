@@ -236,7 +236,9 @@ class MenuManager
                     'parent_id' => $data['parent_id'],
                 ]);
 
-                app(AssociateWarehouseToCategory::class)->execute($parentCategory->warehouse, $category);
+                if ($parentCategory->warehouse !== null) {
+                    app(AssociateWarehouseToCategory::class)->execute($parentCategory->warehouse, $category);
+                }
 
                 return;
             }

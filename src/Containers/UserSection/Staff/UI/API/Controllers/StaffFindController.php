@@ -2,8 +2,9 @@
 
 namespace App\Containers\UserSection\Staff\UI\API\Controllers;
 
+use App\Containers\UserSection\Permission\UI\API\Resources\MainPermissionResource;
+use App\Containers\UserSection\Permission\UI\API\Resources\MainRoleResource;
 use App\Containers\UserSection\Staff\Actions\StaffFindAction;
-use App\Containers\UserSection\Staff\UI\API\Resources\MainStaffResource;
 use App\Ship\Core\Abstracts\Controllers\ApiController;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,8 @@ final class StaffFindController extends ApiController
                 'phone' => $staff->phone,
                 'is_blocked' => $staff->isBlocked,
                 'avatar' => $staff->avatar,
-                'roles' => $staff->roles->pluck('name')->toArray(),
-                'permissions' => $staff->permissions->pluck('name')->toArray(),
+                'roles' => MainRoleResource::collection($staff->roles),
+                'permissions' => MainPermissionResource::collection($staff->permissions)
             ]
         ]);
     }
