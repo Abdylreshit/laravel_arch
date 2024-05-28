@@ -4,7 +4,9 @@ namespace App\Containers\WarehouseSection\Managers\Models\Traits;
 
 use App\Containers\WarehouseSection\Price\Models\Price;
 use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\DB;
 
 trait Pricable
 {
@@ -26,12 +28,29 @@ trait Pricable
     public function actualPrices()
     {
         return $this
-            ->morphMany(Price::class, 'priceable')
+            ->prices()
             ->where('is_active', true)
             ->where('valid_from', '<=', now())
             ->where('valid_to', '>=', now())
-            ->latest()
-            ->distinct('warehouse_id');
+            ->orderByDesc('id');
+    }
+
+    /**
+     * Get actual prices for warehouses
+     *
+     * @return MorphMany
+     */
+    public function actualPricesWarehouses()
+    {
+        $subquery = $this
+            ->actualPrices()
+            ->select([DB::raw('MAX(id) as id')])
+            ->groupBy('warehouse_id');
+
+        return $this
+            ->actualPrices()
+            ->whereIn('id', $subquery)
+            ->orderByDesc('id');
     }
 
     /**
@@ -42,7 +61,8 @@ trait Pricable
      */
     public function warehousePrices(Warehouse|int $warehouse): MorphMany
     {
-        return $this->prices()->where('warehouse_id', gettype($warehouse) === 'integer' ? $warehouse : $warehouse->id);
+        return $this->prices()
+            ->where('warehouse_id', gettype($warehouse) === 'integer' ? $warehouse : $warehouse->id);
     }
 
     /**
@@ -55,5 +75,19 @@ trait Pricable
     {
         return $this->actualPrices()
             ->where('warehouse_id', gettype($warehouse) === 'integer' ? $warehouse : $warehouse->id);
+    }
+
+    /**
+     * Get actual price for specific warehouse
+     *
+     * @param Warehouse|int $warehouse
+     * @return Model|null
+     */
+    public function actualWarehousePrice(Warehouse|int $warehouse): Model|null
+    {
+        return $this
+            ->actualPrices()
+            ->where('warehouse_id', gettype($warehouse) === 'integer' ? $warehouse : $warehouse->id)
+            ->first();
     }
 }
