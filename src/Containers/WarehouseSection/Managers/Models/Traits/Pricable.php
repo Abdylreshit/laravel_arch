@@ -30,6 +30,7 @@ trait Pricable
             ->where('is_active', true)
             ->where('valid_from', '<=', now())
             ->where('valid_to', '>=', now())
+            ->latest()
             ->distinct('warehouse_id');
     }
 

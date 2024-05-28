@@ -4,6 +4,7 @@ namespace App\Containers\WarehouseSection\Price\Models;
 
 use App\Containers\WarehouseSection\Price\Data\Factories\PriceFactory;
 use App\Containers\WarehouseSection\Price\Models\Casts\PriceCast;
+use App\Containers\WarehouseSection\Warehouse\Models\Warehouse;
 use App\Ship\Core\Abstracts\Models\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,6 +19,7 @@ class Price extends Model
         'is_active',
         'valid_from',
         'valid_to',
+        'warehouse_id'
     ];
 
     protected $casts = [
@@ -37,5 +39,10 @@ class Price extends Model
     public function currency()
     {
         return $this->belongsTo(Currency::class, 'price_currency_id');
+    }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
     }
 }

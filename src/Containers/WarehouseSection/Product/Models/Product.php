@@ -24,12 +24,22 @@ class Product extends Model implements HasMedia
     use Categorizable;
     use Propertiable;
     use Pricable;
+//    use Stockable;
 
     protected $fillable = [
         'name',
         'description',
         'sku',
-        'type'
+        'type',
+        'specode',
+        'specode2',
+        'specode3',
+        'specode4',
+        'specode5',
+        'specode6',
+        'specode7',
+        'specode8',
+        'specode9',
     ];
 
     protected $translatable = [
@@ -38,8 +48,17 @@ class Product extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'type' => ProductType::class
+        'type' => ProductType::class,
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->sku = uniqid();
+        });
+    }
 
     protected static function newFactory(): Factory
     {

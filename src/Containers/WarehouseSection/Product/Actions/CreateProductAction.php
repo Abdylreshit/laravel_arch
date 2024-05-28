@@ -22,27 +22,32 @@ class CreateProductAction extends Action
                     'en' => $data['description']['en'] ?? null,
                     'ru' => $data['description']['ru'] ?? null,
                 ],
+                'type' => $data['type'],
             ]);
 
-            if (array_key_exists('property_values', $data)) {
-                PropertyValue::query()
-                    ->whereIn('id', $data['property_values'])
-                    ->get()
-                    ->each(function ($propertyValue) use ($product) {
-                        app(AttachPropertyValueToProductTask::class)->execute($product, $propertyValue);
-                    });
-            }
-
-            if (array_key_exists('images', $data)) {
-                $product->addMultipleMediaFromRequest(['images'])
-                    ->each(function ($fileAdder) {
-                        $fileAdder->toMediaCollection('images');
-                    });
-            }
-
-            if (array_key_exists('categories', $data)) {
-                $product->categories()->sync($data['categories']);
-            }
+//            if ($product->type === 'BUNDLE') {
+//                $product->bundleItems()->sync($data['items']);
+//            }
+//
+//            if (array_key_exists('property_values', $data)) {
+//                PropertyValue::query()
+//                    ->whereIn('id', $data['property_values'])
+//                    ->get()
+//                    ->each(function ($propertyValue) use ($product) {
+//                        app(AttachPropertyValueToProductTask::class)->execute($product, $propertyValue);
+//                    });
+//            }
+//
+//            if (array_key_exists('images', $data)) {
+//                $product->addMultipleMediaFromRequest(['images'])
+//                    ->each(function ($fileAdder) {
+//                        $fileAdder->toMediaCollection('images');
+//                    });
+//            }
+//
+//            if (array_key_exists('categories', $data)) {
+//                $product->categories()->sync($data['categories']);
+//            }
         } catch (\Exception $e) {
             throw new ResourceException(['message' => $e->getMessage()]);
         }

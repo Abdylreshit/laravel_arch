@@ -16,8 +16,8 @@ class PriceFactory extends Factory
             'price' => $this->faker->randomFloat(2, 0, 1000),
             'price_currency_id' => Currency::query()->inRandomOrder()->first()->id,
             'is_active' => $this->faker->boolean,
-            'valid_from' => $this->faker->dateTime,
-            'valid_to' => $this->faker->dateTime,
+            'valid_from' => now(),
+            'valid_to' => now()->addYear(),
         ];
     }
 }

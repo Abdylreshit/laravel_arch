@@ -6,6 +6,7 @@ use App\Containers\WarehouseSection\Product\Enums\ProductType;
 use App\Containers\WarehouseSection\Product\Models\Product;
 use App\Ship\Core\Abstracts\Tasks\Task;
 use App\Ship\Exceptions\ResourceException;
+use Illuminate\Support\Str;
 
 class CreateProductTask extends Task
 {
@@ -22,7 +23,7 @@ class CreateProductTask extends Task
                         'en' => $data['description']['en'] ?? null,
                         'ru' => $data['description']['ru'] ?? null,
                     ],
-                    'type' => $data['type'] ?? ProductType::SIMPLE
+                    'type' => $data['type'] ?? ProductType::SIMPLE,
                 ]);
         } catch (\Exception $e) {
             throw new ResourceException(['message' => $e->getMessage()]);
