@@ -23,6 +23,20 @@ class MainProductResource extends Resource
             'images' => $this
                 ->getMedia()
                 ?->map(fn($image) => $image->getFullUrl()),
+            'properties' => $this->properties
+                ?->map(function ($property) {
+                    $value = $this->propertyValues()->where('property_id', $property->id)->first();
+                    return [
+                        'id' => $property->id,
+                        'name' => [
+                            'ru' => $property->getTrans('name', 'ru'),
+                            'en' => $property->getTrans('name', 'en'),
+                        ],
+                        'value' => $value?->value,
+                        'type' => new EnumResource($property->type),
+                        'value_id' => $value?->id,
+                    ];
+                }),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Containers\WarehouseSection\EAV\Managers\Traits;
 
+use App\Containers\WarehouseSection\EAV\Models\Property;
 use App\Containers\WarehouseSection\EAV\Models\PropertyValue;
 use App\Ship\Core\Abstracts\Models\Model;
 use ArrayAccess;
@@ -21,6 +22,19 @@ trait Propertiable
             'entity_id',
             'property_value_id',
         );
+    }
+
+    public function properties()
+    {
+        return $this->hasManyDeep(
+            Property::class,
+            ['entity_property_values', PropertyValue::class],
+            ['entity_id', null, 'id', 'id'],
+            [null,null,'property_value_id','property_id']
+        )
+            ->where('entity_type', get_class($this))
+            ->distinct('properties.id')
+            ;
     }
 
     /**
