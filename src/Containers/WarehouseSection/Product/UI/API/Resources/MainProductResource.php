@@ -2,6 +2,7 @@
 
 namespace App\Containers\WarehouseSection\Product\UI\API\Resources;
 
+use App\Containers\WarehouseSection\Product\Enums\ProductType;
 use App\Ship\Core\Abstracts\Resources\Resource;
 use App\Ship\Core\Resources\EnumResource;
 
@@ -9,6 +10,7 @@ class MainProductResource extends Resource
 {
     public function toArray($request)
     {
+
         return [
             'id' => $this->id,
             'name' => [
@@ -37,6 +39,13 @@ class MainProductResource extends Resource
                         'value_id' => $value?->id,
                     ];
                 }),
+
+            $this->mergeWhen($this->type->is(ProductType::BUNDLE), [
+                'items' => $this->bundleItems
+                    ?->map(function ($item) {
+                        return new MainProductResource($item);
+                    }),
+            ]),
         ];
     }
 }

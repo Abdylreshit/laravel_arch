@@ -51,6 +51,8 @@ class Product extends Model implements HasMedia
         'type' => ProductType::class,
     ];
 
+//    protected $with = ['media', 'bundleItems', 'properties', 'propertyValues', 'bundleItems.media', 'bundleItems.properties', 'bundleItems.propertyValues'];
+
     protected static function boot()
     {
         parent::boot();

@@ -17,19 +17,19 @@ class CreateProductRequest extends Request
             'description' => ['required', 'array'],
             'description.ru' => ['required', 'string', 'max:255'],
             'description.en' => ['required', 'string', 'max:255'],
-//            'images' => ['required', 'array'],
-//            'images.*' => ['required', 'image', 'max:4096'],
+            'images' => ['required', 'array'],
+            'images.*' => ['required', 'image', 'max:4096'],
 
             'type' => ['required', new EnumValue(ProductType::class)],
 
-//            'items' => ['required_if:type,' . ProductType::BUNDLE, 'array'],
-//            'items.*' => ['required_if:type,' . ProductType::BUNDLE, 'integer', 'exists:products,id'],
+            'items' => ['required_if:type,' . ProductType::BUNDLE, 'array'],
+            'items.*' => ['required_if:type,' . ProductType::BUNDLE, 'integer', 'exists:products,id'],
 
-//            'property_values' => ['nullable', 'array'],
-//            'property_values.*' => ['nullable', 'integer', 'exists:property_values,id'],
+            'property_values' => ['nullable', 'array'],
+            'property_values.*' => ['nullable', 'integer', 'exists:property_values,id'],
 
-//            'categories' => ['nullable', 'array'],
-//            'categories.*' => ['nullable', 'integer', 'exists:categories,id'],
+            'categories' => ['nullable', 'array'],
+            'categories.*' => ['nullable', 'integer', 'exists:categories,id'],
         ];
     }
 }
